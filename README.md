@@ -12,6 +12,7 @@ In the business perspective, the goals is to stay connected with Sarirasa custom
 - [Spring.io](http://spring.io/projects/spring-framework) - The Java Spring Framework Homepage
 - [Gradle](https://gradle.org/) - Automate Build Tool.
 - [PostgreSQL](https://www.postgresql.org/) - Open Source Relational Database.
+- [HikariCP](https://github.com/brettwooldridge/HikariCP) - JDBC Connection Pool
 
 ## Credits
 
