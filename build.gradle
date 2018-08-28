@@ -1,0 +1,45 @@
+apply plugin: "war"
+apply plugin: "jetty"
+
+ext {
+    libCxfVersion = "3.0.0"
+    libSpringFrameworkVersion = "4.0.9.RELEASE"
+    libJacksonVersion = "2.5.1"
+    libJavaxValidationVersion = "1.1.0.Final"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
+
+repositories {
+    mavenCentral()
+}
+
+war {
+    archiveName = "srn-api.war"
+}
+dependencies {
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.0.9.RELEASE'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+//    providedCompile "javax:javaee-api:7.0"
+    compile "javax.validation:validation-api:$libJavaxValidationVersion"
+
+    compile "com.fasterxml.jackson.core:jackson-databind:$libJacksonVersion"
+    compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:$libJacksonVersion"
+//    compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-xml-provider:$libJacksonVersion"
+
+    /*compile "org.springframework:spring-context:$libSpringFrameworkVersion"
+    compile "org.springframework:spring-context-support:$libSpringFrameworkVersion"
+    compile "org.springframework:spring-web:$libSpringFrameworkVersion"*/
+    compile "org.springframework.social:spring-social-facebook:2.0.3.RELEASE"
+
+    compile "com.google.apis:google-api-services-plus:v1-rev118-1.17.0-rc"
+    compile "com.google.apis:google-api-services-oauth2:v2-rev64-1.17.0-rc"
+    compile "com.google.oauth-client:google-oauth-client:1.17.0-rc"
+    compile "org.springframework.boot:spring-boot-gradle-plugin:2.0.4.RELEASE"
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.1.RELEASE'
+    
+    //compile "org.logback-extensions:logback-ext-spring:0.1.2"
+
+}
