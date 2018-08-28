@@ -1,5 +1,5 @@
 # SRN-Service-API
-<img align="right" src=" SRN-Service-API/logo sarirasa 300.png" />
+<img align="right" src="../SRN-Service-API/logo sarirasa 300.png" />
 
 ## CRM Web Services Middleware
 1. Java EE Restful Web Services
