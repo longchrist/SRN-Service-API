@@ -70,6 +70,20 @@ public class srn_device {
     }
 
     /**
+     * @return the osversion
+     */
+    public String getOsversion() {
+        return osversion;
+    }
+
+    /**
+     * @param osversion the osversion to set
+     */
+    public void setOsversion(String osversion) {
+        this.osversion = osversion;
+    }
+    
+    /**
      * @return the fcm_id
      */
     public String getFcm_id() {
@@ -115,7 +129,9 @@ public class srn_device {
     private String model;
     private String imei;
     private String manufacture;
+    private String osversion;
     private String fcm_id;
     private Timestamp created;
     private Timestamp last_updated;
+
 }
