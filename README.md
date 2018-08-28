@@ -2,11 +2,9 @@
 <img align="right" src="logo.png" />
 
 ## SRN CRM Middleware
-1. Java EE Restful Web Services
-2. Gradle
-3. Spring Java Framework
-4. Postgres Database
-5. 
+The CRM stands for Customer Relationship Management is an approach to managing company's relationship with the customer and potential customer. A CRM system helps company to stay connected with the customer, and to improve profitability. CRM solution helps company focus on the customer relationship, including finding new customer.
+
+In the business perspective, the goals is to stay connected with Sarirasa customer, effective of giving a promos, business intelligence and analytics, the point is to improve profitability and finding new customer.
 
 ## SRN CRM Middleware Resources
 
