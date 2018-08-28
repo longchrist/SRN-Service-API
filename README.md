@@ -17,6 +17,6 @@ In the business perspective, the goals is to stay connected with Sarirasa custom
 
 The current SRN CRM Middleware dev team consists of:
  - Vikra Alviano [[@vikraa](https://github.com/vikraa)]
- - Christian [[@vikraa](https://github.com/longchrist)]
+ - Christian [[@longchrist](https://github.com/longchrist)]
  - Indra Susanto []
  - Subagus Nurmandjaja []
