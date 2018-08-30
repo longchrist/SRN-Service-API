@@ -5,6 +5,8 @@
  */
 package com.srn.api.dao;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -12,12 +14,20 @@ import java.sql.Timestamp;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
+
 /**
  *
  * @author user
  */
 public class srn_device_dao {
     private Connection conn = null;
+    
+    HikariDataSource hikariDataSource;
+    HikariConfig hikariConfig;
+    
+    HikariConfig config = new HikariConfig("hikari.properties");
+    HikariDataSource ds = new HikariDataSource(config);
     
     public String getAllDeviceValidation(){
         String jsonResponse = "";
@@ -38,8 +48,7 @@ public class srn_device_dao {
         JSONArray SRN_DEVICE_DATA = new JSONArray();
         
         try {
-            dbConnection DC = new dbConnection(); // class conn updated soon 
-            conn = DC.getConnection();
+            conn = ds.getConnection();
              
             stmt = conn.createStatement();
             String query = "SELECT id, model, imei, manufacture, osversion, fcm_id, created, last_updated FROM srn_device";

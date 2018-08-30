@@ -19,6 +19,7 @@ repositories {
 war {
     archiveName = "srn-api.war"
 }
+
 dependencies {
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.0.9.RELEASE'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
@@ -38,6 +39,8 @@ dependencies {
     compile "com.google.apis:google-api-services-oauth2:v2-rev64-1.17.0-rc"
     compile "com.google.oauth-client:google-oauth-client:1.17.0-rc"
     compile "org.springframework.boot:spring-boot-gradle-plugin:2.0.4.RELEASE"
+    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+    compile group: 'com.zaxxer', name: 'HikariCP', version: '3.2.0'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.1.RELEASE'
     
     //compile "org.logback-extensions:logback-ext-spring:0.1.2"
