@@ -5,7 +5,7 @@
  */
 package com.srn.api.repository;
 
-import com.srn.api.model.srnUserProfile;
+import com.srn.api.model.SrnUserProfile;
 import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -13,6 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author user
  */
-public interface srnUserProfileRepository extends JpaRepository<srnUserProfile, Integer>{
-    srnUserProfile findByUsername(String username);
+public interface srnUserProfileRepository extends JpaRepository<SrnUserProfile, Integer>{
+    SrnUserProfile findByUsername(String username);
 }
