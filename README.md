@@ -20,4 +20,4 @@ The current SRN CRM Middleware dev team consists of:
  - Vikra Alviano [[@vikraa](https://github.com/vikraa)]
  - Christian [[@longchrist](https://github.com/longchrist)]
  - Indra Susanto [[@blazer9x](https://github.com/blazer9x)]
- - Subagus Nurmandjaja []
+ - Subagus Nurmandjaja [[@subagus14](https://github.com/subagus14)]
