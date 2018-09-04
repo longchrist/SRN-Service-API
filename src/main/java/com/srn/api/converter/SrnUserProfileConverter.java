@@ -21,6 +21,7 @@ public class SrnUserProfileConverter {
         SUP.setFull_name(SUPDTO.getFull_name());
         SUP.setNickname(SUPDTO.getNickname());
         SUP.setAddress(SUPDTO.getAddress());
+        SUP.setCity(SUPDTO.getCity());
         SUP.setProvince(SUPDTO.getProvince());
         SUP.setPhone(SUPDTO.getPhone());
         SUP.setAlternate_email(SUPDTO.getAlternate_email());
@@ -35,6 +36,7 @@ public class SrnUserProfileConverter {
         SUPDTO.setFull_name(SUP.getFull_name());
         SUPDTO.setNickname(SUP.getNickname());
         SUPDTO.setAddress(SUP.getAddress());
+        SUPDTO.setCity(SUP.getCity());
         SUPDTO.setProvince(SUP.getProvince());
         SUPDTO.setPhone(SUP.getPhone());
         SUPDTO.setAlternate_email(SUP.getAlternate_email());
