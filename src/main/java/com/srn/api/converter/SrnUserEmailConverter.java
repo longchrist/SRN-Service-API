@@ -10,8 +10,9 @@ import com.srn.api.model.SrnUserEmail;
 
 /**
  *
- * @author user
+ * @author long
  */
+
 public final class SrnUserEmailConverter {
     public SrnUserEmail DTOtoSrnUserEmail(SrnUserEmailDTO SUEDTO) {
         SrnUserEmail SUE = new SrnUserEmail();

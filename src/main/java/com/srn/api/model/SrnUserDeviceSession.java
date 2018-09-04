@@ -10,8 +10,9 @@ import javax.persistence.*;
 
 /**
  *
- * @author user
+ * @author long
  */
+
 @Entity
 public class SrnUserDeviceSession {
 

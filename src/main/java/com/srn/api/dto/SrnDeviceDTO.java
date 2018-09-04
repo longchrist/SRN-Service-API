@@ -9,8 +9,9 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author user
+ * @author long
  */
+
 public class SrnDeviceDTO {
 
     /**

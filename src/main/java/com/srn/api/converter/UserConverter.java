@@ -4,6 +4,11 @@ import com.srn.api.dto.UserDTO;
 import com.srn.api.model.User;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author long
+ */
+
 @Component
 public final class UserConverter {
     public User DTOtoUser(UserDTO userDTO) {

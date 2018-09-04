@@ -10,8 +10,9 @@ import com.srn.api.model.SrnUserDeviceSession;
 
 /**
  *
- * @author user
+ * @author long
  */
+
 public final class SrnUserDeviceSessionConverter {
     public SrnUserDeviceSession DTOtoSrnUserDeviceSession(SrnUserDeviceSessionDTO SUDSDTO) {
         SrnUserDeviceSession SUDS = new SrnUserDeviceSession();

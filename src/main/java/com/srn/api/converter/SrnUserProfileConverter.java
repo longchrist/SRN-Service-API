@@ -8,9 +8,10 @@ package com.srn.api.converter;
 import com.srn.api.dto.SrnUserProfileDTO;
 import com.srn.api.model.srnUserProfile;
 import org.springframework.stereotype.Component;
+
 /**
  *
- * @author user
+ * @author long
  */
 
 @Component

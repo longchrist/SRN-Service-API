@@ -24,8 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
- * @author user
+ * @author long
  */
+
 @RestController
 @RequestMapping("/apiuserprofile")
 public class SrnUserProfileController {

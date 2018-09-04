@@ -18,8 +18,9 @@ import com.srn.api.service.SrnUserProfileService;
 
 /**
  *
- * @author user
+ * @author long
  */
+
 @Service
 public class SrnUserProfileImpl implements SrnUserProfileService {
     private final Logger LOGGER = LoggerFactory.getLogger(SrnUserProfileImpl.class);

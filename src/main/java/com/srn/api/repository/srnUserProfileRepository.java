@@ -11,8 +11,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
- * @author user
+ * @author long
  */
+
 public interface srnUserProfileRepository extends JpaRepository<srnUserProfile, Integer>{
     srnUserProfile findByNickname(String nickname);
 }

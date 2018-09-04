@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author user
+ * @author long
  */
 public interface SrnUserProfileService {
 

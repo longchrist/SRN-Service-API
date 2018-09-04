@@ -10,8 +10,9 @@ import com.srn.api.model.SrnDevice;
 
 /**
  *
- * @author user
+ * @author long
  */
+
 public final class SrnDeviceConverter {
     public SrnDevice DTOtoSrnUser(SrnDeviceDTO SDCDTO) {
         SrnDevice SDC = new SrnDevice();
