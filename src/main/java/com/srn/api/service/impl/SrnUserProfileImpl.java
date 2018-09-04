@@ -6,8 +6,8 @@
 package com.srn.api.service.impl;
 
 import com.srn.api.service.SrnUserProfileService;
-import com.srn.api.model.SrnUserProfile;
-import com.srn.api.repository.SrnUserProfileRepository;
+import com.srn.api.model.srnUserProfile;
+import com.srn.api.repository.srnUserProfileRepository;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,35 +23,35 @@ import com.srn.api.service.SrnUserProfileService;
 @Service
 public class SrnUserProfileImpl implements SrnUserProfileService {
     private final Logger LOGGER = LoggerFactory.getLogger(SrnUserProfileImpl.class);
-    private final SrnUserProfileRepository userProfileRepository;
+    private final srnUserProfileRepository userProfileRepository;
 
     @Autowired
-    public SrnUserProfileImpl(SrnUserProfileRepository userProfileRepository) {
+    public SrnUserProfileImpl(srnUserProfileRepository userProfileRepository) {
         this.userProfileRepository = userProfileRepository;
     }
 
     @Override
-    public SrnUserProfile create(SrnUserProfile user) {
+    public srnUserProfile create(srnUserProfile user) {
         return userProfileRepository.save(user);
     }
 
     @Override
-    public SrnUserProfile find(int id) {
+    public srnUserProfile find(int id) {
         return userProfileRepository.findOne(id);
     }
 
     @Override
-    public SrnUserProfile findByNickname(String nickname) {
+    public srnUserProfile findByNickname(String nickname) {
         return userProfileRepository.findByNickname(nickname);
     }
 
     @Override
-    public List<SrnUserProfile> findAll() {
+    public List<srnUserProfile> findAll() {
         return userProfileRepository.findAll();
     }
 
     @Override
-    public SrnUserProfile update(int id, SrnUserProfile srnUser) {
+    public srnUserProfile update(int id, srnUserProfile srnUser) {
         srnUser.setUser_id(id);
         return userProfileRepository.save(srnUser);
     }

@@ -6,7 +6,7 @@
 package com.srn.api.converter;
 
 import com.srn.api.dto.SrnUserProfileDTO;
-import com.srn.api.model.SrnUserProfile;
+import com.srn.api.model.srnUserProfile;
 import org.springframework.stereotype.Component;
 /**
  *
@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SrnUserProfileConverter {
-     public SrnUserProfile DTOtoSrnUserProfile(SrnUserProfileDTO SUPDTO) {
-        SrnUserProfile SUP = new SrnUserProfile();
+     public srnUserProfile DTOtoSrnUserProfile(SrnUserProfileDTO SUPDTO) {
+        srnUserProfile SUP = new srnUserProfile();
         SUP.setUser_id(SUPDTO.getUser_id());
         SUP.setFull_name(SUPDTO.getFull_name());
         SUP.setNickname(SUPDTO.getNickname());
@@ -29,7 +29,7 @@ public class SrnUserProfileConverter {
         return SUP;
     }
 
-    public SrnUserProfileDTO SrnUserProfileToDTO(SrnUserProfile SUP) {
+    public SrnUserProfileDTO SrnUserProfileToDTO(srnUserProfile SUP) {
         SrnUserProfileDTO SUPDTO = new SrnUserProfileDTO();
         SUPDTO.setUser_id(SUP.getUser_id());
         SUPDTO.setFull_name(SUP.getFull_name());
