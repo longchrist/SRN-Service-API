@@ -5,6 +5,7 @@
  */
 package com.srn.api.service.impl;
 
+import com.srn.api.service.SrnUserProfileService;
 import com.srn.api.model.SrnUserProfile;
 import com.srn.api.repository.SrnUserProfileRepository;
 import java.util.List;
@@ -12,12 +13,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
+import com.srn.api.service.SrnUserProfileService;
 
 /**
  *
  * @author user
  */
-public class SrnUserProfileImpl {
+@Service
+public class SrnUserProfileImpl implements SrnUserProfileService {
     private final Logger LOGGER = LoggerFactory.getLogger(SrnUserProfileImpl.class);
     private final SrnUserProfileRepository userProfileRepository;
 
@@ -26,27 +30,33 @@ public class SrnUserProfileImpl {
         this.userProfileRepository = userProfileRepository;
     }
 
+    @Override
     public SrnUserProfile create(SrnUserProfile user) {
         return userProfileRepository.save(user);
     }
 
+    @Override
     public SrnUserProfile find(int id) {
         return userProfileRepository.findOne(id);
     }
 
-    public SrnUserProfile findByUsername(String username) {
-        return userProfileRepository.findByUsername(username);
+    @Override
+    public SrnUserProfile findByNickname(String nickname) {
+        return userProfileRepository.findByNickname(nickname);
     }
 
+    @Override
     public List<SrnUserProfile> findAll() {
         return userProfileRepository.findAll();
     }
 
+    @Override
     public SrnUserProfile update(int id, SrnUserProfile srnUser) {
         srnUser.setUser_id(id);
         return userProfileRepository.save(srnUser);
     }
 
+    @Override
     public boolean delete(int id) {
         try {
             userProfileRepository.delete(id);
@@ -57,6 +67,7 @@ public class SrnUserProfileImpl {
         }
     }
 
+    @Override
     public boolean deleteAll() {
         try {
             userProfileRepository.deleteAll();

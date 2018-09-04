@@ -7,11 +7,13 @@ package com.srn.api.converter;
 
 import com.srn.api.dto.SrnUserProfileDTO;
 import com.srn.api.model.SrnUserProfile;
-
+import org.springframework.stereotype.Component;
 /**
  *
  * @author user
  */
+
+@Component
 public class SrnUserProfileConverter {
      public SrnUserProfile DTOtoSrnUserProfile(SrnUserProfileDTO SUPDTO) {
         SrnUserProfile SUP = new SrnUserProfile();

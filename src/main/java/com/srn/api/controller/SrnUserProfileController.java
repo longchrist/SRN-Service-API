@@ -6,11 +6,8 @@
 package com.srn.api.controller;
 
 import com.srn.api.converter.SrnUserProfileConverter;
-import com.srn.api.converter.UserConverter;
+import com.srn.api.dto.SrnUserProfileDTO;
 import com.srn.api.model.SrnUserProfile;
-import com.srn.api.model.User;
-import com.srn.api.service.SrnUserProfileService;
-import com.srn.api.service.UserService;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.srn.api.service.SrnUserProfileService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -48,6 +49,31 @@ public class SrnUserProfileController {
         } catch (DataAccessException e) {
             LOGGER.info(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    @RequestMapping("/{id}")
+    public ResponseEntity<SrnUserProfileDTO> loadOne(@PathVariable int id) {
+        LOGGER.info("start loadOne user by id: ", id);
+        try {
+            SrnUserProfile user = userProfileService.find(id);
+            LOGGER.info("Found: {}", user);
+            return new ResponseEntity<>(userProfileConverter.SrnUserProfileToDTO(user), HttpStatus.OK);
+        } catch (DataAccessException e) {
+            LOGGER.info(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<SrnUserProfileDTO> create(@RequestBody SrnUserProfileDTO SUPDTO) {
+        LOGGER.info("start creating user: ", SUPDTO);
+        try {
+            SrnUserProfile user = userProfileService.create(userProfileConverter.DTOtoSrnUserProfile(SUPDTO));
+            return new ResponseEntity<>(userProfileConverter.SrnUserProfileToDTO(user), HttpStatus.CREATED);
+        } catch (DataAccessException e) {
+            LOGGER.info(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
     }
 }

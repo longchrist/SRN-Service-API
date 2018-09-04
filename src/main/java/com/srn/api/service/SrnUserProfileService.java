@@ -13,17 +13,19 @@ import java.util.List;
  * @author user
  */
 public interface SrnUserProfileService {
-    SrnUserProfile find(int id);
 
-    SrnUserProfile findByUsername(String username);
-
-    List<SrnUserProfile> findAll();
-
-    SrnUserProfile create(SrnUserProfile object);
-
-    SrnUserProfile update(int id, SrnUserProfile object);
+    SrnUserProfile create(SrnUserProfile user);
 
     boolean delete(int id);
 
     boolean deleteAll();
+
+    SrnUserProfile find(int id);
+
+    List<SrnUserProfile> findAll();
+
+    SrnUserProfile findByNickname(String nickname);
+
+    SrnUserProfile update(int id, SrnUserProfile srnUser);
+    
 }
