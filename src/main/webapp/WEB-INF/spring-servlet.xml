@@ -5,13 +5,27 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context	http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:annotation-config />
-    <context:component-scan base-package="com.srn.api.controller"/>
+    <!--<context:component-scan base-package="com.srn.api.controller"/>-->
+    <!--<context:property-placeholder location="classpath:application.properties" order="1"/>-->
     <mvc:annotation-driven />
 
-    <mvc:interceptors>
+    <!--<mvc:interceptors>
         <bean class="com.srn.api.controller.SrnApiInterceptor" />
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 
-    <bean id="restApiController" class="com.srn.api.controller.RestApiController"/>
+    <!--<bean id="srnUserProfileController" class="com.srn.api.controller.SrnUserProfileController" />-->
 
+    <!--<bean id="hikariConfigMaster" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName" value="${spring.datasource.driverClassName}"/>
+        <property name="jdbcUrl" value="${spring.datasource.url}"/>
+        <property name="username" value="${spring.datasource.username}"/>
+        <property name="password" value="${spring.datasource.password}"/>
+        <property name="maximumPoolSize" value="${spring.jdbc.dbcp2.maxPoolSize}"/>
+        <property name="poolName" value="SRNConnectionPool"/>
+        <property name="registerMbeans" value="true"/>
+    </bean>
+
+    <bean id="dataSourceHikariMaster" class="com.zaxxer.hikari.HikariDataSource">
+        <constructor-arg index="0" ref="hikariConfigMaster"/>
+    </bean>-->
 </beans>
