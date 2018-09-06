@@ -7,7 +7,7 @@ package com.srn.api.controller;
 
 import com.srn.api.converter.SrnUserProfileConverter;
 import com.srn.api.dto.SrnUserProfileDTO;
-import com.srn.api.model.srnUserProfile;
+import com.srn.api.model.SrnUserProfile;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,10 +41,10 @@ public class SrnUserProfileController {
     }
 
     @RequestMapping
-    public ResponseEntity<List<srnUserProfile>> loadAll() {
+    public ResponseEntity<List<SrnUserProfile>> loadAll() {
         LOGGER.info("start loadAll profile users");
         try {
-            List<srnUserProfile> LUPS = userProfileService.findAll();
+            List<SrnUserProfile> LUPS = userProfileService.findAll();
             LOGGER.info("Found {} users", LUPS.size());
             return new ResponseEntity<>(LUPS, HttpStatus.OK);
         } catch (DataAccessException e) {
@@ -57,7 +57,7 @@ public class SrnUserProfileController {
     public ResponseEntity<SrnUserProfileDTO> loadOne(@PathVariable int id) {
         LOGGER.info("start loadOne user by id: ", id);
         try {
-            srnUserProfile user = userProfileService.find(id);
+            SrnUserProfile user = userProfileService.find(id);
             LOGGER.info("Found: {}", user);
             return new ResponseEntity<>(userProfileConverter.SrnUserProfileToDTO(user), HttpStatus.OK);
         } catch (DataAccessException e) {
@@ -70,7 +70,7 @@ public class SrnUserProfileController {
     public ResponseEntity<SrnUserProfileDTO> create(@RequestBody SrnUserProfileDTO SUPDTO) {
         LOGGER.info("start creating user: ", SUPDTO);
         try {
-            srnUserProfile user = userProfileService.create(userProfileConverter.DTOtoSrnUserProfile(SUPDTO));
+            SrnUserProfile user = userProfileService.create(userProfileConverter.DTOtoSrnUserProfile(SUPDTO));
             return new ResponseEntity<>(userProfileConverter.SrnUserProfileToDTO(user), HttpStatus.CREATED);
         } catch (DataAccessException e) {
             LOGGER.info(e.getMessage());

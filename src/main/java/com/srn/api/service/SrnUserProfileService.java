@@ -5,7 +5,7 @@
  */
 package com.srn.api.service;
 
-import com.srn.api.model.srnUserProfile;
+import com.srn.api.model.SrnUserProfile;
 import java.util.List;
 
 /**
@@ -14,18 +14,18 @@ import java.util.List;
  */
 public interface SrnUserProfileService {
 
-    srnUserProfile create(srnUserProfile user);
+    SrnUserProfile create(SrnUserProfile user);
 
     boolean delete(int id);
 
     boolean deleteAll();
 
-    srnUserProfile find(int id);
+    SrnUserProfile find(int id);
 
-    List<srnUserProfile> findAll();
+    List<SrnUserProfile> findAll();
 
-    srnUserProfile findByNickname(String nickname);
+    SrnUserProfile findByNickname(String nickname);
 
-    srnUserProfile update(int id, srnUserProfile srnUser);
+    SrnUserProfile update(int id, SrnUserProfile srnUser);
     
 }
