@@ -14,29 +14,29 @@ import com.srn.api.model.SrnDevice;
  */
 
 public final class SrnDeviceConverter {
-    public SrnDevice DTOtoSrnUser(SrnDeviceDTO SDCDTO) {
-        SrnDevice SDC = new SrnDevice();
-        SDC.setId(SDCDTO.getId());
-        SDC.setModel(SDCDTO.getModel());
-        SDC.setImei(SDCDTO.getImei());
-        SDC.setManufacture(SDCDTO.getManufacture());
-        SDC.setOsversion(SDCDTO.getOsversion());
-        SDC.setFcm_id(SDCDTO.getFcm_id());
-        SDC.setCreated(SDCDTO.getCreated());
-        SDC.setLast_updated(SDCDTO.getLast_updated());
-        return SDC;
+    public SrnDevice DTOtoSrnUser(SrnDeviceDTO sdDto) {
+        SrnDevice sd = new SrnDevice();
+        sd.setId(sdDto.getId());
+        sd.setModel(sdDto.getModel());
+        sd.setImei(sdDto.getImei());
+        sd.setManufacture(sdDto.getManufacture());
+        sd.setOsversion(sdDto.getOsversion());
+        sd.setFcm_id(sdDto.getFcm_id());
+        sd.setCreated(sdDto.getCreated());
+        sd.setLast_updated(sdDto.getLast_updated());
+        return sd;
     }
 
-    public SrnDeviceDTO SrnUserToDTO(SrnDevice SDC) {
-        SrnDeviceDTO SDCDTO = new SrnDeviceDTO();
-        SDCDTO.setId(SDC.getId());
-        SDCDTO.setModel(SDC.getModel());
-        SDCDTO.setImei(SDC.getImei());
-        SDCDTO.setManufacture(SDC.getManufacture());
-        SDCDTO.setOsversion(SDC.getOsversion());
-        SDCDTO.setFcm_id(SDC.getFcm_id());
-        SDCDTO.setCreated(SDC.getCreated());
-        SDCDTO.setLast_updated(SDC.getLast_updated());
-        return SDCDTO;
+    public SrnDeviceDTO SrnUserToDTO(SrnDevice sd) {
+        SrnDeviceDTO sdDto = new SrnDeviceDTO();
+        sdDto.setId(sd.getId());
+        sdDto.setModel(sd.getModel());
+        sdDto.setImei(sd.getImei());
+        sdDto.setManufacture(sd.getManufacture());
+        sdDto.setOsversion(sd.getOsversion());
+        sdDto.setFcm_id(sd.getFcm_id());
+        sdDto.setCreated(sd.getCreated());
+        sdDto.setLast_updated(sd.getLast_updated());
+        return sdDto;
     }
 }

@@ -14,23 +14,23 @@ import com.srn.api.model.SrnUserDeviceSession;
  */
 
 public final class SrnUserDeviceSessionConverter {
-    public SrnUserDeviceSession DTOtoSrnUserDeviceSession(SrnUserDeviceSessionDTO SUDSDTO) {
-        SrnUserDeviceSession SUDS = new SrnUserDeviceSession();
-        SUDS.setDevice_id(SUDSDTO.getDevice_id());
-        SUDS.setSession_id(SUDSDTO.getSession_id());
-        SUDS.setUser_id(SUDSDTO.getUser_id());
-        SUDS.setCreated(SUDSDTO.getCreated());
-        SUDS.setLast_updated(SUDSDTO.getLast_updated());
-        return SUDS;
+    public SrnUserDeviceSession DTOtoSrnUserDeviceSession(SrnUserDeviceSessionDTO sudsDto) {
+        SrnUserDeviceSession suds = new SrnUserDeviceSession();
+        suds.setDevice_id(sudsDto.getDevice_id());
+        suds.setSession_id(sudsDto.getSession_id());
+        suds.setUser_id(sudsDto.getUser_id());
+        suds.setCreated(sudsDto.getCreated());
+        suds.setLast_updated(sudsDto.getLast_updated());
+        return suds;
     }
 
-    public SrnUserDeviceSessionDTO SrnUserDeviceSessionToDTO(SrnUserDeviceSession SUDS) {
-        SrnUserDeviceSessionDTO SUDSDTO = new SrnUserDeviceSessionDTO();
-        SUDSDTO.setDevice_id(SUDS.getDevice_id());
-        SUDSDTO.setSession_id(SUDS.getSession_id());
-        SUDSDTO.setUser_id(SUDS.getUser_id());
-        SUDSDTO.setCreated(SUDS.getCreated());
-        SUDSDTO.setLast_updated(SUDS.getLast_updated());
-        return SUDSDTO;
+    public SrnUserDeviceSessionDTO SrnUserDeviceSessionToDTO(SrnUserDeviceSession suds) {
+        SrnUserDeviceSessionDTO sudsDto = new SrnUserDeviceSessionDTO();
+        sudsDto.setDevice_id(suds.getDevice_id());
+        sudsDto.setSession_id(suds.getSession_id());
+        sudsDto.setUser_id(suds.getUser_id());
+        sudsDto.setCreated(suds.getCreated());
+        sudsDto.setLast_updated(suds.getLast_updated());
+        return sudsDto;
     }
 }

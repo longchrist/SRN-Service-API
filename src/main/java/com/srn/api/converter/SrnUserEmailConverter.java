@@ -14,23 +14,23 @@ import com.srn.api.model.SrnUserEmail;
  */
 
 public final class SrnUserEmailConverter {
-    public SrnUserEmail DTOtoSrnUserEmail(SrnUserEmailDTO SUEDTO) {
-        SrnUserEmail SUE = new SrnUserEmail();
-        SUE.setId(SUEDTO.getId());
-        SUE.setEmail(SUEDTO.getEmail());
-        SUE.setLogin_type(SUEDTO.getLogin_type());
-        SUE.setCreated(SUEDTO.getCreated());
-        SUE.setLast_updated(SUEDTO.getLast_updated());
-        return SUE;
+    public SrnUserEmail DTOtoSrnUserEmail(SrnUserEmailDTO sueDto) {
+        SrnUserEmail sue = new SrnUserEmail();
+        sue.setId(sueDto.getId());
+        sue.setEmail(sueDto.getEmail());
+        sue.setLogin_type(sueDto.getLogin_type());
+        sue.setCreated(sueDto.getCreated());
+        sue.setLast_updated(sueDto.getLast_updated());
+        return sue;
     }
 
-    public SrnUserEmailDTO SrnUserEmailToDTO(SrnUserEmail SUE) {
-        SrnUserEmailDTO SUEDTO = new SrnUserEmailDTO();
-        SUEDTO.setId(SUE.getId());
-        SUEDTO.setEmail(SUE.getEmail());
-        SUEDTO.setLogin_type(SUE.getLogin_type());
-        SUEDTO.setCreated(SUE.getCreated());
-        SUEDTO.setLast_updated(SUE.getLast_updated());
-        return SUEDTO;
+    public SrnUserEmailDTO SrnUserEmailToDTO(SrnUserEmail sue) {
+        SrnUserEmailDTO sueDto = new SrnUserEmailDTO();
+        sueDto.setId(sue.getId());
+        sueDto.setEmail(sue.getEmail());
+        sueDto.setLogin_type(sue.getLogin_type());
+        sueDto.setCreated(sue.getCreated());
+        sueDto.setLast_updated(sue.getLast_updated());
+        return sueDto;
     }
 }

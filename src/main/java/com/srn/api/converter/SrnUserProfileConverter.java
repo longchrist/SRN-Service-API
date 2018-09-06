@@ -16,33 +16,33 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SrnUserProfileConverter {
-     public SrnUserProfile DTOtoSrnUserProfile(SrnUserProfileDTO SUPDTO) {
-        SrnUserProfile SUP = new SrnUserProfile();
-        SUP.setUser_id(SUPDTO.getUser_id());
-        SUP.setFull_name(SUPDTO.getFull_name());
-        SUP.setNickname(SUPDTO.getNickname());
-        SUP.setAddress(SUPDTO.getAddress());
-        SUP.setCity(SUPDTO.getCity());
-        SUP.setProvince(SUPDTO.getProvince());
-        SUP.setPhone(SUPDTO.getPhone());
-        SUP.setAlternate_email(SUPDTO.getAlternate_email());
-        SUP.setCreated(SUPDTO.getCreated());
-        SUP.setLast_updated(SUPDTO.getLast_updated());
-        return SUP;
+     public SrnUserProfile dtoToSrnUserProfile(SrnUserProfileDTO supDto) {
+        SrnUserProfile sup = new SrnUserProfile();
+        sup.setUser_id(supDto.getUser_id());
+        sup.setFull_name(supDto.getFull_name());
+        sup.setNickname(supDto.getNickname());
+        sup.setAddress(supDto.getAddress());
+        sup.setCity(supDto.getCity());
+        sup.setProvince(supDto.getProvince());
+        sup.setPhone(supDto.getPhone());
+        sup.setAlternate_email(supDto.getAlternate_email());
+        sup.setCreated(supDto.getCreated());
+        sup.setLast_updated(supDto.getLast_updated());
+        return sup;
     }
 
-    public SrnUserProfileDTO SrnUserProfileToDTO(SrnUserProfile SUP) {
-        SrnUserProfileDTO SUPDTO = new SrnUserProfileDTO();
-        SUPDTO.setUser_id(SUP.getUser_id());
-        SUPDTO.setFull_name(SUP.getFull_name());
-        SUPDTO.setNickname(SUP.getNickname());
-        SUPDTO.setAddress(SUP.getAddress());
-        SUPDTO.setCity(SUP.getCity());
-        SUPDTO.setProvince(SUP.getProvince());
-        SUPDTO.setPhone(SUP.getPhone());
-        SUPDTO.setAlternate_email(SUP.getAlternate_email());
-        SUPDTO.setCreated(SUP.getCreated());
-        SUPDTO.setLast_updated(SUP.getLast_updated());
-        return SUPDTO;
+    public SrnUserProfileDTO srnUserProfileToDto(SrnUserProfile sup) {
+        SrnUserProfileDTO supDto = new SrnUserProfileDTO();
+        supDto.setUser_id(sup.getUser_id());
+        supDto.setFull_name(sup.getFull_name());
+        supDto.setNickname(sup.getNickname());
+        supDto.setAddress(sup.getAddress());
+        supDto.setCity(sup.getCity());
+        supDto.setProvince(sup.getProvince());
+        supDto.setPhone(sup.getPhone());
+        supDto.setAlternate_email(sup.getAlternate_email());
+        supDto.setCreated(sup.getCreated());
+        supDto.setLast_updated(sup.getLast_updated());
+        return supDto;
     }
 }

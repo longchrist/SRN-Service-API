@@ -13,7 +13,7 @@ import javax.persistence.*;
  * @author user
  */
 @Entity
-public class srnUserProfile {
+public class SrnUserProfile {
     /**
      * @return the user_id
      */
