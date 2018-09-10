@@ -33,7 +33,7 @@ public class HikariCPConfig {
     @Value("${spring.datasource.hikari.maximum-pool-size}")
     private int poolSize;*/
 
-    public DataSource datasource() {
+    /*public DataSource datasource() {
         final HikariDataSource ds = new HikariDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
         ds.setJdbcUrl("jdbc:postgresql://localhost:5432/sarirasa");
@@ -41,5 +41,5 @@ public class HikariCPConfig {
         ds.setPassword("123456");
         ds.setMaximumPoolSize(100);
         return ds;
-    }
+    }*/
 }

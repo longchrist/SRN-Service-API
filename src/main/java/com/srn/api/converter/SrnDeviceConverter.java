@@ -14,7 +14,7 @@ import com.srn.api.model.SrnDevice;
  */
 
 public final class SrnDeviceConverter {
-    public SrnDevice DTOtoSrnUser(SrnDeviceDTO sdDto) {
+    public SrnDevice DTOtoSrnDevice(SrnDeviceDTO sdDto) {
         SrnDevice sd = new SrnDevice();
         sd.setId(sdDto.getId());
         sd.setModel(sdDto.getModel());
@@ -27,7 +27,7 @@ public final class SrnDeviceConverter {
         return sd;
     }
 
-    public SrnDeviceDTO SrnUserToDTO(SrnDevice sd) {
+    public SrnDeviceDTO SrnDeviceToDTO(SrnDevice sd) {
         SrnDeviceDTO sdDto = new SrnDeviceDTO();
         sdDto.setId(sd.getId());
         sdDto.setModel(sd.getModel());

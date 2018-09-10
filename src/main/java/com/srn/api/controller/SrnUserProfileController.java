@@ -42,7 +42,7 @@ public class SrnUserProfileController {
 
     @RequestMapping
     public ResponseEntity<List<SrnUserProfile>> loadAll() {
-        LOGGER.info("start loadAll profile users");
+        LOGGER.info("start load users profile");
         try {
             List<SrnUserProfile> lsup = userProfileService.findAll();
             LOGGER.info("Found {} users", lsup.size());
@@ -55,7 +55,7 @@ public class SrnUserProfileController {
     
     @RequestMapping("/{id}")
     public ResponseEntity<SrnUserProfileDTO> loadOne(@PathVariable int id) {
-        LOGGER.info("start loadOne user by id: ", id);
+        LOGGER.info("start load one user profiling by id: ", id);
         try {
             SrnUserProfile user = userProfileService.find(id);
             LOGGER.info("Found: {}", user);
@@ -68,7 +68,7 @@ public class SrnUserProfileController {
     
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<SrnUserProfileDTO> create(@RequestBody SrnUserProfileDTO supDto) {
-        LOGGER.info("start creating user: ", supDto);
+        LOGGER.info("start creating user profiling : ", supDto);
         try {
             SrnUserProfile user = userProfileService.create(userProfileConverter.dtoToSrnUserProfile(supDto));
             return new ResponseEntity<>(userProfileConverter.srnUserProfileToDto(user), HttpStatus.CREATED);
@@ -76,5 +76,24 @@ public class SrnUserProfileController {
             LOGGER.info(e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
+    }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<SrnUserProfileDTO> update(@PathVariable int id, @RequestBody SrnUserProfileDTO supDto) {
+        LOGGER.info("start update user profiling : ", supDto);
+        try {
+            SrnUserProfile sup = userProfileService.update(id, userProfileConverter.dtoToSrnUserProfile(supDto));
+            return new ResponseEntity<>(userProfileConverter.srnUserProfileToDto(sup), HttpStatus.OK);
+        } catch (DataAccessException e) {
+            LOGGER.info(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable int id) {
+        if (userProfileService.delete(id))
+            return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 }

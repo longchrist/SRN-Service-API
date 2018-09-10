@@ -1,5 +1,7 @@
 package com.srn.api;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +23,9 @@ public class Application {
 
 	@Bean
 	public DataSource hikariCPConfig() {
-		return new HikariCPConfig().datasource();
+            HikariConfig config = new HikariConfig("/hikari.properties");
+            HikariDataSource ds = new HikariDataSource(config);
+            
+            return ds;
 	}
 }
