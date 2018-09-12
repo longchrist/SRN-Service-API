@@ -1,48 +1,32 @@
-apply plugin: "war"
-apply plugin: "jetty"
-
-ext {
-    libCxfVersion = "3.0.0"
-    libSpringFrameworkVersion = "4.0.9.RELEASE"
-    libJacksonVersion = "2.5.1"
-    libJavaxValidationVersion = "1.1.0.Final"
+buildscript {
+	ext {
+		springBootVersion = '1.5.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.postgresql:postgresql:9.4-1206-jdbc42")
+	}
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
-}
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
-war {
-    archiveName = "srn-api.war"
-}
 
 dependencies {
-    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.0.9.RELEASE'
-    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
-//    providedCompile "javax:javaee-api:7.0"
-    compile "javax.validation:validation-api:$libJavaxValidationVersion"
-
-    compile "com.fasterxml.jackson.core:jackson-databind:$libJacksonVersion"
-    compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:$libJacksonVersion"
-//    compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-xml-provider:$libJacksonVersion"
-
-    /*compile "org.springframework:spring-context:$libSpringFrameworkVersion"
-    compile "org.springframework:spring-context-support:$libSpringFrameworkVersion"
-    compile "org.springframework:spring-web:$libSpringFrameworkVersion"*/
-    compile "org.springframework.social:spring-social-facebook:2.0.3.RELEASE"
-
-    compile "com.google.apis:google-api-services-plus:v1-rev118-1.17.0-rc"
-    compile "com.google.apis:google-api-services-oauth2:v2-rev64-1.17.0-rc"
-    compile "com.google.oauth-client:google-oauth-client:1.17.0-rc"
-    compile "org.springframework.boot:spring-boot-gradle-plugin:2.0.4.RELEASE"
-    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
-    compile group: 'com.zaxxer', name: 'HikariCP', version: '3.2.0'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.1.RELEASE'
-    
-    //compile "org.logback-extensions:logback-ext-spring:0.1.2"
-
+	compile 'org.springframework.boot:spring-boot-starter'
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+        compile 'com.zaxxer:HikariCP:2.3.2'
+	runtime 'org.postgresql:postgresql:9.4-1206-jdbc42'
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
