@@ -7,12 +7,14 @@ package com.srn.api.converter;
 
 import com.srn.api.dto.SrnUserDeviceSessionDTO;
 import com.srn.api.model.SrnUserDeviceSession;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author long
  */
 
+@Component
 public final class SrnUserDeviceSessionConverter {
     public SrnUserDeviceSession DTOtoSrnUserDeviceSession(SrnUserDeviceSessionDTO sudsDto) {
         SrnUserDeviceSession suds = new SrnUserDeviceSession();

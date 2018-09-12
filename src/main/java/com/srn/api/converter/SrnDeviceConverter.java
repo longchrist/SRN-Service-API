@@ -7,12 +7,14 @@ package com.srn.api.converter;
 
 import com.srn.api.dto.SrnDeviceDTO;
 import com.srn.api.model.SrnDevice;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author long
  */
 
+@Component
 public final class SrnDeviceConverter {
     public SrnDevice DTOtoSrnDevice(SrnDeviceDTO sdDto) {
         SrnDevice sd = new SrnDevice();

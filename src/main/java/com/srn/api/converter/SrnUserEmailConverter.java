@@ -7,12 +7,14 @@ package com.srn.api.converter;
 
 import com.srn.api.dto.SrnUserEmailDTO;
 import com.srn.api.model.SrnUserEmail;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author long
  */
 
+@Component
 public final class SrnUserEmailConverter {
     public SrnUserEmail DTOtoSrnUserEmail(SrnUserEmailDTO sueDto) {
         SrnUserEmail sue = new SrnUserEmail();

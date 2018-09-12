@@ -7,7 +7,6 @@ package com.srn.api.service.impl;
 
 import com.srn.api.model.SrnDevice;
 import com.srn.api.repository.SrnDeviceRepository;
-import com.srn.api.repository.SrnUserProfileRepository;
 import com.srn.api.service.SrnDeviceService;
 import java.util.List;
 import org.slf4j.Logger;
@@ -25,8 +24,6 @@ public class SrnDeviceImpl implements SrnDeviceService{
     private final Logger LOGGER = LoggerFactory.getLogger(SrnDeviceImpl.class);
     private final SrnDeviceRepository deviceRepository;
     
-
-
     @Autowired
     public SrnDeviceImpl(SrnDeviceRepository deviceRepository) {
         this.deviceRepository = deviceRepository;
@@ -79,6 +76,4 @@ public class SrnDeviceImpl implements SrnDeviceService{
             return false;
         }
     }
-
-    
 }

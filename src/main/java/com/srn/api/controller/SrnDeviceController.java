@@ -38,7 +38,7 @@ public class SrnDeviceController {
         this.deviceService = sdService;
         this.deviceConverter = sdConverter;
     }
-    
+
     @RequestMapping
     public ResponseEntity<List<SrnDevice>> loadAll() {
         LOGGER.info("start load users device");
