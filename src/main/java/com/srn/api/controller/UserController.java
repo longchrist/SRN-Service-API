@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> userProfileCreateUpdate(@RequestBody() String param) {
+    ResponseEntity<SrnResponse<String>> userProfile(@RequestBody() String param) {
         //TODO:implement profile create and update here
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -65,21 +65,21 @@ public class UserController {
 
 
     @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> userProfileRead() {
+    ResponseEntity<SrnResponse<String>> userProfile() {
         //TODO:implement profile get here
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/v1/user/points.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> userProfilePointsCreateUpdate(@RequestBody() String param) {
+    @RequestMapping(value = "/v1/user/points.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<SrnResponse<String>> userPoints(@RequestBody() String param) {
         //TODO:implement point create and update here
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/v1/user/points.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> userProfilePointsRead() {
+    ResponseEntity<SrnResponse<String>> userPoints() {
         //TODO:implement point get here
 
         return new ResponseEntity<>(HttpStatus.OK);
