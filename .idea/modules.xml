@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/srn-api-server.iml" filepath="$PROJECT_DIR$/srn-api-server.iml" />
+      <module fileurl="file:///media/drive/Development/Project/CRM/SRN-Service-API/SRN-Service-API.iml" filepath="/media/drive/Development/Project/CRM/SRN-Service-API/SRN-Service-API.iml" />
     </modules>
   </component>
 </project>

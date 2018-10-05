@@ -1,3 +1,7 @@
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+
 buildscript {
 	ext {
 		springBootVersion = '1.5.3.RELEASE'
@@ -10,23 +14,26 @@ buildscript {
 		classpath("org.postgresql:postgresql:9.4-1206-jdbc42")
 	}
 }
+version = '1.0'
+repositories {
+	mavenCentral()
+}
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
 }
 
-
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter'
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-        compile 'com.zaxxer:HikariCP:2.3.2'
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compile 'com.zaxxer:HikariCP:2.3.2'
 	runtime 'org.postgresql:postgresql:9.4-1206-jdbc42'
+	compile 'com.google.api-client:google-api-client:1.25.0'
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile group: 'junit', name: 'junit', version: '4.11'
 }

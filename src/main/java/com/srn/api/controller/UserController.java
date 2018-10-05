@@ -1,91 +1,65 @@
 package com.srn.api.controller;
 
-import com.srn.api.converter.UserConverter;
-import com.srn.api.dto.UserDTO;
-import com.srn.api.model.User;
-import com.srn.api.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.api.client.util.Value;
+import com.srn.api.model.SrnResponse;
+import com.srn.api.model.dto.SrnDeviceDto;
+import com.srn.api.model.dto.SrnProfileDto;
+import com.srn.api.model.entity.SrnProfile;
+import com.srn.api.model.request.ParamLogin;
+import com.srn.api.service.ISrnUserService;
+import com.srn.api.utils.FormatterUtils;
+import com.srn.api.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
-/**
- *
- * @author long
- */
+import javax.xml.ws.Response;
+import java.io.IOException;
 
 @RestController
-@RequestMapping("/api")
 public class UserController {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-    private final UserService userService;
-    private final UserConverter userConverter;
+    @Value("${google.login.url}")
+    private String googleLogin;
 
     @Autowired
-    public UserController(UserService userService, UserConverter userConverter) {
-        this.userService = userService;
-        this.userConverter = userConverter;
-    }
+    ISrnUserService srnUserService;
 
-    @RequestMapping
-    public ResponseEntity<List<User>> loadAll() {
-        LOGGER.info("start loadAll users");
+    @RequestMapping(value = "/v1/user/logingoogle.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<SrnResponse<String>> loginGoogle(@RequestBody() String param) {
+        System.out.println("received - login data encrypted --> " + param);
+        String json = SecurityUtils.getInstance().setData(param).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
+        System.out.println("received - login data encrypted --> " + json);
+        ObjectMapper jsonMapper = new ObjectMapper();
+        ParamLogin paramLogin = null;
         try {
-            List<User> users = userService.findAll();
-            LOGGER.info("Found {} users", users.size());
-            return new ResponseEntity<>(users, HttpStatus.OK);
-        } catch (DataAccessException e) {
-            LOGGER.info(e.getMessage());
+           paramLogin = jsonMapper.readValue(json, ParamLogin.class);
+           if (!SecurityUtils.getInstance().isSessionValid(paramLogin.getSessionId())) {
+               return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+           }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SrnProfile srnProfile = srnUserService.userLogin(paramLogin.getToken(), ISrnUserService.LoginType.GOOGLE);
+
+        if (srnProfile == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
+        SrnResponse<String> response = new SrnResponse<>();
+        response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
+        response.setData(SecurityUtils.getInstance().setData(srnProfile).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
+        System.out.println("response - login data encrypted --> " + response.getData());
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @RequestMapping("/{id}")
-    public ResponseEntity<UserDTO> loadOne(@PathVariable int id) {
-        LOGGER.info("start loadOne user by id: ", id);
-        try {
-            User user = userService.find(id);
-            LOGGER.info("Found: {}", user);
-            return new ResponseEntity<>(userConverter.userToDTO(user), HttpStatus.OK);
-        } catch (DataAccessException e) {
-            LOGGER.info(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }
+    @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<SrnResponse<String>> profileUpdate(@RequestBody() String param) {
+        //TODO:implement profile create and update here
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<UserDTO> create(@RequestBody UserDTO userDTO) {
-        LOGGER.info("start creating user: ", userDTO);
-        try {
-            User user = userService.create(userConverter.DTOtoUser(userDTO));
-            return new ResponseEntity<>(userConverter.userToDTO(user), HttpStatus.CREATED);
-        } catch (DataAccessException e) {
-            LOGGER.info(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<UserDTO> update(@PathVariable int id, @RequestBody UserDTO userDTO) {
-        LOGGER.info("start update user: ", userDTO);
-        try {
-            User user = userService.update(id, userConverter.DTOtoUser(userDTO));
-            return new ResponseEntity<>(userConverter.userToDTO(user), HttpStatus.OK);
-        } catch (DataAccessException e) {
-            LOGGER.info(e.getMessage());
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity delete(@PathVariable int id) {
-        if (userService.delete(id))
-            return new ResponseEntity(HttpStatus.OK);
-        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
