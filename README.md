@@ -9,10 +9,11 @@ In the business perspective, the goals is to stay connected with Sarirasa custom
 ## SRN CRM Middleware Resources
 
 - [Java](https://www.java.com/) - The Java Programming Language
-- [Spring.io](http://spring.io/projects/spring-framework) - The Java Spring Framework Homepage
+- [Spring.io](http://spring.io/projects/spring-boot) - The Java Spring Boot Framework Homepage
 - [Gradle](https://gradle.org/) - Automate Build Tool.
 - [PostgreSQL](https://www.postgresql.org/) - Open Source Relational Database.
 - [HikariCP](https://github.com/brettwooldridge/HikariCP) - JDBC Connection Pool
+- [IntelliJ](https://www.jetbrains.com/idea/) - IDE for development
 
 ## Credits
 
