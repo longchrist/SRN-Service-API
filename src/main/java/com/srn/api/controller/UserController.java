@@ -57,6 +57,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<SrnResponse<String>> logout(@RequestBody() String param) {
+        //TODO:implement logout here
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+
+    @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> userProfile(@RequestBody() String param) {
         //TODO:implement profile create and update here
 
