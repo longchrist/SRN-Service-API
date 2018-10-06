@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  * @author long
  */
 
-public class SrnDeviceDto {
+public class SrnDeviceDto extends BaseDto {
 
     private long id;
     private String model;

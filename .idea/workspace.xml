@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1831b90-9906-4d5c-a950-29da463fe5d4" name="Default" comment="restructure api">
-      <change type="MOVED" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/BaseEntity.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/BaseModel.java" />
-      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserService.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserService.java" />
-      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnDevice.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnDevice.java" />
-      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnEmail.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnEmail.java" />
-      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnProfile.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnProfile.java" />
+      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/BaseDto.java" />
+      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnDeviceDto.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnDeviceDto.java" />
+      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnEmailDto.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnEmailDto.java" />
       <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnProfileDto.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnProfileDto.java" />
       <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/.idea/workspace.xml" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/.idea/workspace.xml" />
     </list>
@@ -109,102 +106,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SecurityUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/utils/SecurityUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ISrnUserService.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SrnUserServiceImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63736266">
-              <caret line="89" column="47" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SrnProfileDto.java" pinned="false" current-in-tab="false">
         <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnProfileDto.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="27" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
+              <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#901#902#0" expanded="true" />
-                <element signature="e#930#931#0" expanded="true" />
-                <element signature="e#971#972#0" expanded="true" />
-                <element signature="e#1007#1008#0" expanded="true" />
-                <element signature="e#1044#1045#0" expanded="true" />
-                <element signature="e#1077#1078#0" expanded="true" />
-                <element signature="e#1129#1130#0" expanded="true" />
-                <element signature="e#1173#1174#0" expanded="true" />
-                <element signature="e#1203#1204#0" expanded="true" />
-                <element signature="e#1229#1230#0" expanded="true" />
-                <element signature="e#1267#1268#0" expanded="true" />
-                <element signature="e#1297#1298#0" expanded="true" />
-                <element signature="e#1329#1330#0" expanded="true" />
-                <element signature="e#1357#1358#0" expanded="true" />
-                <element signature="e#1399#1400#0" expanded="true" />
-                <element signature="e#1433#1434#0" expanded="true" />
+                <element signature="e#1060#1061#0" expanded="true" />
+                <element signature="e#1093#1094#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SrnProfile.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnProfile.java">
+      <file leaf-file-name="SrnEmailDto.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnEmailDto.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="149" column="48" selection-start-line="149" selection-start-column="48" selection-end-line="149" selection-end-column="48" />
+              <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GoogleIdToken.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.25.0/f57f84aecde93c4c9fde6b0ced9deee893e6c0/google-api-client-1.25.0-sources.jar!/com/google/api/client/googleapis/auth/oauth2/GoogleIdToken.java">
+      <file leaf-file-name="SrnDeviceDto.java" pinned="false" current-in-tab="true">
+        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnDeviceDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+            <state vertical-scroll-proportion="-0.9263158">
+              <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseModel.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/BaseModel.java">
+      <file leaf-file-name="BaseDto.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/BaseDto.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="23" selection-end-column="26" />
-              <folding />
+              <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -592,7 +535,6 @@
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/SrnDeviceController.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/build.gradle" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/sql/sarirasa.sql" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnEmailDto.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnEmail.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/BaseEntity.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnDevice.java" />
@@ -600,7 +542,10 @@
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnProfile.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/BaseDto.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnProfileDto.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnEmailDto.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnDeviceDto.java" />
       </list>
     </option>
   </component>
@@ -1299,7 +1244,7 @@
       <workItem from="1538759828097" duration="2515000" />
       <workItem from="1538762353740" duration="364000" />
       <workItem from="1538762773200" duration="726000" />
-      <workItem from="1538828234948" duration="3079000" />
+      <workItem from="1538828234948" duration="4914000" />
     </task>
     <task id="LOCAL-00001" summary="integrate with hikaricpconfig hardcoded configuration">
       <created>1536253902839</created>
@@ -1343,11 +1288,17 @@
       <option name="project" value="LOCAL" />
       <updated>1538763412523</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fixing dto profile">
+      <created>1538831336004</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1538831336004</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40920000" />
+    <option name="totallyTimeSpent" value="42755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1366" height="743" extended-state="6" />
@@ -1355,6 +1306,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1377,7 +1329,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47986576" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1400,7 +1351,8 @@
     <MESSAGE value="update skeleton code" />
     <MESSAGE value="create skeleton code for logout" />
     <MESSAGE value="restructure api" />
-    <option name="LAST_COMMIT_MESSAGE" value="restructure api" />
+    <MESSAGE value="fixing dto profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing dto profile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1416,14 +1368,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="85" selection-start-line="13" selection-start-column="85" selection-end-line="13" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1452,6 +1396,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1636,20 +1581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnEmailDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5294118">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnDeviceDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2540107">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.53136533">
@@ -1661,6 +1592,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1711,14 +1643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/SrnApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1740,7 +1664,7 @@
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.25.0/f57f84aecde93c4c9fde6b0ced9deee893e6c0/google-api-client-1.25.0-sources.jar!/com/google/api/client/googleapis/auth/oauth2/GoogleIdToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-1.6561403">
           <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
           <folding />
         </state>
@@ -1756,7 +1680,7 @@
     </entry>
     <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/BaseModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.28421053">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="23" selection-end-column="26" />
           <folding />
         </state>
@@ -1786,39 +1710,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnProfileDto.java">
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="27" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
+          <caret line="71" column="36" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#901#902#0" expanded="true" />
-            <element signature="e#930#931#0" expanded="true" />
-            <element signature="e#971#972#0" expanded="true" />
-            <element signature="e#1007#1008#0" expanded="true" />
-            <element signature="e#1044#1045#0" expanded="true" />
-            <element signature="e#1077#1078#0" expanded="true" />
-            <element signature="e#1129#1130#0" expanded="true" />
-            <element signature="e#1173#1174#0" expanded="true" />
-            <element signature="e#1203#1204#0" expanded="true" />
-            <element signature="e#1229#1230#0" expanded="true" />
-            <element signature="e#1267#1268#0" expanded="true" />
-            <element signature="e#1297#1298#0" expanded="true" />
-            <element signature="e#1329#1330#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
-            <element signature="e#1399#1400#0" expanded="true" />
-            <element signature="e#1433#1434#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java">
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63736266">
-          <caret line="89" column="47" selection-start-line="89" selection-start-column="47" selection-end-line="89" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.28421053">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/BaseDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnProfileDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="42" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="true" />
+            <element signature="e#1093#1094#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnEmailDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnDeviceDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9263158">
+          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

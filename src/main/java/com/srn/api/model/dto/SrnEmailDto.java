@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  * @author long
  */
 
-public class SrnEmailDto {
+public class SrnEmailDto extends BaseDto {
 
     private int id;
     private String email;

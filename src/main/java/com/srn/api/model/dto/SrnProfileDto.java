@@ -16,7 +16,7 @@ import java.sql.Timestamp;
  * @author long
  */
 
-public class SrnProfileDto {
+public class SrnProfileDto extends BaseDto {
 
     //private long userId;
     private String url;
@@ -191,18 +191,5 @@ public class SrnProfileDto {
         this.lastUpdated = lastUpdated;
     }
 
-    @Override
-    public String toString() {
-        String jsonString = "";
 
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            jsonString = mapper.writeValueAsString(this);
-        }catch (JsonGenerationException exJsonGeneration) {
-            exJsonGeneration.printStackTrace();
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return jsonString;
-    }
 }
