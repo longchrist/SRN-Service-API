@@ -74,7 +74,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> userProfile() {
+    ResponseEntity<SrnResponse<String>> userProfileRead(@RequestParam("s") String session) {
         //TODO:implement profile get here
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -88,7 +88,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/v1/user/points.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> userPoints() {
+    ResponseEntity<SrnResponse<String>> userPointsRead(@RequestParam("s") String session) {
         //TODO:implement point get here
 
         return new ResponseEntity<>(HttpStatus.OK);

@@ -22,7 +22,6 @@ public class SecurityUtils {
     private Class classModel;
 
 
-
     public enum Method {
         UNKNOWN,
         SESSION_ENCRYPT, SESSION_DECRYPT,
