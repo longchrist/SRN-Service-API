@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "srn_device")
 @NamedQueries({@NamedQuery(name = "srn_device.findAll", query = "SELECT r FROM SrnDevice r")})
-public class SrnDevice extends BaseEntity<SrnDeviceDto> implements Serializable {
+public class SrnDevice extends BaseModel<SrnDeviceDto> implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "imei", nullable = false)

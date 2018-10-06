@@ -5,6 +5,10 @@
  */
 package com.srn.api.model.dto;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.sql.Timestamp;
 
 /**
@@ -14,7 +18,9 @@ import java.sql.Timestamp;
 
 public class SrnProfileDto {
 
-    private int userId;
+    //private long userId;
+    private String url;
+    private String email;
     private String fullName;
     private String nickName;
     private String address;
@@ -22,24 +28,44 @@ public class SrnProfileDto {
     private String province;
     private String phone;
     private String alternateEmail;
+    private int points;
+    private String pointLevel;
     private Timestamp created;
     private Timestamp lastUpdated;
 
-    /**
-     * @return the userId
-     */
-    public int getUserId() {
-        return userId;
+    public int getPoints() {
+        return points;
     }
 
-    /**
-     * @param userId the userId to set
-     */
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
-    /**
+    public String getPointLevel() {
+        return pointLevel;
+    }
+
+    public void setPointLevel(String pointLevel) {
+        this.pointLevel = pointLevel;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+   /**
      * @return the fullName
      */
     public String getFullName() {
@@ -165,4 +191,18 @@ public class SrnProfileDto {
         this.lastUpdated = lastUpdated;
     }
 
+    @Override
+    public String toString() {
+        String jsonString = "";
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            jsonString = mapper.writeValueAsString(this);
+        }catch (JsonGenerationException exJsonGeneration) {
+            exJsonGeneration.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return jsonString;
+    }
 }

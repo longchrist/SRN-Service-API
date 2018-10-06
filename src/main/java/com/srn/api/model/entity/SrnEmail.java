@@ -1,10 +1,6 @@
 package com.srn.api.model.entity;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.srn.api.model.dto.SrnEmailDto;
-import com.srn.api.model.dto.SrnProfileDto;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
@@ -14,7 +10,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "srn_user_email")
 @NamedQueries({@NamedQuery(name = "srn_user_email.findAll", query = "SELECT l FROM SrnEmail l")})
-public class SrnEmail extends BaseEntity<SrnEmailDto> implements Serializable {
+public class SrnEmail extends BaseModel<SrnEmailDto> implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "email", nullable = false)

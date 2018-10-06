@@ -43,7 +43,7 @@ public class UserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        SrnProfile srnProfile = srnUserService.userLogin(paramLogin.getToken(), ISrnUserService.LoginType.GOOGLE);
+        SrnProfileDto srnProfile = srnUserService.userLogin(paramLogin.getToken(), ISrnUserService.LoginType.GOOGLE);
 
         if (srnProfile == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

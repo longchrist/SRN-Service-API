@@ -1,9 +1,7 @@
 package com.srn.api.model.entity;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.srn.api.model.dto.SrnProfileDto;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +10,7 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "srn_user_profile")
 @NamedQueries({@NamedQuery(name = "srn_user_profile.findAll", query = "SELECT p FROM SrnProfile p")})
-public class SrnProfile extends BaseEntity<SrnProfileDto> implements Serializable {
+public class SrnProfile extends BaseModel<SrnProfileDto> implements Serializable {
 
     @Id
     @Basic(optional = false)
@@ -149,6 +147,8 @@ public class SrnProfile extends BaseEntity<SrnProfileDto> implements Serializabl
 
     @Override
     public SrnProfileDto toDto() {
-        return null;
+        SrnProfileDto dto = new SrnProfileDto();
+        BeanUtils.copyProperties(this, dto);
+        return dto;
     }
 }

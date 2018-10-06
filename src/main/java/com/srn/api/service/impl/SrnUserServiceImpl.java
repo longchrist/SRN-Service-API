@@ -5,6 +5,7 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.srn.api.model.dto.SrnProfileDto;
 import com.srn.api.model.entity.SrnEmail;
 import com.srn.api.model.entity.SrnProfile;
 import com.srn.api.repo.ISrnProfileRepo;
@@ -32,7 +33,7 @@ public class SrnUserServiceImpl implements ISrnUserService {
     ISrnUserEmailRepo srnUserEmailRepo;
 
     @Override
-    public SrnProfile userLogin(String token, LoginType type) {
+    public SrnProfileDto userLogin(String token, LoginType type) {
         switch (type) {
             case GOOGLE:
                 return userGoogleLogin(token);
@@ -47,7 +48,7 @@ public class SrnUserServiceImpl implements ISrnUserService {
 
     }
 
-    public SrnProfile userGoogleLogin(String token) {
+    public SrnProfileDto userGoogleLogin(String token) {
         GoogleIdToken.Payload googlePayload = null;
         try {
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
@@ -64,7 +65,8 @@ public class SrnUserServiceImpl implements ISrnUserService {
         return generateProfile(googlePayload);
     }
 
-    private SrnProfile generateProfile(GoogleIdToken.Payload payload) {
+    private SrnProfileDto generateProfile(GoogleIdToken.Payload payload) {
+        SrnProfileDto dto = null;
         if (payload != null) {
             SrnEmail userEmail = srnUserEmailRepo.findByEmail(payload.getEmail());
             if (userEmail == null) {
@@ -81,9 +83,12 @@ public class SrnUserServiceImpl implements ISrnUserService {
                 profile = new SrnProfile();
                 profile.setUserId(userEmail.getId());
                 profile.setAlternateEmail(userEmail.getEmail());
-                return srnProfileRepo.save(profile);
+                srnProfileRepo.save(profile);
             }
-            return new SrnProfile();
+            dto = profile.toDto();
+            dto.setUrl(payload.get("picture").toString());
+            dto.setEmail(userEmail.getEmail());
+            return dto;
         }
         return null;
     }

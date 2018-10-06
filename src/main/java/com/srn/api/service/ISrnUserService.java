@@ -1,5 +1,6 @@
 package com.srn.api.service;
 
+import com.srn.api.model.dto.SrnProfileDto;
 import com.srn.api.model.entity.SrnProfile;
 import com.srn.api.service.impl.SrnUserServiceImpl;
 
@@ -17,6 +18,6 @@ public interface ISrnUserService {
         }
     }
 
-    SrnProfile userLogin(String token, LoginType type);
+    SrnProfileDto userLogin(String token, LoginType type);
     void userLogout(String type);
 }
