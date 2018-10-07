@@ -1,8 +1,6 @@
 package com.srn.api.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.srn.api.model.dto.SrnBrandDto;
 import org.springframework.beans.BeanUtils;
 

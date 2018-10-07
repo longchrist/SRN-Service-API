@@ -1,9 +1,7 @@
 package com.srn.api.controller;
 
 import com.srn.api.model.SrnResponse;
-import com.srn.api.model.dto.SrnBrandDto;
 import com.srn.api.model.entity.SrnBrand;
-import com.srn.api.model.entity.SrnStore;
 import com.srn.api.service.ISrnBrandService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

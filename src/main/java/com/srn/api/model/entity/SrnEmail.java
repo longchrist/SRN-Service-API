@@ -34,17 +34,6 @@ public class SrnEmail extends BaseModel<SrnEmailDto> implements Serializable {
     @Column(name = "last_updated", nullable = true)
     private Timestamp lastUpdated;
 
-    /*@OneToOne(mappedBy = "SrnProfile")
-    private SrnProfile srnProfile;*/
-
-    /*public SrnProfile getSrnProfile() {
-        return srnProfile;
-    }
-
-    public void setSrnProfile(SrnProfile srnProfile) {
-        this.srnProfile = srnProfile;
-    }*/
-
     public Timestamp getCreated() {
         return created;
     }

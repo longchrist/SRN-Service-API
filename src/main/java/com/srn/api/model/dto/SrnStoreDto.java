@@ -1,7 +1,5 @@
 package com.srn.api.model.dto;
 
-import javax.persistence.*;
-
 public class SrnStoreDto {
 
     private long storeId;

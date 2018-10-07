@@ -1,8 +1,6 @@
 package com.srn.api.service;
 
 import com.srn.api.model.dto.SrnProfileDto;
-import com.srn.api.model.entity.SrnProfile;
-import com.srn.api.service.impl.SrnUserServiceImpl;
 
 public interface ISrnUserService {
 

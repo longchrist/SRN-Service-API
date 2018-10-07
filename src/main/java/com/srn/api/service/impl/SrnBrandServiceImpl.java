@@ -2,7 +2,6 @@ package com.srn.api.service.impl;
 
 import com.srn.api.model.entity.SrnBrand;
 import com.srn.api.repo.ISrnBrandRepo;
-import com.srn.api.repo.ISrnStoreRepo;
 import com.srn.api.service.ISrnBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

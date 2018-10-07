@@ -3,9 +3,7 @@ package com.srn.api.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.util.Value;
 import com.srn.api.model.SrnResponse;
-import com.srn.api.model.dto.SrnDeviceDto;
 import com.srn.api.model.dto.SrnProfileDto;
-import com.srn.api.model.entity.SrnProfile;
 import com.srn.api.model.request.ParamLogin;
 import com.srn.api.service.ISrnUserService;
 import com.srn.api.utils.FormatterUtils;
@@ -16,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.io.IOException;
 
 @RestController

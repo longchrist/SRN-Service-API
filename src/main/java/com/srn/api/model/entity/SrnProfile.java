@@ -53,18 +53,6 @@ public class SrnProfile extends BaseModel<SrnProfileDto> implements Serializable
     @Column(name = "last_updated", nullable = true)
     private Timestamp lastUpdated;
 
-    /*@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    private SrnEmail srnEmail;*/
-
-    /*public SrnEmail getSrnEmail() {
-        return srnEmail;
-    }
-
-    public void setSrnEmail(SrnEmail srnEmail) {
-        this.srnEmail = srnEmail;
-    }*/
-
     public Timestamp getCreated() {
         return created;
     }

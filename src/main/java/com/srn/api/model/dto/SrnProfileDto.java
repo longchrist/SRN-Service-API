@@ -5,10 +5,6 @@
  */
 package com.srn.api.model.dto;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.sql.Timestamp;
 
 /**
@@ -18,7 +14,6 @@ import java.sql.Timestamp;
 
 public class SrnProfileDto extends BaseDto {
 
-    //private long userId;
     private String url;
     private String email;
     private String fullName;
