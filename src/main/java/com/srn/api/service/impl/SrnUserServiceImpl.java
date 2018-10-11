@@ -87,9 +87,18 @@ public class SrnUserServiceImpl implements ISrnUserService {
                 srnProfileRepo.save(profile);
             }
             dto = profile.toDto();
-            dto.setFullName(payload.get("name").toString());
             dto.setUrl(payload.get("picture").toString());
             dto.setEmail(userEmail.getEmail());
+            dto.setFullName(payload.get("name").toString());
+            dto.setNickName(profile.getNickName());
+            dto.setAddress(profile.getAddress());
+            dto.setCity(profile.getCity());
+            dto.setProvince(profile.getProvince());
+            dto.setPhone(profile.getPhone());
+            dto.setPoints(0);
+            dto.setPointLevel("Taster");
+            dto.setCreated(profile.getCreated());
+            dto.setLastUpdated(profile.getLastUpdated());
             return dto;
         }
         return null;

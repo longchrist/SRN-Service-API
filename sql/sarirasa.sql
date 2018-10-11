@@ -218,8 +218,8 @@ CREATE TABLE public.srn_store
   store_address text,
   store_city text,
   store_province text,
-  created timestamp without time zone NOT NULL DEFAULT now(),
-  last_updated timestamp without time zone NOT NULL DEFAULT now(),
+  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
   CONSTRAINT srn_brand_store_pk PRIMARY KEY (store_id),
   CONSTRAINT srn_store_fk_srn_brand FOREIGN KEY (brand_id)
       REFERENCES public.srn_brand (brand_id) MATCH SIMPLE
@@ -242,3 +242,55 @@ insert into srn_store values ('11123','10000007','store brand 2','jalan bendunga
 insert into srn_store values ('11131','10000008','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
 insert into srn_store values ('11132','10000008','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
 insert into srn_store values ('11133','10000008','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+
+CREATE SEQUENCE public.srn_point_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
+-- drop table srn_points
+create table srn_points (
+  point_id integer not null default nextval('srn_point_seq'::regclass),
+  user_id integer not null,
+  brand_id integer not null,
+  store_id integer not null,
+  point_value integer not null,
+  point_expired timestamp without time zone,
+  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  constraint srn_points_pk primary key (point_id),
+  constraint srn_points_fk_srn_user_profile foreign key (user_id) references srn_user_profile (user_id),
+  constraint srn_points_fk_srn_brand foreign key (brand_id) references srn_brand (brand_id),
+  constraint srn_points_fk_srn_store foreign key (store_id) references srn_store (store_id)
+);
+
+create table srn_voucher
+(
+  voucher_id text not null,
+  brand_id integer not null,
+  user_id integer not null,
+  claim_timestamp timestamp without time zone,
+  voucher_expired timestamp without time zone NOT NULL,
+  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  constraint srn_voucher_pk primary key (voucher_id),
+  constraint srn_voucher_fk_srn_brand foreign key (brand_id) references srn_brand (brand_id),
+  constraint srn_voucher_fk_srn_user_profile foreign key (user_id) references srn_user_profile (user_id)
+);
+
+CREATE SEQUENCE public.srn_voucher_store_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
+-- drop table srn_voucher_store
+create table srn_references_voucher_store
+(
+  id integer not null default nextval('srn_voucher_store_seq'),
+  voucher_id text not null,
+  store_id integer not null,
+  constraint srn_voucher_store primary key (id),
+  constraint srn_voucher_store_fk_srn_voucher foreign key (voucher_id) references srn_voucher (voucher_id),
+  constraint srn_voucher_fk_srn_store foreign key (store_id) references srn_store(store_id)
+);
+
