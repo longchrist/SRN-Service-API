@@ -1,9 +1,12 @@
 package com.srn.api.service.impl;
 
 import com.srn.api.model.entity.SrnDevice;
+import com.srn.api.model.entity.SrnUserDevice;
 import com.srn.api.model.response.Session;
 import com.srn.api.repo.ISrnDeviceRepo;
+import com.srn.api.repo.ISrnUserDeviceRepo;
 import com.srn.api.service.ISrnDeviceService;
+import com.srn.api.service.ISrnUserDevice;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +21,23 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
     @Autowired
     ISrnDeviceRepo srnDeviceRepo;
 
+    @Autowired
+    ISrnUserDevice userDeviceService;
+
     @Override
     public Session registerDevice(SrnDevice device) {
         SrnDevice entity = srnDeviceRepo.findByImei(device.getImei());
         if ( entity != null) {
             entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
-            srnDeviceRepo.save(entity);
         } else {
             device.setCreated(FormatterUtils.getCurrentTimestamp());
             device.setLastUpdated(FormatterUtils.getCurrentTimestamp());
-            srnDeviceRepo.save(device);
+            //srnDeviceRepo.save(device);
         }
-
+        entity = srnDeviceRepo.save(entity);
         Session session = new Session(device);
         session.setSessionId(SecurityUtils.getInstance().setData(device).setMethod(SecurityUtils.Method.SESSION_ENCRYPT).build());
+        userDeviceService.registerUserDeviceSession(session.getSessionId(), entity.getId());
         return session;
     }
 

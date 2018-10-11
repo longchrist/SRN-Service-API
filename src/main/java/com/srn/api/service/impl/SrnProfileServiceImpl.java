@@ -4,6 +4,6 @@ import com.srn.api.service.ISrnProfile;
 import org.springframework.stereotype.Service;
 
 @Service("srnProfile")
-public class SrnProfileImpl implements ISrnProfile {
+public class SrnProfileServiceImpl implements ISrnProfile {
 
 }

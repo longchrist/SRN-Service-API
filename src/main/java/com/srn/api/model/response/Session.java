@@ -8,9 +8,11 @@ import com.srn.api.model.entity.SrnDevice;
 public class Session {
 
     private String sessionId;
+    private long deviceId;
 
     public Session(SrnDevice device) {
         this.sessionId = "this-is-session-device";
+        this.deviceId = device.getId();
     }
 
     public String getSessionId() {
@@ -19,6 +21,10 @@ public class Session {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public long getDeviceId() {
+        return deviceId;
     }
 
     @Override
