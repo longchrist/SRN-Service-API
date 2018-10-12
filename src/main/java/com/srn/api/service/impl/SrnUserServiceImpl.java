@@ -10,7 +10,9 @@ import com.srn.api.model.dto.SrnProfileDto;
 import com.srn.api.model.entity.SrnEmail;
 import com.srn.api.model.entity.SrnProfile;
 import com.srn.api.repo.ISrnProfileRepo;
+import com.srn.api.repo.ISrnUserDeviceRepo;
 import com.srn.api.repo.ISrnUserEmailRepo;
+import com.srn.api.service.ISrnUserDevice;
 import com.srn.api.service.ISrnUserService;
 import com.srn.api.utils.FormatterUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +35,14 @@ public class SrnUserServiceImpl implements ISrnUserService {
     @Autowired
     ISrnUserEmailRepo srnUserEmailRepo;
 
+    @Autowired
+    ISrnUserDevice srnUserDeviceService;
+
+    private String session;
+
     @Override
-    public SrnProfileDto userLogin(String token, LoginType type) {
+    public SrnProfileDto userLogin(String token, String session,  LoginType type) {
+        this.session = session;
         switch (type) {
             case GOOGLE:
                 return userGoogleLogin(token);
@@ -49,7 +57,7 @@ public class SrnUserServiceImpl implements ISrnUserService {
 
     }
 
-    public SrnProfileDto userGoogleLogin(String token) {
+    private SrnProfileDto userGoogleLogin(String token) {
         GoogleIdToken.Payload googlePayload = null;
         try {
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
@@ -86,6 +94,7 @@ public class SrnUserServiceImpl implements ISrnUserService {
                 profile.setAlternateEmail(userEmail.getEmail());
                 srnProfileRepo.save(profile);
             }
+            srnUserDeviceService.registerUserId(this.session, userEmail.getId());
             dto = profile.toDto();
             dto.setUrl(payload.get("picture").toString());
             dto.setEmail(userEmail.getEmail());

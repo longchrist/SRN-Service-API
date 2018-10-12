@@ -26,7 +26,7 @@ public class UserController {
     ISrnUserService srnUserService;
 
     @RequestMapping(value = "/v1/user/logingoogle.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> loginGoogle(@RequestBody() String param) {
+    ResponseEntity<SrnResponse<String>> loginGoogle(@RequestBody() String param, @RequestParam("s") String session) {
         System.out.println("received - login data encrypted --> " + param);
         String json = SecurityUtils.getInstance().setData(param).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
         System.out.println("received - login data encrypted --> " + json);
@@ -40,7 +40,7 @@ public class UserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        SrnProfileDto srnProfile = srnUserService.userLogin(paramLogin.getToken(), ISrnUserService.LoginType.GOOGLE);
+        SrnProfileDto srnProfile = srnUserService.userLogin(paramLogin.getToken(), session, ISrnUserService.LoginType.GOOGLE);
 
         if (srnProfile == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
