@@ -31,9 +31,6 @@ public class BrandController {
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(brands).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
 
-        System.out.println("response - provision data encrypted --> " + response.getData());
-        System.out.println("response - provision data decrypted --> " + SecurityUtils.getInstance().setData(response.getData()).setMethod(SecurityUtils.Method.DATA_DECRYPT).build());
-
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -45,8 +42,6 @@ public class BrandController {
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(brand).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
 
-        System.out.println("response - provision data encrypted --> " + response.getData());
-        System.out.println("response - provision data decrypted --> " + SecurityUtils.getInstance().setData(response.getData()).setMethod(SecurityUtils.Method.DATA_DECRYPT).build());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

@@ -26,9 +26,9 @@ public class DeviceController {
 
     @RequestMapping(value = "/v1/device/provision.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SrnResponse<String>> provisioning(@RequestBody() String param) {
-        System.out.println("received - provision data encrypted --> " + param);
         String json = SecurityUtils.getInstance().setData(param).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
-        System.out.println("received - provision data decrypted --> " + json);
+        if (json == null)
+            return new ResponseEntity<>(new SrnResponse<String>(), HttpStatus.BAD_REQUEST);
         ObjectMapper jsonMapper = new ObjectMapper();
         SrnDevice deviceParam = null;
         try {
@@ -40,7 +40,6 @@ public class DeviceController {
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(session.toString()).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
-        System.out.println("response - provision data encrypted --> " + response.getData());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

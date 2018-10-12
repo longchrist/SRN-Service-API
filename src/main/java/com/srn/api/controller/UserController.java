@@ -27,9 +27,7 @@ public class UserController {
 
     @RequestMapping(value = "/v1/user/logingoogle.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> loginGoogle(@RequestBody() String param, @RequestParam("s") String session) {
-        System.out.println("received - login data encrypted --> " + param);
         String json = SecurityUtils.getInstance().setData(param).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
-        System.out.println("received - login data encrypted --> " + json);
         ObjectMapper jsonMapper = new ObjectMapper();
         ParamLogin paramLogin = null;
         try {
@@ -49,7 +47,6 @@ public class UserController {
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(srnProfile).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
-        System.out.println("response - login data encrypted --> " + response.getData());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

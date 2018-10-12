@@ -77,6 +77,7 @@ public class SecurityUtils {
             reset();
         } catch (Exception ex) {
             ex.printStackTrace();
+            return null;
         }
         return result;
     }
