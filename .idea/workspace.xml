@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1831b90-9906-4d5c-a950-29da463fe5d4" name="Default" comment="restructure api">
-      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserDevice.java" />
-      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnUserDeviceRepo.java" />
-      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnUserDevice.java" />
-      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserDeviceServiceImpl.java" />
-      <change type="MOVED" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnProfileImpl.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnProfileServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/response/Session.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/response/Session.java" />
-      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnDeviceServiceImpl.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnDeviceServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
-      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/gradlew" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/gradlew" />
+    <list default="true" id="a1831b90-9906-4d5c-a950-29da463fe5d4" name="Default" comment="update sql table&#10;implement campaign table entity, repo and service&#10;update profile method post&#10;adding campaigndto">
+      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnCampaignRepo.java" />
+      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnCampaignService.java" />
+      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnCampaign.java" />
+      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnCampaignDto.java" />
+      <change type="NEW" beforePath="" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnCampaignServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnProfile.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnProfile.java" />
+      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnProfileServiceImpl.java" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnProfileServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/sql/sarirasa.sql" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/sql/sarirasa.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/media/drive/Development/Project/CRM/SRN-Service-API/.idea/workspace.xml" afterPath="/media/drive/Development/Project/CRM/SRN-Service-API/.idea/workspace.xml" />
     </list>
@@ -110,27 +109,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SrnUserDevice.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnUserDevice.java">
+      <file leaf-file-name="SrnCampaign.java" pinned="false" current-in-tab="true">
+        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnCampaign.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#855#856#0" expanded="true" />
-                <element signature="e#880#881#0" expanded="true" />
-                <element signature="e#914#915#0" expanded="true" />
-                <element signature="e#942#943#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ISrnUserDeviceRepo.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnUserDeviceRepo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.42780748">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeviceController.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/DeviceController.java">
+      <file leaf-file-name="ISrnCampaignRepo.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnCampaignRepo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -150,80 +133,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ISrnDeviceService.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnDeviceService.java">
+      <file leaf-file-name="ISrnDeviceRepo.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnDeviceRepo.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+              <caret line="9" column="70" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SrnDeviceServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnDeviceServiceImpl.java">
+      <file leaf-file-name="SrnCampaignServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnCampaignServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
+              <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
               <folding>
-                <element signature="e#1673#1674#0" expanded="true" />
-                <element signature="e#1722#1723#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#638#639#0" expanded="true" />
+                <element signature="e#683#684#0" expanded="true" />
+                <element signature="e#752#753#0" expanded="true" />
+                <element signature="e#816#817#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SrnUserDeviceServiceImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserDeviceServiceImpl.java">
+      <file leaf-file-name="ISrnCampaignService.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnCampaignService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5604396">
-              <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ISrnUserDevice.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserDevice.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Session.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/response/Session.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-              <folding>
-                <element signature="e#660#661#0" expanded="true" />
-                <element signature="e#691#692#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JpaRepository.java" pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.data/spring-data-jpa/1.11.3.RELEASE/41417c21158e7dd13d4d733d443d804ae4f6e0b2/spring-data-jpa-1.11.3.RELEASE-sources.jar!/org/springframework/data/jpa/repository/JpaRepository.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SrnDevice.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnDevice.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -600,12 +543,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/webapp/WEB-INF/spring-servlet.xml" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/AppProperties.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/HikariCPConfig.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/resources/application.properties" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/BaseResponse.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/SrnResponse.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/SrnDevice.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/Application.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/SrnDeviceController.java" />
@@ -618,10 +555,6 @@
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnStoreRepo.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnBrand.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnBrandDto.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/utils/SecurityUtils.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/BrandController.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/DeviceController.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnProfileDto.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnStoreDto.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnBrand.java" />
@@ -631,10 +564,7 @@
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnDeviceRepo.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnBrandServiceImpl.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnBrandService.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserService.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/SrnApplication.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java" />
-        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/sql/sarirasa.sql" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserDeviceImpl.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnVoucher.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnDevice.java" />
@@ -644,6 +574,26 @@
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnDeviceServiceImpl.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserDevice.java" />
         <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserDeviceServiceImpl.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserService.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/BrandController.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/interceptor/RestInterceptor.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/utils/SecurityUtils.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/DeviceController.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/RequestLoggingFilterConfig.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/CustomeRequestLoggingFilter.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/RestLoggingFilter.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/CustomWebAppInitializer.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/resources/application.properties" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnProfile.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnProfileServiceImpl.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnCampaign.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnCampaignService.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnCampaignServiceImpl.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/sql/sarirasa.sql" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnCampaign.java" />
+        <option value="/media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnCampaignRepo.java" />
       </list>
     </option>
   </component>
@@ -690,6 +640,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -749,36 +700,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SRN-Service-API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SRN-Service-API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -984,107 +905,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SRN-Service-API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SRN-Service-API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interceptor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SRN-Service-API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SRN-Service-API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SRN-Service-API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SRN-Service-API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="sql" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1099,6 +925,7 @@
     <property name="FullScreen" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../sgi/SGI/GGI-desktop-ui-tools-develop" />
   </component>
   <component name="Push.Settings">
     <excluded-roots>
@@ -1485,7 +1312,10 @@
       <workItem from="1538828234948" duration="15853000" />
       <workItem from="1538917208113" duration="7345000" />
       <workItem from="1539010821060" duration="239000" />
-      <workItem from="1539266839329" duration="11430000" />
+      <workItem from="1539266839329" duration="12148000" />
+      <workItem from="1539362308877" duration="3369000" />
+      <workItem from="1539410729272" duration="908000" />
+      <workItem from="1539429515504" duration="12827000" />
     </task>
     <task id="LOCAL-00001" summary="integrate with hikaricpconfig hardcoded configuration">
       <created>1536253902839</created>
@@ -1559,11 +1389,29 @@
       <option name="project" value="LOCAL" />
       <updated>1539273615529</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="implement userdevice entity and service, update provision device registration">
+      <created>1539279338304</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1539279338304</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add update userid for userdevicesession login">
+      <created>1539363611222</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1539363611222</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add logback rest request and response">
+      <created>1539365616705</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1539365616705</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72708000" />
+    <option name="totallyTimeSpent" value="90530000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1366" height="743" extended-state="6" />
@@ -1571,20 +1419,19 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.761745" sideWeight="0.5030303" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5771812" sideWeight="0.4969697" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48825502" sideWeight="0.4969697" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Sequence" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51342285" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44966444" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26742426" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47986576" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22424242" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1596,6 +1443,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44630873" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1621,7 +1469,11 @@
     <MESSAGE value="implement brand and store api" />
     <MESSAGE value="cleanup code" />
     <MESSAGE value="add new table points, voucher and voucher store references&#10;update userserviceimpl dto" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new table points, voucher and voucher store references&#10;update userserviceimpl dto" />
+    <MESSAGE value="implement userdevice entity and service, update provision device registration" />
+    <MESSAGE value="add update userid for userdevicesession login" />
+    <MESSAGE value="add logback rest request and response" />
+    <MESSAGE value="update sql table&#10;implement campaign table entity, repo and service&#10;update profile method post&#10;adding campaigndto" />
+    <option name="LAST_COMMIT_MESSAGE" value="update sql table&#10;implement campaign table entity, repo and service&#10;update profile method post&#10;adding campaigndto" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1640,15 +1492,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/BrandController.java</url>
-          <line>41</line>
+          <line>38</line>
           <properties />
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnDeviceServiceImpl.java</url>
+          <line>28</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnDeviceServiceImpl.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserDeviceServiceImpl.java</url>
+          <line>17</line>
+          <properties />
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="21" />
+      <option name="time" value="24" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1657,162 +1527,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///opt/java/jdk1.8.0_181/src.zip!/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3366" column="13" selection-start-line="3366" selection-start-column="13" selection-end-line="3366" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.8.RELEASE/777555d3097d02c2de37dc6f98d093482cee295e/spring-web-4.3.8.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2540107">
-          <caret line="211" column="0" selection-start-line="211" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53136533">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/resources/hikari.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.25.0/f57f84aecde93c4c9fde6b0ced9deee893e6c0/google-api-client-1.25.0-sources.jar!/com/google/api/client/googleapis/auth/oauth2/GoogleIdToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6561403">
-          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2967033">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.8.RELEASE/777555d3097d02c2de37dc6f98d093482cee295e/spring-web-4.3.8.RELEASE-sources.jar!/org/springframework/http/HttpStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="183" column="4" selection-start-line="183" selection-start-column="4" selection-end-line="183" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/interceptor/RestInterceptConfigurer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/interceptor/RestInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnBrandDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnDeviceDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnEmailDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnStoreDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="e#269#270#0" expanded="false" />
-            <element signature="e#299#300#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/BaseModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnEmail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/SrnResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="e#536#537#0" expanded="false" />
-            <element signature="e#568#569#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnBrandRepo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnProfileRepo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
@@ -1823,9 +1538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1840,14 +1552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22105263">
           <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06315789">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1855,15 +1559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5368421">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/SrnApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5604396">
-          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1871,7 +1566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12631579">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1879,7 +1573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0421053">
           <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1887,17 +1580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18947369">
           <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/sql/sarirasa.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29473683">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1920,69 +1602,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/BrandController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="43" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/utils/SecurityUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="54" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44210526">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnDeviceRepo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15789473">
-          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3263158">
-          <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnBrandServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnProfileServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22105263">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1990,21 +1613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="39" column="88" selection-start-line="38" selection-start-column="4" selection-end-line="39" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnStore.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1310#1311#0" expanded="true" />
-            <element signature="e#1342#1343#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2012,7 +1620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2020,10 +1627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-          <folding>
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#691#692#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2031,6 +1634,289 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnUserDevice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnUserDeviceRepo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="58" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="96" column="42" selection-start-line="96" selection-start-column="42" selection-end-line="96" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/BrandController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/interceptor/RestInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/SrnApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#638#639#0" expanded="false" />
+            <element signature="e#703#704#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.8.RELEASE/777555d3097d02c2de37dc6f98d093482cee295e/spring-web-4.3.8.RELEASE-sources.jar!/org/springframework/web/filter/AbstractRequestLoggingFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="198" column="16" selection-start-line="198" selection-start-column="16" selection-end-line="198" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#11893#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3641#3642#0" expanded="false" />
+            <element signature="e#3692#3693#0" expanded="false" />
+            <element signature="e#3822#3823#0" expanded="false" />
+            <element signature="e#3859#3860#0" expanded="false" />
+            <element signature="e#4172#4173#0" expanded="false" />
+            <element signature="e#4221#4222#0" expanded="false" />
+            <element signature="e#4371#4372#0" expanded="false" />
+            <element signature="e#4407#4408#0" expanded="false" />
+            <element signature="e#4708#4709#0" expanded="false" />
+            <element signature="e#4751#4752#0" expanded="false" />
+            <element signature="e#4892#4893#0" expanded="false" />
+            <element signature="e#4925#4926#0" expanded="false" />
+            <element signature="e#5233#5234#0" expanded="false" />
+            <element signature="e#5276#5277#0" expanded="false" />
+            <element signature="e#5427#5428#0" expanded="false" />
+            <element signature="e#5460#5461#0" expanded="false" />
+            <element signature="e#5950#5951#0" expanded="false" />
+            <element signature="e#5985#5986#0" expanded="false" />
+            <element signature="e#6415#6416#0" expanded="false" />
+            <element signature="e#6468#6469#0" expanded="false" />
+            <element signature="e#6890#6891#0" expanded="false" />
+            <element signature="e#6941#6942#0" expanded="false" />
+            <element signature="e#7236#7237#0" expanded="false" />
+            <element signature="e#7255#7256#0" expanded="false" />
+            <element signature="e#11286#11287#0" expanded="false" />
+            <element signature="e#11304#11305#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.8.RELEASE/777555d3097d02c2de37dc6f98d093482cee295e/spring-web-4.3.8.RELEASE-sources.jar!/org/springframework/web/filter/CommonsRequestLoggingFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#1671#0" expanded="false" />
+            <element signature="e#1263#1264#0" expanded="false" />
+            <element signature="e#1300#1301#0" expanded="false" />
+            <element signature="e#1456#1457#0" expanded="false" />
+            <element signature="e#1484#1485#0" expanded="false" />
+            <element signature="e#1638#1639#0" expanded="false" />
+            <element signature="e#1666#1667#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/RestLoggingFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/RequestLoggingFilterConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/8.5.14/27fbf64720a550f7b0f70879a6db5d6c469c70c9/tomcat-embed-core-8.5.14-sources.jar!/javax/servlet/ServletContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="721" column="38" selection-start-line="721" selection-start-column="38" selection-end-line="721" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#43480#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/CustomWebAppInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5263158">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28421053">
+          <caret line="9" column="78" selection-start-line="9" selection-start-column="78" selection-end-line="9" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/utils/SecurityUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5368421">
+          <caret line="151" column="50" selection-start-line="151" selection-start-column="50" selection-end-line="151" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/DeviceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="53" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserDevice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16483517">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserDeviceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36080587">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnDeviceServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16300367">
+          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnProfileRepo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnProfileServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+          <folding>
+            <element signature="e#1391#1392#0" expanded="true" />
+            <element signature="e#1425#1426#0" expanded="true" />
+            <element signature="e#1487#1488#0" expanded="true" />
+            <element signature="e#1528#1529#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnStore.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/BaseModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnCampaignDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/dto/SrnDeviceDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.036144577">
+          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2043,63 +1929,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnUserDevice.java">
+    <entry file="jar:///opt/java/jdk1.8.0_181/src.zip!/java/sql/Timestamp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <caret line="460" column="32" selection-start-line="460" selection-start-column="32" selection-end-line="460" selection-end-column="32" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#855#856#0" expanded="true" />
-            <element signature="e#880#881#0" expanded="true" />
-            <element signature="e#914#915#0" expanded="true" />
-            <element signature="e#942#943#0" expanded="true" />
+            <element signature="e#15987#15988#0" expanded="true" />
+            <element signature="e#16027#16028#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnUserDeviceRepo.java">
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/sql/sarirasa.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="47" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/controller/DeviceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnDeviceServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="48" selection-start-line="39" selection-start-column="48" selection-end-line="39" selection-end-column="48" />
-          <folding>
-            <element signature="e#1673#1674#0" expanded="true" />
-            <element signature="e#1722#1723#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnUserDevice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        <state vertical-scroll-proportion="1.655914">
+          <caret line="83" column="1" selection-start-line="83" selection-start-column="1" selection-end-line="83" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnUserDeviceServiceImpl.java">
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/ISrnCampaignService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5604396">
-          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/service/impl/SrnCampaignServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#638#639#0" expanded="true" />
+            <element signature="e#683#684#0" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#816#817#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnDeviceRepo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="70" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/repo/ISrnCampaignRepo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/drive/Development/Project/CRM/SRN-Service-API/src/main/java/com/srn/api/model/entity/SrnCampaign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42780748">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

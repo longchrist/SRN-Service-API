@@ -1,5 +1,11 @@
 package com.srn.api.service;
 
-public interface ISrnProfile {
+import com.srn.api.model.entity.SrnProfile;
 
+import java.sql.Timestamp;
+
+public interface ISrnProfile {
+    SrnProfile findProfileWithId(long userId);
+    boolean isProfileCompleted();
+    Timestamp getLastloginTimestamp();
 }

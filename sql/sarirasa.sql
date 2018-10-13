@@ -15,12 +15,67 @@ CREATE database sarirasa;
 
 /* create schema tables */
 
+/* sequence */
 CREATE SEQUENCE public.srn_device_seq
   INCREMENT 1
   MINVALUE 1
   START 10000000;
 
+CREATE SEQUENCE public.srn_user_email_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
+CREATE SEQUENCE public.srn_campaign_promo_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
+CREATE SEQUENCE public.srn_campaign_type_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
+CREATE SEQUENCE public.srn_brand_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
+CREATE SEQUENCE public.srn_point_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
+CREATE SEQUENCE public.srn_voucher_store_seq
+INCREMENT 1
+MINVALUE 1
+START 10000000;
+
+CREATE SEQUENCE public.srn_campaign_store_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
+CREATE SEQUENCE public.srn_user_seq
+  INCREMENT 1
+  MINVALUE 1
+  START 10000000;
+
 ALTER TABLE public.srn_device_seq
+  OWNER TO sarirasa;
+ALTER TABLE public.srn_user_email_seq
+  OWNER TO sarirasa;
+ALTER TABLE public.srn_campaign_promo_seq
+  OWNER TO sarirasa;
+ALTER TABLE public.srn_campaign_type_seq
+  OWNER TO sarirasa;
+ALTER TABLE public.srn_brand_seq
+  OWNER TO sarirasa;
+ALTER TABLE public.srn_point_seq
+  OWNER TO sarirasa;
+ALTER TABLE public.srn_campaign_store
+  OWNER TO sarirasa;
+ALTER TABLE public.srn_user_seq
   OWNER TO sarirasa;
 
 -- Table: public.srn_device
@@ -44,11 +99,6 @@ WITH (
 ALTER TABLE public.srn_device
   OWNER TO sarirasa;
 
-CREATE SEQUENCE public.srn_user_email_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
-
 -- Table: public.srn_user_email
 -- DROP TABLE public.srn_user_email;
 
@@ -67,7 +117,6 @@ WITH (
 );
 ALTER TABLE public.srn_user_email
   OWNER TO sarirasa;
-
 
 -- Table: public.srn_user_profile
 -- DROP TABLE public.srn_user_profile;
@@ -100,7 +149,7 @@ ALTER TABLE public.srn_user_profile
 CREATE TABLE public.srn_user_device_session
 (
   device_id integer NOT NULL,
-  session_id character varying(255),
+  session_id text,
   user_id integer,
   created timestamp without time zone,
   last_updated timestamp without time zone,
@@ -115,18 +164,13 @@ WITH (
 ALTER TABLE public.srn_user_device_session
   OWNER TO sarirasa;
 
-
-CREATE SEQUENCE public.srn_campaign_promo_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
-
 -- Table: public.srn_campaign
 -- DROP TABLE public.srn_campaign;
 
 CREATE TABLE public.srn_campaign
 (
   id integer NOT NULL DEFAULT nextval('srn_campaign_promo_seq'::regclass),
+  brand_id integer not null,
   campaign_type integer DEFAULT 0,
   campaign_name text NOT NULL,
   description text NOT NULL,
@@ -137,7 +181,8 @@ CREATE TABLE public.srn_campaign
   required_points integer NOT NULL DEFAULT 0,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
   last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
-  CONSTRAINT pk_srn_campaign PRIMARY KEY (id)
+  CONSTRAINT pk_srn_campaign PRIMARY KEY (id),
+  constraint srn_campaign_fk_srn_brand foreign key (brand_id) REFERENCES srn_brand (brand_id)
 )
 WITH (
   OIDS=FALSE
@@ -145,10 +190,6 @@ WITH (
 ALTER TABLE public.srn_campaign
   OWNER TO sarirasa;
 
-CREATE SEQUENCE public.srn_campaign_type_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
 -- Table: public.srn_campaign_type
 -- DROP TABLE public.srn_campaign_type;
 
@@ -166,12 +207,6 @@ WITH (
 );
 ALTER TABLE public.srn_campaign_type
   OWNER TO sarirasa;
-
-
-CREATE SEQUENCE srn_brand_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
 
 -- Table: public.srn_brand
 -- DROP TABLE public.srn_brand;
@@ -243,11 +278,6 @@ insert into srn_store values ('11131','10000008','store brand 3','jalan bendunga
 insert into srn_store values ('11132','10000008','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
 insert into srn_store values ('11133','10000008','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
 
-CREATE SEQUENCE public.srn_point_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
-
 -- drop table srn_points
 create table srn_points (
   point_id integer not null default nextval('srn_point_seq'::regclass),
@@ -262,35 +292,46 @@ create table srn_points (
   constraint srn_points_fk_srn_user_profile foreign key (user_id) references srn_user_profile (user_id),
   constraint srn_points_fk_srn_brand foreign key (brand_id) references srn_brand (brand_id),
   constraint srn_points_fk_srn_store foreign key (store_id) references srn_store (store_id)
+)WITH (
+  OIDS=FALSE
 );
+ALTER TABLE public.srn_points
+  OWNER TO sarirasa;
 
-create table srn_voucher
+-- Table: public.srn_voucher_campaign
+-- DROP TABLE public.srn_voucher_campaign;
+
+CREATE TABLE public.srn_voucher_campaign
 (
-  voucher_id text not null,
-  brand_id integer not null,
-  user_id integer not null,
+  campaign_id integer not null,
+  voucher_id text unique NOT NULL ,
+  user_id integer,
   claim_timestamp timestamp without time zone,
   voucher_expired timestamp without time zone NOT NULL,
-  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
-  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
-  constraint srn_voucher_pk primary key (voucher_id),
-  constraint srn_voucher_fk_srn_brand foreign key (brand_id) references srn_brand (brand_id),
-  constraint srn_voucher_fk_srn_user_profile foreign key (user_id) references srn_user_profile (user_id)
+  created timestamp without time zone NOT NULL DEFAULT now(),
+  last_updated timestamp without time zone NOT NULL DEFAULT now(),
+  CONSTRAINT srn_voucher_pk PRIMARY KEY (campaign_id, voucher_id)
+)
+WITH (
+  OIDS=FALSE
 );
+ALTER TABLE public.srn_voucher_campaign
+  OWNER TO sarirasa;
 
-CREATE SEQUENCE public.srn_voucher_store_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
 
--- drop table srn_voucher_store
-create table srn_references_voucher_store
+-- drop table srn_campaign_store;
+create table srn_campaign_store
 (
-  id integer not null default nextval('srn_voucher_store_seq'),
-  voucher_id text not null,
+  id integer not null default nextval('srn_campaign_store_seq'),
+  campaign_id integer not null,
   store_id integer not null,
-  constraint srn_voucher_store primary key (id),
-  constraint srn_voucher_store_fk_srn_voucher foreign key (voucher_id) references srn_voucher (voucher_id),
-  constraint srn_voucher_fk_srn_store foreign key (store_id) references srn_store(store_id)
+  constraint srn_campaign_store_pk primary key (id),
+  constraint srn_campaign_store_fk_srn_store foreign key (store_id) references srn_store(store_id)
+)
+WITH (
+  OIDS=FALSE
 );
+ALTER TABLE public.srn_campaign_store
+  OWNER TO sarirasa;
+
 
