@@ -53,8 +53,14 @@ public class SrnUserServiceImpl implements ISrnUserService {
     }
 
     @Override
-    public void userLogout(String type) {
-
+    public void userLogout(String session,  LoginType type) {
+        this.session = session;
+        switch (type) {
+            case GOOGLE:
+                userGoogleLogout();
+            case FACEBOOK:
+                break;
+        }
     }
 
     private SrnProfileDto userGoogleLogin(String token) {
@@ -72,6 +78,10 @@ public class SrnUserServiceImpl implements ISrnUserService {
             e.printStackTrace();
         }
         return generateProfile(googlePayload);
+    }
+
+    private void userGoogleLogout() {
+
     }
 
     private SrnProfileDto generateProfile(GoogleIdToken.Payload payload) {

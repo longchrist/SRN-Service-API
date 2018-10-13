@@ -1,7 +1,6 @@
 package com.srn.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.api.client.util.Value;
 import com.srn.api.model.SrnResponse;
 import com.srn.api.model.dto.SrnProfileDto;
 import com.srn.api.model.request.ParamLogin;
@@ -19,22 +18,19 @@ import java.io.IOException;
 @RestController
 public class UserController {
 
-    @Value("${google.login.url}")
-    private String googleLogin;
-
     @Autowired
     ISrnUserService srnUserService;
 
     @RequestMapping(value = "/v1/user/logingoogle.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> loginGoogle(@RequestBody() String param, @RequestParam("s") String session) {
+        if (!SecurityUtils.getInstance().isSessionValid(session)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         String json = SecurityUtils.getInstance().setData(param).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
         ObjectMapper jsonMapper = new ObjectMapper();
         ParamLogin paramLogin = null;
         try {
            paramLogin = jsonMapper.readValue(json, ParamLogin.class);
-           if (!SecurityUtils.getInstance().isSessionValid(paramLogin.getSessionId())) {
-               return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-           }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,8 +46,8 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/v1/user/logout.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> logout(@RequestBody() String param) {
+    @RequestMapping(value = "/v1/user/logout.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<SrnResponse<String>> logout(@RequestParam("s") String session) {
         //TODO:implement logout here
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -69,8 +65,9 @@ public class UserController {
 
     @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> userProfileRead(@RequestParam("s") String session) {
-        //TODO:implement profile get here
-
+        if (!SecurityUtils.getInstance().isSessionValid(session)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -83,8 +80,9 @@ public class UserController {
 
     @RequestMapping(value = "/v1/user/points.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> userPointsRead(@RequestParam("s") String session) {
-        //TODO:implement point get here
-
+        if (!SecurityUtils.getInstance().isSessionValid(session)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -25,6 +25,9 @@ public class BrandController {
 
     @RequestMapping(value = "/v1/branding/brand.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> getAllBrands(@RequestParam("s") String session) {
+        if (!SecurityUtils.getInstance().isSessionValid(session)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         List<SrnBrand> brands = brandService.findAllBrand();
 
         SrnResponse<String> response = new SrnResponse<>();
@@ -36,6 +39,9 @@ public class BrandController {
 
     @RequestMapping(value = "/v1/branding/brand/{brandId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> getBrandId(@RequestParam("s") String session, @PathVariable long brandId) {
+        if (!SecurityUtils.getInstance().isSessionValid(session)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
         SrnBrand brand = brandService.findBrandById(brandId);
 
         SrnResponse<String> response = new SrnResponse<>();

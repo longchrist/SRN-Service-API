@@ -29,12 +29,12 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
         SrnDevice entity = srnDeviceRepo.findByImei(device.getImei());
         if ( entity != null) {
             entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
+            entity = srnDeviceRepo.save(entity);
         } else {
             device.setCreated(FormatterUtils.getCurrentTimestamp());
             device.setLastUpdated(FormatterUtils.getCurrentTimestamp());
-            //srnDeviceRepo.save(device);
+            entity = srnDeviceRepo.save(device);
         }
-        entity = srnDeviceRepo.save(entity);
         Session session = new Session(device);
         session.setSessionId(SecurityUtils.getInstance().setData(device).setMethod(SecurityUtils.Method.SESSION_ENCRYPT).build());
         userDeviceService.registerUserDeviceSession(session.getSessionId(), entity.getId());
