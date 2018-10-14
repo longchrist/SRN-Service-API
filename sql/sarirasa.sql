@@ -303,14 +303,18 @@ ALTER TABLE public.srn_points
 
 CREATE TABLE public.srn_voucher_campaign
 (
-  campaign_id integer not null,
-  voucher_id text unique NOT NULL ,
+  campaign_id integer NOT NULL,
+  voucher_id text NOT NULL,
   user_id integer,
   claim_timestamp timestamp without time zone,
   voucher_expired timestamp without time zone NOT NULL,
-  created timestamp without time zone NOT NULL DEFAULT now(),
-  last_updated timestamp without time zone NOT NULL DEFAULT now(),
-  CONSTRAINT srn_voucher_pk PRIMARY KEY (campaign_id, voucher_id)
+  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  CONSTRAINT srn_voucher_campaign_pk PRIMARY KEY (campaign_id, voucher_id),
+  CONSTRAINT srn_voucher_campaign_fk_srn_campaign FOREIGN KEY (campaign_id)
+      REFERENCES public.srn_campaign (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT srn_voucher_campaign_voucher_id_key UNIQUE (voucher_id)
 )
 WITH (
   OIDS=FALSE
