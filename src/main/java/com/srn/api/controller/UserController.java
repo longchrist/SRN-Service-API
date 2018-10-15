@@ -17,7 +17,7 @@ public class UserController {
     ISrnUserService srnUserService;
 
     @RequestMapping(value = "/v1/user/logingoogle.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> loginGoogle(@RequestBody() String param, @RequestParam("s") String session) {
+    ResponseEntity<SrnResponse<String>> loginGoogle(@RequestBody() String param) {
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(srnUserService.userLogin(param)).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
@@ -40,7 +40,6 @@ public class UserController {
         response.setData(SecurityUtils.getInstance().setData(srnUserService.userUpdateProfile(param)).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> userProfileRead(@RequestBody() String param) {
