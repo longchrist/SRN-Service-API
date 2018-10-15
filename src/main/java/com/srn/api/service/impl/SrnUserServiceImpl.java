@@ -1,5 +1,6 @@
 package com.srn.api.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
@@ -9,12 +10,13 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.srn.api.model.dto.SrnProfileDto;
 import com.srn.api.model.entity.SrnEmail;
 import com.srn.api.model.entity.SrnProfile;
+import com.srn.api.model.request.ParamLogin;
 import com.srn.api.repo.ISrnProfileRepo;
-import com.srn.api.repo.ISrnUserDeviceRepo;
 import com.srn.api.repo.ISrnUserEmailRepo;
 import com.srn.api.service.ISrnUserDevice;
 import com.srn.api.service.ISrnUserService;
 import com.srn.api.utils.FormatterUtils;
+import com.srn.api.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,29 +40,50 @@ public class SrnUserServiceImpl implements ISrnUserService {
     @Autowired
     ISrnUserDevice srnUserDeviceService;
 
+
     private String session;
+    private SrnProfileDto profileDto;
 
     @Override
-    public SrnProfileDto userLogin(String token, String session,  LoginType type) {
-        this.session = session;
-        switch (type) {
-            case GOOGLE:
-                return userGoogleLogin(token);
-            case FACEBOOK:
-                break;
+    public SrnProfileDto userLogin(String requestBody) {
+        ParamLogin p = convertLoginBody(requestBody);
+        if (p != null) {
+            LoginType t = LoginType.values()[p.getLoginType()];
+            this.session = p.getSessionId();
+            switch (t) {
+                case GOOGLE:
+                    return userGoogleLogin(p.getToken());
+                case FACEBOOK:
+                    break;
+            }
         }
         return null;
     }
 
     @Override
-    public void userLogout(String session,  LoginType type) {
-        this.session = session;
-        switch (type) {
-            case GOOGLE:
-                userGoogleLogout();
-            case FACEBOOK:
-                break;
+    public void userLogout(String session) {
+        srnUserDeviceService.removeUserDeviceSession(session);
+    }
+
+    @Override
+    public SrnProfileDto userUpdateProfile(String requestBody) {
+        SrnProfileDto profile = convertProfileBody(requestBody);
+        SrnEmail email = srnUserEmailRepo.findByEmail(profile.getEmail());
+        if(profile != null) {
+            SrnProfile entity = srnProfileRepo.findProfileByUserId(email.getId());
+            if (entity != null) {
+                entity.setFullName(profile.getFullName());
+                entity.setNickName(profile.getNickName());
+                entity.setPhone(profile.getPhone());
+                entity.setAlternateEmail(profile.getAlternateEmail());
+                entity.setAddress(profile.getAddress());
+                entity.setProvince(profile.getProvince());
+                entity.setCity(profile.getCity());
+                entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
+                return srnProfileRepo.save(entity).toDto();
+            }
         }
+        return null;
     }
 
     private SrnProfileDto userGoogleLogin(String token) {
@@ -80,12 +103,7 @@ public class SrnUserServiceImpl implements ISrnUserService {
         return generateProfile(googlePayload);
     }
 
-    private void userGoogleLogout() {
-
-    }
-
     private SrnProfileDto generateProfile(GoogleIdToken.Payload payload) {
-        SrnProfileDto dto = null;
         if (payload != null) {
             SrnEmail userEmail = srnUserEmailRepo.findByEmail(payload.getEmail());
             if (userEmail == null) {
@@ -105,21 +123,46 @@ public class SrnUserServiceImpl implements ISrnUserService {
                 srnProfileRepo.save(profile);
             }
             srnUserDeviceService.registerUserId(this.session, userEmail.getId());
-            dto = profile.toDto();
-            dto.setUrl(payload.get("picture").toString());
-            dto.setEmail(userEmail.getEmail());
-            dto.setFullName(payload.get("name").toString());
-            dto.setNickName(profile.getNickName());
-            dto.setAddress(profile.getAddress());
-            dto.setCity(profile.getCity());
-            dto.setProvince(profile.getProvince());
-            dto.setPhone(profile.getPhone());
-            dto.setPoints(0);
-            dto.setPointLevel("Taster");
-            dto.setCreated(profile.getCreated());
-            dto.setLastUpdated(profile.getLastUpdated());
-            return dto;
+            profileDto = profile.toDto();
+            profileDto.setUrl(payload.get("picture").toString());
+            profileDto.setEmail(userEmail.getEmail());
+            profileDto.setFullName(payload.get("name").toString());
+            profileDto.setNickName(profile.getNickName());
+            profileDto.setAddress(profile.getAddress());
+            profileDto.setCity(profile.getCity());
+            profileDto.setProvince(profile.getProvince());
+            profileDto.setPhone(profile.getPhone());
+            profileDto.setPoints(0);
+            profileDto.setPointLevel("Taster");
+            profileDto.setCreated(profile.getCreated());
+            profileDto.setLastUpdated(profile.getLastUpdated());
+
+            return profileDto;
         }
         return null;
     }
+
+    private ParamLogin convertLoginBody(String requestBody) {
+        String json = SecurityUtils.getInstance().setData(requestBody).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
+        ObjectMapper jsonMapper = new ObjectMapper();
+        try {
+            return jsonMapper.readValue(json, ParamLogin.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private SrnProfileDto convertProfileBody(String requestBody) {
+        String json = SecurityUtils.getInstance().setData(requestBody).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
+        ObjectMapper jsonMapper = new ObjectMapper();
+        try {
+            return jsonMapper.readValue(json, SrnProfileDto.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

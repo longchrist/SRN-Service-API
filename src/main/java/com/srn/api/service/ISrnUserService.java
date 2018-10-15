@@ -16,6 +16,7 @@ public interface ISrnUserService {
         }
     }
 
-    SrnProfileDto userLogin(String token, String session, LoginType type);
-    void userLogout(String session,  LoginType type);
+    SrnProfileDto userLogin(String requestBody);
+    void userLogout(String session);
+    SrnProfileDto userUpdateProfile(String requestBody);
 }
