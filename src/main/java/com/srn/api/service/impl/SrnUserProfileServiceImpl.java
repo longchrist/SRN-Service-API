@@ -2,18 +2,17 @@ package com.srn.api.service.impl;
 
 import com.srn.api.model.entity.SrnProfile;
 import com.srn.api.repo.ISrnProfileRepo;
-import com.srn.api.service.ISrnProfile;
+import com.srn.api.service.ISrnUserProfileService;
 import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Transactional
-@Service("srnProfile")
-public class SrnProfileServiceImpl implements ISrnProfile {
+@Service("srnUserProfileService")
+public class SrnUserProfileServiceImpl implements ISrnUserProfileService {
 
     @Autowired
     ISrnProfileRepo srnProfileRepo;
@@ -43,5 +42,10 @@ public class SrnProfileServiceImpl implements ISrnProfile {
     @Override
     public Timestamp getLastloginTimestamp() {
         return lastLoginTimestamp;
+    }
+
+    @Override
+    public SrnProfile updateUserProfile(SrnProfile profile) {
+        return srnProfileRepo.save(profile);
     }
 }

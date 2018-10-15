@@ -17,34 +17,34 @@ CREATE database sarirasa;
 
 /* sequence */
 CREATE SEQUENCE public.srn_device_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
+INCREMENT 1
+MINVALUE 1
+START 10000000;
 
 CREATE SEQUENCE public.srn_user_email_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
+INCREMENT 1
+MINVALUE 1
+START 10000000;
 
 CREATE SEQUENCE public.srn_campaign_promo_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
+INCREMENT 1
+MINVALUE 1
+START 10000000;
 
 CREATE SEQUENCE public.srn_campaign_type_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
+INCREMENT 1
+MINVALUE 1
+START 10000000;
 
 CREATE SEQUENCE public.srn_brand_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
+INCREMENT 1
+MINVALUE 1
+START 10000000;
 
 CREATE SEQUENCE public.srn_point_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
+INCREMENT 1
+MINVALUE 1
+START 10000000;
 
 CREATE SEQUENCE public.srn_voucher_store_seq
 INCREMENT 1
@@ -52,14 +52,20 @@ MINVALUE 1
 START 10000000;
 
 CREATE SEQUENCE public.srn_campaign_store_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
+INCREMENT 1
+MINVALUE 1
+START 10000000;
 
 CREATE SEQUENCE public.srn_user_seq
-  INCREMENT 1
-  MINVALUE 1
-  START 10000000;
+INCREMENT 1
+MINVALUE 1
+START 10000000;
+
+CREATE SEQUENCE public.srn_user_point_seq
+INCREMENT 1
+MINVALUE 1
+START 10000000;
+
 
 ALTER TABLE public.srn_device_seq
   OWNER TO sarirasa;
@@ -76,6 +82,8 @@ ALTER TABLE public.srn_point_seq
 ALTER TABLE public.srn_campaign_store
   OWNER TO sarirasa;
 ALTER TABLE public.srn_user_seq
+  OWNER TO sarirasa;
+ALTER TABLE public.srn_user_point_seq
   OWNER TO sarirasa;
 
 -- Table: public.srn_device
@@ -107,8 +115,8 @@ CREATE TABLE public.srn_user_email
   id integer NOT NULL DEFAULT nextval('srn_user_email_seq'::regclass),
   email text NOT NULL,
   login_type text NOT NULL,
-  created timestamp without time zone,
-  last_updated timestamp without time zone,
+  created timestamp without time zone not null default current_timestamp,
+  last_updated timestamp without time zone not null default current_timestamp,
   CONSTRAINT srn_user_email_pkey PRIMARY KEY (email),
   CONSTRAINT srn_user_email_id_key UNIQUE (id)
 )
@@ -339,3 +347,20 @@ ALTER TABLE public.srn_campaign_store
   OWNER TO sarirasa;
 
 
+create table srn_points (
+  id integer not null default nextval('srn_user_point_seq'),
+  user_id integer not null,
+  brand_id integer not null,
+  store_id integer not null,
+  receipt_number text not null,
+  created timestamp without time zone not null default current_timestamp,
+  last_updated timestamp without time zone not null default current_timestamp,
+  constraint srn_points_pk primary key (id),
+  constraint srn_points_fk_srn_brand foreign key (brand_id) references srn_brand (brand_id),
+  constraint srn_points_fk_srn_store foreign key (store_id) references srn_store (store_id),
+  constraint srn_points_fk_srn_user_email foreign key (user_id) references srn_user_email (id)
+)WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.srn_points
+  OWNER TO sarirasa;

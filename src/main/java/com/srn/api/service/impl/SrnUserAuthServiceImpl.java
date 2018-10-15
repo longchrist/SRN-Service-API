@@ -13,8 +13,9 @@ import com.srn.api.model.entity.SrnProfile;
 import com.srn.api.model.request.ParamLogin;
 import com.srn.api.repo.ISrnProfileRepo;
 import com.srn.api.repo.ISrnUserEmailRepo;
-import com.srn.api.service.ISrnUserDevice;
-import com.srn.api.service.ISrnUserService;
+import com.srn.api.service.ISrnUserDeviceService;
+import com.srn.api.service.ISrnUserAuthService;
+import com.srn.api.service.ISrnUserProfileService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +27,19 @@ import java.security.GeneralSecurityException;
 import java.util.Collections;
 
 @Transactional
-@Service("srnUserService")
-public class SrnUserServiceImpl implements ISrnUserService {
+@Service("srnUserAuthService")
+public class SrnUserAuthServiceImpl implements ISrnUserAuthService {
 
     private static final String GOOGLE_CLIENT_ID = "734320557909-q0k91popdikfe65fcao0ng313gfsg4ne.apps.googleusercontent.com";
-
-    @Autowired
-    ISrnProfileRepo srnProfileRepo;
 
     @Autowired
     ISrnUserEmailRepo srnUserEmailRepo;
 
     @Autowired
-    ISrnUserDevice srnUserDeviceService;
+    ISrnUserDeviceService srnUserDeviceService;
 
+    @Autowired
+    ISrnUserProfileService srnUserProfileService;
 
     private String session;
     private SrnProfileDto profileDto;
@@ -66,11 +66,11 @@ public class SrnUserServiceImpl implements ISrnUserService {
     }
 
     @Override
-    public SrnProfileDto userUpdateProfile(String requestBody) {
+    public SrnProfileDto userUpdateProfile(String requestBody, String session) {
         SrnProfileDto profile = convertProfileBody(requestBody);
         SrnEmail email = srnUserEmailRepo.findByEmail(profile.getEmail());
         if(profile != null) {
-            SrnProfile entity = srnProfileRepo.findProfileByUserId(email.getId());
+            SrnProfile entity = srnUserProfileService.findProfileWithId(email.getId());
             if (entity != null) {
                 entity.setFullName(profile.getFullName());
                 entity.setNickName(profile.getNickName());
@@ -80,7 +80,7 @@ public class SrnUserServiceImpl implements ISrnUserService {
                 entity.setProvince(profile.getProvince());
                 entity.setCity(profile.getCity());
                 entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
-                return srnProfileRepo.save(entity).toDto();
+                return srnUserProfileService.updateUserProfile(entity).toDto();
             }
         }
         return null;
@@ -115,12 +115,12 @@ public class SrnUserServiceImpl implements ISrnUserService {
                 userEmail = srnUserEmailRepo.save(userEmail);
             }
             long emailId = userEmail.getId();
-            SrnProfile profile = srnProfileRepo.findProfileByUserId(emailId);
+            SrnProfile profile = srnUserProfileService.findProfileWithId(emailId);
             if (profile == null) {
                 profile = new SrnProfile();
                 profile.setUserId(userEmail.getId());
                 profile.setAlternateEmail(userEmail.getEmail());
-                srnProfileRepo.save(profile);
+                srnUserProfileService.updateUserProfile(profile);
             }
             srnUserDeviceService.registerUserId(this.session, userEmail.getId());
             profileDto = profile.toDto();
@@ -136,7 +136,6 @@ public class SrnUserServiceImpl implements ISrnUserService {
             profileDto.setPointLevel("Taster");
             profileDto.setCreated(profile.getCreated());
             profileDto.setLastUpdated(profile.getLastUpdated());
-
             return profileDto;
         }
         return null;

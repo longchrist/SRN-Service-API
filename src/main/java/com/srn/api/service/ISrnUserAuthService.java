@@ -2,7 +2,7 @@ package com.srn.api.service;
 
 import com.srn.api.model.dto.SrnProfileDto;
 
-public interface ISrnUserService {
+public interface ISrnUserAuthService {
 
     public static enum LoginType {
         UNKNOWN(0), GOOGLE(1), FACEBOOK(2);
@@ -18,5 +18,5 @@ public interface ISrnUserService {
 
     SrnProfileDto userLogin(String requestBody);
     void userLogout(String session);
-    SrnProfileDto userUpdateProfile(String requestBody);
+    SrnProfileDto userUpdateProfile(String requestBody, String session);
 }

@@ -2,13 +2,15 @@ package com.srn.api.service.impl;
 
 import com.srn.api.model.entity.SrnUserDevice;
 import com.srn.api.repo.ISrnUserDeviceRepo;
-import com.srn.api.service.ISrnUserDevice;
+import com.srn.api.service.ISrnUserDeviceService;
 import com.srn.api.utils.FormatterUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service("srnUserDeviceService")
-public class SrnUserDeviceServiceImpl implements ISrnUserDevice {
+public class SrnUserDeviceServiceServiceImpl implements ISrnUserDeviceService {
 
     @Autowired
     ISrnUserDeviceRepo srnUserDeviceRepo;
@@ -39,5 +41,10 @@ public class SrnUserDeviceServiceImpl implements ISrnUserDevice {
         if (userDevice != null) {
             srnUserDeviceRepo.delete(userDevice);
         }
+    }
+
+    @Override
+    public SrnUserDevice getUserDeviceData(String session) {
+        return srnUserDeviceRepo.findBySessionId(session);
     }
 }

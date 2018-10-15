@@ -1,12 +1,10 @@
 package com.srn.api.service.impl;
 
 import com.srn.api.model.entity.SrnDevice;
-import com.srn.api.model.entity.SrnUserDevice;
 import com.srn.api.model.response.Session;
 import com.srn.api.repo.ISrnDeviceRepo;
-import com.srn.api.repo.ISrnUserDeviceRepo;
 import com.srn.api.service.ISrnDeviceService;
-import com.srn.api.service.ISrnUserDevice;
+import com.srn.api.service.ISrnUserDeviceService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,7 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
     ISrnDeviceRepo srnDeviceRepo;
 
     @Autowired
-    ISrnUserDevice userDeviceService;
+    ISrnUserDeviceService userDeviceService;
 
     @Override
     public Session registerDevice(SrnDevice device) {
