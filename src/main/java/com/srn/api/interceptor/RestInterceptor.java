@@ -1,6 +1,8 @@
 package com.srn.api.interceptor;
 
 import com.srn.api.model.SrnResponse;
+import com.srn.api.model.dto.SrnErrorDto;
+import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
 import org.apache.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -22,7 +24,15 @@ public class RestInterceptor implements HandlerInterceptor {
             String s = URLDecoder.decode(queryParam.split("=")[1], "UTF-8");
             boolean valid = SecurityUtils.getInstance().isSessionValid(s);
             if (!valid) {
-                response.getWriter().write(new SrnResponse<String>().toString());
+
+                SrnErrorDto e = new SrnErrorDto();
+                e.setErrorMessage(SrnErrorDto.ERROR_MESSAGE_FORBIDDEN);
+
+                SrnResponse<String> errorResponse = new SrnResponse<>();
+                errorResponse.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
+                errorResponse.setData(SecurityUtils.getInstance().setData(e).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
+                System.out.println("error payload --> " + errorResponse.toString());
+                response.getWriter().write(errorResponse.toString());
                 response.setStatus(HttpStatus.SC_FORBIDDEN);
             }
             return valid;
