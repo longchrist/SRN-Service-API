@@ -34,7 +34,7 @@ public class Session {
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            jsonString = mapper.writeValueAsString(device);
+            jsonString = mapper.writeValueAsString(this);
         }catch (JsonGenerationException exJsonGeneration) {
             exJsonGeneration.printStackTrace();
         } catch (JsonProcessingException e) {

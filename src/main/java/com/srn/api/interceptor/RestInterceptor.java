@@ -21,6 +21,7 @@ public class RestInterceptor implements HandlerInterceptor {
         String uri = request.getRequestURI();
         String queryParam = request.getQueryString();
         if (!uri.contains("provision") && queryParam != null) {
+            //String s = URLDecoder.decode(queryParam.split("\\?")[1].split("=")[1], "UTF-8");
             String s = URLDecoder.decode(queryParam.split("=")[1], "UTF-8");
             boolean valid = SecurityUtils.getInstance().isSessionValid(s);
             if (!valid) {

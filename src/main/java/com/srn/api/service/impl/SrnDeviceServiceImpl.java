@@ -49,7 +49,7 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
             entity = srnDeviceRepo.save(deviceParam);
         }
         Session session = new Session(entity);
-        session.setSessionId(SecurityUtils.getInstance().setData(session).setMethod(SecurityUtils.Method.SESSION_ENCRYPT).build());
+        session.setSessionId(SecurityUtils.getInstance().setData(entity).setMethod(SecurityUtils.Method.SESSION_ENCRYPT).build());
         userDeviceService.registerUserDeviceSession(session.getSessionId(), entity.getId());
         return session;
     }
