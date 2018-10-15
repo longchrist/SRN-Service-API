@@ -5,7 +5,7 @@ import com.srn.api.model.response.Session;
 
 public interface ISrnDeviceService {
 
-    Session registerDevice(SrnDevice device);
+    Session registerDevice(String param);
     SrnDevice findDeviceById(long id);
     boolean unregisterDevice(SrnDevice device);
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ISrnProfileRepo extends JpaRepository<SrnProfile, Long> {
+public interface ISrnUserProfileRepo extends JpaRepository<SrnProfile, Long> {
     List<SrnProfile> findAll();
     SrnProfile findProfileByUserId(long id);
 }

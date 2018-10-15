@@ -57,13 +57,15 @@ public class UserController {
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(srnUserPointsService.addUserPoints(param, session)).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/v1/user/points.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> userPointsRead(@RequestParam("s") String session) {
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        SrnResponse<String> response = new SrnResponse<>();
+        response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
+        response.setData(SecurityUtils.getInstance().setData(srnUserPointsService.getTotalUserPoints(session)).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
+        return new ResponseEntity<>(response,HttpStatus.OK);
     }
 
 

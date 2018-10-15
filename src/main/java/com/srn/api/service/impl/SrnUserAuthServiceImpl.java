@@ -11,7 +11,6 @@ import com.srn.api.model.dto.SrnProfileDto;
 import com.srn.api.model.entity.SrnEmail;
 import com.srn.api.model.entity.SrnProfile;
 import com.srn.api.model.request.ParamLogin;
-import com.srn.api.repo.ISrnProfileRepo;
 import com.srn.api.repo.ISrnUserEmailRepo;
 import com.srn.api.service.ISrnUserDeviceService;
 import com.srn.api.service.ISrnUserAuthService;

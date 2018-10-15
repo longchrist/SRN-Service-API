@@ -1,7 +1,7 @@
 package com.srn.api.service.impl;
 
 import com.srn.api.model.entity.SrnProfile;
-import com.srn.api.repo.ISrnProfileRepo;
+import com.srn.api.repo.ISrnUserProfileRepo;
 import com.srn.api.service.ISrnUserProfileService;
 import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 public class SrnUserProfileServiceImpl implements ISrnUserProfileService {
 
     @Autowired
-    ISrnProfileRepo srnProfileRepo;
+    ISrnUserProfileRepo srnProfileRepo;
 
     private boolean isCompleted;
     private Timestamp lastLoginTimestamp;

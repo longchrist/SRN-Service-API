@@ -9,8 +9,9 @@ public class Session {
 
     private String sessionId;
     private long deviceId;
-
+    private SrnDevice device;
     public Session(SrnDevice device) {
+        this.device = device;
         this.sessionId = "this-is-session-device";
         this.deviceId = device.getId();
     }
@@ -33,7 +34,7 @@ public class Session {
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            jsonString = mapper.writeValueAsString(this);
+            jsonString = mapper.writeValueAsString(device);
         }catch (JsonGenerationException exJsonGeneration) {
             exJsonGeneration.printStackTrace();
         } catch (JsonProcessingException e) {

@@ -26,20 +26,9 @@ public class DeviceController {
 
     @RequestMapping(value = "/v1/device/provision.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SrnResponse<String>> provisioning(@RequestBody() String param) {
-        String json = SecurityUtils.getInstance().setData(param).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
-        if (json == null)
-            return new ResponseEntity<>(new SrnResponse<String>(), HttpStatus.BAD_REQUEST);
-        ObjectMapper jsonMapper = new ObjectMapper();
-        SrnDevice deviceParam = null;
-        try {
-            deviceParam = jsonMapper.readValue(json, SrnDevice.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Session session = srnDeviceService.registerDevice(deviceParam);
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
-        response.setData(SecurityUtils.getInstance().setData(session.toString()).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
+        response.setData(SecurityUtils.getInstance().setData(srnDeviceService.registerDevice(param).toString()).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

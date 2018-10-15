@@ -1,5 +1,7 @@
 package com.srn.api.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.srn.api.model.SrnResponse;
 import com.srn.api.model.entity.SrnDevice;
 import com.srn.api.model.response.Session;
 import com.srn.api.repo.ISrnDeviceRepo;
@@ -8,8 +10,12 @@ import com.srn.api.service.ISrnUserDeviceService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.IOException;
 
 
 @Transactional
@@ -23,18 +29,27 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
     ISrnUserDeviceService userDeviceService;
 
     @Override
-    public Session registerDevice(SrnDevice device) {
-        SrnDevice entity = srnDeviceRepo.findByImei(device.getImei());
+    public Session registerDevice(String param) {
+        String json = SecurityUtils.getInstance().setData(param).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
+        ObjectMapper jsonMapper = new ObjectMapper();
+        SrnDevice deviceParam = null;
+        try {
+            deviceParam = jsonMapper.readValue(json, SrnDevice.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        SrnDevice entity = srnDeviceRepo.findByImei(deviceParam.getImei());
         if ( entity != null) {
             entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
             entity = srnDeviceRepo.save(entity);
         } else {
-            device.setCreated(FormatterUtils.getCurrentTimestamp());
-            device.setLastUpdated(FormatterUtils.getCurrentTimestamp());
-            entity = srnDeviceRepo.save(device);
+            deviceParam.setCreated(FormatterUtils.getCurrentTimestamp());
+            deviceParam.setLastUpdated(FormatterUtils.getCurrentTimestamp());
+            entity = srnDeviceRepo.save(deviceParam);
         }
-        Session session = new Session(device);
-        session.setSessionId(SecurityUtils.getInstance().setData(device).setMethod(SecurityUtils.Method.SESSION_ENCRYPT).build());
+        Session session = new Session(entity);
+        session.setSessionId(SecurityUtils.getInstance().setData(session).setMethod(SecurityUtils.Method.SESSION_ENCRYPT).build());
         userDeviceService.registerUserDeviceSession(session.getSessionId(), entity.getId());
         return session;
     }

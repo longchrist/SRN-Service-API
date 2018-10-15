@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "srn_user_point")
-@NamedQueries({@NamedQuery(name = "srn_user_point.findAll", query = "SELECT p FROM SrnPoints p")})
-public class SrnPoints extends BaseModel<SrnPointDto> {
+@NamedQueries({@NamedQuery(name = "srn_user_point.findAll", query = "SELECT p FROM SrnPoint p")})
+public class SrnPoint extends BaseModel<SrnPointDto> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "srn_user_point_seq")
@@ -34,12 +34,24 @@ public class SrnPoints extends BaseModel<SrnPointDto> {
     private String receiptNumber;
 
     @Basic(optional = false)
+    @Column(name = "point_value", nullable = true)
+    private long pointValue;
+
+    @Basic(optional = false)
     @Column(name = "created", nullable = true)
     private Timestamp created;
 
     @Basic(optional = false)
     @Column(name = "last_updated", nullable = true)
     private Timestamp lastUpdated;
+
+    public long getPointValue() {
+        return pointValue;
+    }
+
+    public void setPointValue(long pointValue) {
+        this.pointValue = pointValue;
+    }
 
     public long getId() {
         return id;
