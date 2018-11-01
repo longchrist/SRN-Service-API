@@ -7,18 +7,18 @@ import java.util.List;
 
 public class SrnBrandDto {
 
-    long brandId;
+    String brandId;
     String brandName;
     String BrandUrl;
     private Timestamp created;
     private Timestamp lastUpdated;
     private List<SrnStore> stores;
 
-    public long getBrandId() {
+    public String getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(long brandId) {
+    public void setBrandId(String brandId) {
         this.brandId = brandId;
     }
 

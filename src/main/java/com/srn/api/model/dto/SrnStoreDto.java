@@ -2,26 +2,28 @@ package com.srn.api.model.dto;
 
 public class SrnStoreDto {
 
-    private long storeId;
-    private long brandId;
+    private String storeId;
+    private String brandId;
     private String storeName;
     private String storeAddress;
     private String storeCity;
     private String storeProvince;
+    private long storeLatitude;
+    private long storeLongitude;
 
-    public long getStoreId() {
+    public String getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(long storeId) {
+    public void setStoreId(String storeId) {
         this.storeId = storeId;
     }
 
-    public long getBrandId() {
+    public String getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(long brandId) {
+    public void setBrandId(String brandId) {
         this.brandId = brandId;
     }
 
@@ -55,5 +57,21 @@ public class SrnStoreDto {
 
     public void setStoreProvince(String storeProvince) {
         this.storeProvince = storeProvince;
+    }
+
+    public long getStoreLatitude() {
+        return storeLatitude;
+    }
+
+    public void setStoreLatitude(long storeLatitude) {
+        this.storeLatitude = storeLatitude;
+    }
+
+    public long getStoreLongitude() {
+        return storeLongitude;
+    }
+
+    public void setStoreLongitude(long storeLongitude) {
+        this.storeLongitude = storeLongitude;
     }
 }

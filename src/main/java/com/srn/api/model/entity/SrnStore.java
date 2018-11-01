@@ -15,7 +15,7 @@ public class SrnStore extends BaseModel<SrnStoreDto> implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "store_id", nullable = false)
-    private long id;
+    private String id;
 
     @Basic(optional = false)
     @Column(name = "store_name", nullable = false)
@@ -33,16 +33,24 @@ public class SrnStore extends BaseModel<SrnStoreDto> implements Serializable {
     @Column(name = "store_province", nullable = false)
     private String storeProvince;
 
+    @Basic(optional = false)
+    @Column(name = "store_latitude", nullable = false)
+    private String storeLatitude;
+
+    @Basic(optional = false)
+    @Column(name = "store_longitude", nullable = false)
+    private String storeLongitude;
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
     private SrnBrand brandStore;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -84,6 +92,22 @@ public class SrnStore extends BaseModel<SrnStoreDto> implements Serializable {
 
     public void setBrandStore(SrnBrand brandStore) {
         this.brandStore = brandStore;
+    }
+
+    public String getStoreLatitude() {
+        return storeLatitude;
+    }
+
+    public void setStoreLatitude(String storeLatitude) {
+        this.storeLatitude = storeLatitude;
+    }
+
+    public String getStoreLongitude() {
+        return storeLongitude;
+    }
+
+    public void setStoreLongitude(String storeLongitude) {
+        this.storeLongitude = storeLongitude;
     }
 
     @Override

@@ -1,4 +1,4 @@
-/*
+﻿/*
 this is sarirasa database schema
 table is already in sequence order to create and execute
 
@@ -36,11 +36,6 @@ INCREMENT 1
 MINVALUE 1
 START 10000000;
 
-CREATE SEQUENCE public.srn_brand_seq
-INCREMENT 1
-MINVALUE 1
-START 10000000;
-
 CREATE SEQUENCE public.srn_point_seq
 INCREMENT 1
 MINVALUE 1
@@ -67,6 +62,15 @@ MINVALUE 1
 START 10000000;
 
 
+DROP sequence srn_device_seq;
+DROP sequence srn_user_email_seq;
+DROP sequence srn_campaign_promo_seq;
+DROP sequence srn_campaign_type_seq;
+DROP sequence srn_point_seq;
+DROP sequence srn_campaign_store;
+DROP sequence srn_user_seq;
+DROP sequence srn_user_point_seq;
+
 ALTER TABLE public.srn_device_seq
   OWNER TO sarirasa;
 ALTER TABLE public.srn_user_email_seq
@@ -75,11 +79,9 @@ ALTER TABLE public.srn_campaign_promo_seq
   OWNER TO sarirasa;
 ALTER TABLE public.srn_campaign_type_seq
   OWNER TO sarirasa;
-ALTER TABLE public.srn_brand_seq
-  OWNER TO sarirasa;
 ALTER TABLE public.srn_point_seq
   OWNER TO sarirasa;
-ALTER TABLE public.srn_campaign_store
+ALTER TABLE public.srn_campaign_store_seq
   OWNER TO sarirasa;
 ALTER TABLE public.srn_user_seq
   OWNER TO sarirasa;
@@ -172,13 +174,30 @@ WITH (
 ALTER TABLE public.srn_user_device_session
   OWNER TO sarirasa;
 
+
+CREATE TABLE public.srn_brand
+(
+  brand_id text NOT NULL,
+  brand_name text NOT NULL,
+  brand_image_url text,
+  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  CONSTRAINT srn_brand_pk PRIMARY KEY (brand_id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.srn_brand
+  OWNER TO sarirasa;
+
+
 -- Table: public.srn_campaign
 -- DROP TABLE public.srn_campaign;
 
 CREATE TABLE public.srn_campaign
 (
   id integer NOT NULL DEFAULT nextval('srn_campaign_promo_seq'::regclass),
-  brand_id integer not null,
+  brand_id text not null,
   campaign_type integer DEFAULT 0,
   campaign_name text NOT NULL,
   description text NOT NULL,
@@ -219,34 +238,25 @@ ALTER TABLE public.srn_campaign_type
 -- Table: public.srn_brand
 -- DROP TABLE public.srn_brand;
 
-CREATE TABLE public.srn_brand
-(
-  brand_id integer NOT NULL DEFAULT nextval('srn_brand_seq'::regclass),
-  brand_name text NOT NULL,
-  brand_image_url text,
-  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
-  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
-  CONSTRAINT srn_brand_pk PRIMARY KEY (brand_id)
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE public.srn_brand
-  OWNER TO sarirasa;
 
 insert into srn_brand values (nextval('srn_brand_seq'),
 	'brand1',
-	'https://www.detik.com',
+	'https://pbs.twimg.com/profile_images/1415302809/logo-tesate-web_400x400.jpg',
 	current_timestamp,
 	current_timestamp);
 insert into srn_brand values (nextval('srn_brand_seq'),
 	'brand2',
-	'https://www.detik.com',
+	'https://pbs.twimg.com/profile_images/524759823372386304/9Y4nmrAS_400x400.jpeg',
 	current_timestamp,
 	current_timestamp);
 insert into srn_brand values (nextval('srn_brand_seq'),
 	'brand3',
-	'https://www.detik.com',
+	'https://pbs.twimg.com/profile_images/882062826138882049/fY1gM_8X_400x400.jpg',
+	current_timestamp,
+	current_timestamp);
+insert into srn_brand values (nextval('srn_brand_seq'),
+	'brand4',
+	'http://www.binuscareer.com/Events/2008/06/2008060021/logo1.JPG',
 	current_timestamp,
 	current_timestamp);
 
@@ -255,12 +265,14 @@ insert into srn_brand values (nextval('srn_brand_seq'),
 
 CREATE TABLE public.srn_store
 (
-  store_id integer NOT NULL,
-  brand_id integer NOT NULL,
+  store_id text NOT NULL,
+  brand_id text NOT NULL,
   store_name text NOT NULL,
   store_address text,
   store_city text,
   store_province text,
+  store_latitude real,
+  store_longitude real,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
   last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
   CONSTRAINT srn_brand_store_pk PRIMARY KEY (store_id),
@@ -274,24 +286,28 @@ WITH (
 ALTER TABLE public.srn_store
   OWNER TO sarirasa;
 
-insert into srn_store values ('11111','10000006','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11112','10000006','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11113','10000006','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11111','10000000','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11112','10000000','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11113','10000000','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
 
-insert into srn_store values ('11121','10000007','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11122','10000007','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11123','10000007','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11121','10000001','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11122','10000001','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11123','10000001','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
 
-insert into srn_store values ('11131','10000008','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11132','10000008','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11133','10000008','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11131','10000002','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11132','10000002','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11133','10000002','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+
+insert into srn_store values ('11141','10000003','store brand 4','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11142','10000003','store brand 4','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
+insert into srn_store values ('11143','10000003','store brand 4','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
 
 -- drop table srn_points
 create table srn_points (
   point_id integer not null default nextval('srn_point_seq'::regclass),
   user_id integer not null,
-  brand_id integer not null,
-  store_id integer not null,
+  brand_id text not null,
+  store_id text not null,
   point_value integer not null,
   point_expired timestamp without time zone,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
@@ -336,7 +352,7 @@ create table srn_campaign_store
 (
   id integer not null default nextval('srn_campaign_store_seq'),
   campaign_id integer not null,
-  store_id integer not null,
+  store_id text not null,
   constraint srn_campaign_store_pk primary key (id),
   constraint srn_campaign_store_fk_srn_store foreign key (store_id) references srn_store(store_id)
 )
@@ -346,21 +362,3 @@ WITH (
 ALTER TABLE public.srn_campaign_store
   OWNER TO sarirasa;
 
-
-create table srn_points (
-  id integer not null default nextval('srn_user_point_seq'),
-  user_id integer not null,
-  brand_id integer not null,
-  store_id integer not null,
-  receipt_number text not null,
-  created timestamp without time zone not null default current_timestamp,
-  last_updated timestamp without time zone not null default current_timestamp,
-  constraint srn_points_pk primary key (id),
-  constraint srn_points_fk_srn_brand foreign key (brand_id) references srn_brand (brand_id),
-  constraint srn_points_fk_srn_store foreign key (store_id) references srn_store (store_id),
-  constraint srn_points_fk_srn_user_email foreign key (user_id) references srn_user_email (id)
-)WITH (
-  OIDS=FALSE
-);
-ALTER TABLE public.srn_points
-  OWNER TO sarirasa;

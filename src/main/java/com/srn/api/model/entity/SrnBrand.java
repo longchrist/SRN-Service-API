@@ -18,7 +18,7 @@ public class SrnBrand extends BaseModel<SrnBrandDto> implements Serializable {
     @Column(name = "brand_id", nullable = false, insertable = true, updatable = true)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "srn_brand_seq")
     @SequenceGenerator(name = "srn_brand_seq", sequenceName = "srn_brand_seq", initialValue = 10000000, allocationSize = 1)
-    long id;
+    String id;
 
     @Basic(optional = false)
     @Column(name = "brand_name", nullable = false)
@@ -40,11 +40,11 @@ public class SrnBrand extends BaseModel<SrnBrandDto> implements Serializable {
     @OneToMany(mappedBy = "brandStore", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SrnStore> stores;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
