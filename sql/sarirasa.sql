@@ -235,31 +235,6 @@ WITH (
 ALTER TABLE public.srn_campaign_type
   OWNER TO sarirasa;
 
--- Table: public.srn_brand
--- DROP TABLE public.srn_brand;
-
-
-insert into srn_brand values (nextval('srn_brand_seq'),
-	'brand1',
-	'https://pbs.twimg.com/profile_images/1415302809/logo-tesate-web_400x400.jpg',
-	current_timestamp,
-	current_timestamp);
-insert into srn_brand values (nextval('srn_brand_seq'),
-	'brand2',
-	'https://pbs.twimg.com/profile_images/524759823372386304/9Y4nmrAS_400x400.jpeg',
-	current_timestamp,
-	current_timestamp);
-insert into srn_brand values (nextval('srn_brand_seq'),
-	'brand3',
-	'https://pbs.twimg.com/profile_images/882062826138882049/fY1gM_8X_400x400.jpg',
-	current_timestamp,
-	current_timestamp);
-insert into srn_brand values (nextval('srn_brand_seq'),
-	'brand4',
-	'http://www.binuscareer.com/Events/2008/06/2008060021/logo1.JPG',
-	current_timestamp,
-	current_timestamp);
-
 -- Table: public.srn_store
 -- DROP TABLE public.srn_store;
 
@@ -271,8 +246,8 @@ CREATE TABLE public.srn_store
   store_address text,
   store_city text,
   store_province text,
-  store_latitude real,
-  store_longitude real,
+  store_latitude float,
+  store_longitude float,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
   last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
   CONSTRAINT srn_brand_store_pk PRIMARY KEY (store_id),
@@ -285,22 +260,6 @@ WITH (
 );
 ALTER TABLE public.srn_store
   OWNER TO sarirasa;
-
-insert into srn_store values ('11111','10000000','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11112','10000000','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11113','10000000','store brand 1','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-
-insert into srn_store values ('11121','10000001','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11122','10000001','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11123','10000001','store brand 2','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-
-insert into srn_store values ('11131','10000002','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11132','10000002','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11133','10000002','store brand 3','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-
-insert into srn_store values ('11141','10000003','store brand 4','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11142','10000003','store brand 4','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
-insert into srn_store values ('11143','10000003','store brand 4','jalan bendungan walahar','jakarta','DKI',current_timestamp,current_timestamp);
 
 -- drop table srn_points
 create table srn_points (
