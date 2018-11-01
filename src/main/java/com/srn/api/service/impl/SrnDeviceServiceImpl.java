@@ -1,7 +1,6 @@
 package com.srn.api.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.srn.api.model.SrnResponse;
 import com.srn.api.model.entity.SrnDevice;
 import com.srn.api.model.response.Session;
 import com.srn.api.repo.ISrnDeviceRepo;
@@ -10,8 +9,6 @@ import com.srn.api.service.ISrnUserDeviceService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +45,7 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
             deviceParam.setLastUpdated(FormatterUtils.getCurrentTimestamp());
             entity = srnDeviceRepo.save(deviceParam);
         }
+        entity.setCreated(FormatterUtils.getCurrentTimestamp());
         Session session = new Session(entity);
         session.setSessionId(SecurityUtils.getInstance().setData(entity).setMethod(SecurityUtils.Method.SESSION_ENCRYPT).build());
         userDeviceService.registerUserDeviceSession(session.getSessionId(), entity.getId());

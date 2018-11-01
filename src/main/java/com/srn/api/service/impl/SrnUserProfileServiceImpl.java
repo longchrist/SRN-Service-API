@@ -22,15 +22,19 @@ public class SrnUserProfileServiceImpl implements ISrnUserProfileService {
     @Override
     public SrnProfile findProfileWithId(long userId) {
         SrnProfile profile = srnProfileRepo.findProfileByUserId(userId);
-        if (TextUtils.isEmpty(profile.getFullName()) || TextUtils.isEmpty(profile.getNickName())
-                || TextUtils.isEmpty(profile.getAddress()) || TextUtils.isEmpty(profile.getCity()) ||
-                TextUtils.isEmpty(profile.getProvince()) || TextUtils.isEmpty(profile.getPhone()) ||
-                TextUtils.isEmpty(profile.getAlternateEmail())) {
-            isCompleted = false;
+        if (profile != null ) {
+            if (TextUtils.isEmpty(profile.getFullName()) || TextUtils.isEmpty(profile.getNickName())
+                    || TextUtils.isEmpty(profile.getAddress()) || TextUtils.isEmpty(profile.getCity()) ||
+                    TextUtils.isEmpty(profile.getProvince()) || TextUtils.isEmpty(profile.getPhone()) ||
+                    TextUtils.isEmpty(profile.getAlternateEmail())) {
+                isCompleted = false;
+            } else {
+                isCompleted = true;
+            }
+            lastLoginTimestamp = profile.getLastUpdated();
         } else {
-            isCompleted = true;
+            isCompleted = false;
         }
-        lastLoginTimestamp = profile.getLastUpdated();
         return profile;
     }
 

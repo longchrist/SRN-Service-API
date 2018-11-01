@@ -29,7 +29,10 @@ public class BrandController {
 
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
-        response.setData(SecurityUtils.getInstance().setData(brands).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
+        response.setData(SecurityUtils.getInstance()
+                    .setData(brands)
+                    .setMethod(SecurityUtils.Method.DATA_ENCRYPT)
+                    .build());
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

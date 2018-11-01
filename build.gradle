@@ -30,7 +30,8 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 	compile 'com.zaxxer:HikariCP:2.3.2'
-	runtime 'org.postgresql:postgresql:9.4-1206-jdbc42'
+	compile group: 'org.postgresql', name: 'postgresql', version: '42.1.1'
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.3.7.Final'
 	compile 'com.google.api-client:google-api-client:1.25.0'
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')

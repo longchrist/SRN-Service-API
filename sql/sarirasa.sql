@@ -11,7 +11,7 @@ database password: 123456
 create user sarirasa with superuser createdb createrole password '123456';
 
 /* create database */
--- CREATE database sarirasa;
+CREATE database sarirasa;
 
 /* create schema tables */
 
@@ -62,6 +62,15 @@ MINVALUE 1
 START 10000000;
 
 
+DROP sequence srn_device_seq;
+DROP sequence srn_user_email_seq;
+DROP sequence srn_campaign_promo_seq;
+DROP sequence srn_campaign_type_seq;
+DROP sequence srn_point_seq;
+DROP sequence srn_campaign_store;
+DROP sequence srn_user_seq;
+DROP sequence srn_user_point_seq;
+
 ALTER TABLE public.srn_device_seq
   OWNER TO sarirasa;
 ALTER TABLE public.srn_user_email_seq
@@ -78,15 +87,6 @@ ALTER TABLE public.srn_user_seq
   OWNER TO sarirasa;
 ALTER TABLE public.srn_user_point_seq
   OWNER TO sarirasa;
-
--- DROP sequence srn_device_seq;
--- DROP sequence srn_user_email_seq;
--- DROP sequence srn_campaign_promo_seq;
--- DROP sequence srn_campaign_type_seq;
--- DROP sequence srn_point_seq;
--- DROP sequence srn_campaign_store;
--- DROP sequence srn_user_seq;
--- DROP sequence srn_user_point_seq;
 
 -- Table: public.srn_device
 -- DROP TABLE public.srn_device;
@@ -250,10 +250,7 @@ CREATE TABLE public.srn_store
   store_longitude float,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
   last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
-  CONSTRAINT srn_brand_store_pk PRIMARY KEY (store_id),
-  CONSTRAINT srn_store_fk_srn_brand FOREIGN KEY (brand_id)
-      REFERENCES public.srn_brand (brand_id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
+  CONSTRAINT srn_brand_store_pk PRIMARY KEY (store_id)
 )
 WITH (
   OIDS=FALSE
@@ -305,6 +302,7 @@ WITH (
 ALTER TABLE public.srn_voucher_campaign
   OWNER TO sarirasa;
 
+
 -- drop table srn_campaign_store;
 create table srn_campaign_store
 (
@@ -319,3 +317,4 @@ WITH (
 );
 ALTER TABLE public.srn_campaign_store
   OWNER TO sarirasa;
+
