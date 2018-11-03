@@ -18,6 +18,10 @@ public class SrnStore extends BaseModel<SrnStoreDto> implements Serializable {
     private String id;
 
     @Basic(optional = false)
+    @Column(name = "brand_id", nullable = false)
+    private String brandId;
+
+    @Basic(optional = false)
     @Column(name = "store_name", nullable = false)
     private String storeName;
 
@@ -43,7 +47,7 @@ public class SrnStore extends BaseModel<SrnStoreDto> implements Serializable {
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brand_id", insertable = false, updatable = false)
     private SrnBrand brandStore;
 
     public String getId() {
@@ -52,6 +56,14 @@ public class SrnStore extends BaseModel<SrnStoreDto> implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(String brandId) {
+        this.brandId = brandId;
     }
 
     public String getStoreName() {
