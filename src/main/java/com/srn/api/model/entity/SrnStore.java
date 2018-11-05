@@ -34,6 +34,18 @@ public class SrnStore extends BaseModel<SrnStoreDto> implements Serializable {
     private String storeCity;
 
     @Basic(optional = false)
+    @Column(name = "store_phone", nullable = false)
+    private String storePhone;
+
+    @Basic(optional = false)
+    @Column(name = "store_seating", nullable = false)
+    private long storeSeating;
+
+    @Basic(optional = false)
+    @Column(name = "store_operational_hours", nullable = false)
+    private String storeOperationalHours;
+
+    @Basic(optional = false)
     @Column(name = "store_province", nullable = false)
     private String storeProvince;
 
@@ -88,6 +100,30 @@ public class SrnStore extends BaseModel<SrnStoreDto> implements Serializable {
 
     public void setStoreCity(String storeCity) {
         this.storeCity = storeCity;
+    }
+
+    public String getStorePhone() {
+        return storePhone;
+    }
+
+    public void setStorePhone(String storePhone) {
+        this.storePhone = storePhone;
+    }
+
+    public long getStoreSeating() {
+        return storeSeating;
+    }
+
+    public void setStoreSeating(long storeSeating) {
+        this.storeSeating = storeSeating;
+    }
+
+    public String getStoreOperationalHours() {
+        return storeOperationalHours;
+    }
+
+    public void setStoreOperationalHours(String storeOperationalHours) {
+        this.storeOperationalHours = storeOperationalHours;
     }
 
     public String getStoreProvince() {

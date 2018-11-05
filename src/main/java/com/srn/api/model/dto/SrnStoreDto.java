@@ -7,6 +7,9 @@ public class SrnStoreDto {
     private String storeName;
     private String storeAddress;
     private String storeCity;
+    private String storePhone;
+    private long storeSeating;
+    private String storeOperationalHours;
     private String storeProvince;
     private long storeLatitude;
     private long storeLongitude;
@@ -49,6 +52,30 @@ public class SrnStoreDto {
 
     public void setStoreCity(String storeCity) {
         this.storeCity = storeCity;
+    }
+
+    public String getStorePhone() {
+        return storePhone;
+    }
+
+    public void setStorePhone(String storePhone) {
+        this.storePhone = storePhone;
+    }
+
+    public long getStoreSeating() {
+        return storeSeating;
+    }
+
+    public void setStoreSeating(long storeSeating) {
+        this.storeSeating = storeSeating;
+    }
+
+    public String getStoreOperationalHours() {
+        return storeOperationalHours;
+    }
+
+    public void setStoreOperationalHours(String storeOperationalHours) {
+        this.storeOperationalHours = storeOperationalHours;
     }
 
     public String getStoreProvince() {

@@ -237,6 +237,8 @@ ALTER TABLE public.srn_campaign_type
 
 -- Table: public.srn_store
 -- DROP TABLE public.srn_store;
+-- COPY srn_store(store_id, brand_id, store_name, store_address, store_city, store_phone, store_seating, store_province, store_latitude, store_longitude)
+-- FROM '/var/lib/postgresql/srn_store_data.csv' DELIMITER ',' CSV HEADER;
 
 CREATE TABLE public.srn_store
 (
@@ -245,7 +247,10 @@ CREATE TABLE public.srn_store
   store_name text NOT NULL,
   store_address text,
   store_city text,
+  store_phone text,
   store_province text,
+  store_seating integer default 0,
+  store_operational_hours text,
   store_latitude float,
   store_longitude float,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
