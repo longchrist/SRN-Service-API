@@ -24,7 +24,7 @@
 
     </appender>
 
-    <logger name="com.srn.api" level="debug"
+    <logger name="com.srn.api" level="info"
             additivity="false">
         <appender-ref ref="FILE-AUDIT" />
     </logger>

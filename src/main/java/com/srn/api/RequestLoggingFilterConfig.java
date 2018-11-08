@@ -15,9 +15,6 @@ public class RequestLoggingFilterConfig {
         filter.setIncludeHeaders(true);
         filter.setIncludeClientInfo(true);
         filter.setMaxPayloadLength(10000);
-        filter.setIncludeHeaders(false);
-        filter.setBeforeMessagePrefix("Before --> ");
-        filter.setAfterMessagePrefix("After --> ");
         return filter;
     }
 
