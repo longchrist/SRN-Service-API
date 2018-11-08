@@ -24,6 +24,7 @@ public class SrnApplication {
     public DataSource hikariCPConfig() {
         HikariConfig config = new HikariConfig("/hikari.properties");
         HikariDataSource ds = new HikariDataSource(config);
+        ds.setMaximumPoolSize(1000);
         return ds;
     }
 
