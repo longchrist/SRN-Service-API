@@ -18,8 +18,16 @@ public class SrnCampaign extends BaseModel<SrnCampaignDto> {
     private long id;
 
     @Basic(optional = false)
+    @Column(name = "brand_id", nullable = false)
+    private String brandId;
+
+    @Basic(optional = false)
     @Column(name = "campaign_type", nullable = false)
     private int campaignType;
+
+    @Basic(optional = false)
+    @Column(name = "campaign_name", nullable = false)
+    private String campaignName;
 
     @Basic(optional = false)
     @Column(name = "description", nullable = false)
@@ -53,7 +61,6 @@ public class SrnCampaign extends BaseModel<SrnCampaignDto> {
     @Column(name = "last_updated", nullable = true)
     private Timestamp lastUpdated;
 
-
     public long getId() {
         return id;
     }
@@ -68,6 +75,26 @@ public class SrnCampaign extends BaseModel<SrnCampaignDto> {
 
     public void setCampaignType(int campaignType) {
         this.campaignType = campaignType;
+    }
+
+    public String getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(String brandId) {
+        this.brandId = brandId;
+    }
+
+    public String getCampaignName() {
+        return campaignName;
+    }
+
+    public void setCampaignName(String campaignName) {
+        this.campaignName = campaignName;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getDescription() {

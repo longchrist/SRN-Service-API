@@ -10,4 +10,6 @@ import java.util.List;
 public interface ISrnCampaignRepo extends JpaRepository<SrnCampaign, Long> {
     List<SrnCampaign> findAll();
     SrnCampaign findCampaignById(long campaignId);
+    List<SrnCampaign> findCampaignByBrandId(String brandId);
+
 }
