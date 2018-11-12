@@ -8,8 +8,13 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @SpringBootApplication
 @EnableJpaRepositories("com.srn.api.repo")
@@ -31,5 +36,26 @@ public class SrnApplication {
     @Bean
     public EmbeddedServletContainerCustomizer tomcatConfig() {
         return new TomcatConfig();
+    }
+
+
+    @Bean
+    public EntityManagerFactory entityManagerFactory(DataSource dataSource) {
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setDatabase(Database.POSTGRESQL);
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+
+        //Use these properties to let spring work on batch insertion
+        Properties jpaProperties = new Properties();
+        jpaProperties.put("hibernate.jdbc.batch_size", 500);
+        jpaProperties.put("hibernate.order_inserts", true);
+        jpaProperties.put("hibernate.order_updates", true);
+        factory.setJpaProperties(jpaProperties);
+
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setPackagesToScan("com.srn.api.model.entity");
+        factory.setDataSource(dataSource);
+        factory.afterPropertiesSet();
+        return factory.getObject();
     }
 }
