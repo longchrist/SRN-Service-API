@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -21,13 +21,26 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
     ISrnCampaignRepo campaignRepo;
 
     @Override
-    public List<SrnCampaign> getAllCampaign() {
-        return campaignRepo.findAll();
+    public List<SrnCampaignDto> getAllCampaign() {
+        List<SrnCampaign> campaignList = campaignRepo.findAll();
+        List<SrnCampaignDto> dtos = campaignList.stream()
+                .filter(c->isCampaignActive(c))
+                .map(c -> new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignType(),
+                c.getDescription(), c.getTnc(), c.getStartDate().toInstant().toEpochMilli(), c.getEndDate().toInstant().toEpochMilli(),
+                c.getRequiredPoints())).collect(Collectors.toList());
+        return dtos;
     }
 
     @Override
-    public SrnCampaign getCampaign(long campaignId) {
-        return campaignRepo.findCampaignById(campaignId);
+    public SrnCampaignDto getCampaign(long campaignId) {
+        SrnCampaign c = campaignRepo.findCampaignById(campaignId);
+        SrnCampaignDto dto = new SrnCampaignDto();
+        if (c != null) {
+            dto =new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignType(),
+                    c.getDescription(), c.getTnc(), c.getStartDate().toInstant().toEpochMilli(), c.getEndDate().toInstant().toEpochMilli(),
+                    c.getRequiredPoints());
+        }
+        return dto;
     }
 
     @Override
@@ -38,11 +51,14 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
     @Override
     public List<SrnCampaignDto> getCampaignBrand(String brandId) {
         List<SrnCampaign> campaignList = campaignRepo.findCampaignByBrandId(brandId);
-
-        List<SrnCampaignDto> dtos = campaignList.stream().map(c -> new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignType(),
-                c.getDescription(), c.getTnc(), c.getStartDate().toInstant().toEpochMilli(), c.getEndDate().toInstant().toEpochMilli(),
-                c.getRequiredPoints())).collect(Collectors.toList());
-
+        List<SrnCampaignDto> dtos = new ArrayList<>();
+        if (campaignList != null ) {
+            dtos = campaignList.stream()
+                    .filter(c -> isCampaignActive(c))
+                    .map(c -> new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignType(),
+                    c.getDescription(), c.getTnc(), c.getStartDate().toInstant().toEpochMilli(), c.getEndDate().toInstant().toEpochMilli(),
+                    c.getRequiredPoints())).collect(Collectors.toList());
+        }
         return dtos;
     }
 }

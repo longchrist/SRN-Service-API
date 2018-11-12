@@ -20,7 +20,7 @@ public class RestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
         String queryParam = request.getQueryString();
-        if (!uri.contains("provision") && !uri.contains("ping") && queryParam != null) {
+        if (!uri.contains("provision") && !uri.contains("ping") ) {
             //String s = URLDecoder.decode(queryParam.split("\\?")[1].split("=")[1], "UTF-8");
             String s = URLDecoder.decode(queryParam.split("=")[1], "UTF-8");
             boolean valid = SecurityUtils.getInstance().isSessionValid(s);

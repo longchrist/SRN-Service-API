@@ -6,9 +6,9 @@ import com.srn.api.model.entity.SrnCampaign;
 import java.util.List;
 
 public interface ISrnCampaignService {
-    List<SrnCampaign> getAllCampaign();
+    List<SrnCampaignDto> getAllCampaign();
     List<SrnCampaignDto> getCampaignBrand(String brandId);
-    SrnCampaign getCampaign(long campaignId);
+    SrnCampaignDto getCampaign(long campaignId);
     boolean isCampaignActive(SrnCampaign campaign);
 
 }

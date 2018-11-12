@@ -25,13 +25,19 @@ public class SrnBrandServiceImpl implements ISrnBrandService {
     public List<SrnBrand> findAllBrand() {
         List<SrnBrand> result = new ArrayList<>();
         result = brandRepo.findAll();
-        LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - findAllBrand - {}", result);
+        LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - findAllBrand size : {} ", result.size());
         return result;
     }
 
     @Override
     public SrnBrand findBrandById(long id) {
-        LOGGER.info("info - findBrandById - brandid {}", id);
-        return brandRepo.findById(id);
+        SrnBrand brand = brandRepo.findById(id);
+        if (brand != null) {
+            LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - findBrandById - {} Found!", id);
+        } else {
+            brand = new SrnBrand();
+            LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - findBrandById - {} Not Found !", id);
+        }
+        return brand;
     }
 }

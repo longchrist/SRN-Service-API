@@ -32,6 +32,17 @@ public class CampaignController {
         response.setData(SecurityUtils.getInstance().setData(campaignDtos).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
 
         return new ResponseEntity<>(response, HttpStatus.OK);
-
     }
+
+    @RequestMapping(value = "/v1/campaign/promo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<SrnResponse<String>> getCampaignPromo() {
+        List<SrnCampaignDto> campaignDtos = campaignService.getAllCampaign();
+
+        SrnResponse<String> response = new SrnResponse<>();
+        response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
+        response.setData(SecurityUtils.getInstance().setData(campaignDtos).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }
