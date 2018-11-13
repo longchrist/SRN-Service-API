@@ -26,8 +26,11 @@ public class DeviceController {
 
 
     @RequestMapping(value = "/v1/device/updatefcm.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SrnResponse<String>> updateFcmId(@RequestBody() String param, @RequestParam("s") String session) {
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<SrnResponse<String>> updateFcmId(@RequestBody() String deviceParam, @RequestParam("s") String session) {
+        if (srnDeviceService.updateFcm(deviceParam)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }

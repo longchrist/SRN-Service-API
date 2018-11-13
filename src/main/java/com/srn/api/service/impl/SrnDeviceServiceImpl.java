@@ -66,4 +66,24 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
         }
         return false;
     }
+
+    @Override
+    public boolean updateFcm(String deviceParam) {
+        String json = SecurityUtils.getInstance().setData(deviceParam).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
+        ObjectMapper jsonMapper = new ObjectMapper();
+        SrnDevice device = null;
+        try {
+            device = jsonMapper.readValue(json, SrnDevice.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SrnDevice entity = srnDeviceRepo.findByImei(device.getImei());
+        if ( entity != null) {
+            entity.setFcmId(device.getFcmId());
+            entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
+            entity = srnDeviceRepo.save(entity);
+            return true;
+        }
+        return false;
+    }
 }
