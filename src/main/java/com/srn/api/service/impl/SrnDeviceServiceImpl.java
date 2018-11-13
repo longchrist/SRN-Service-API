@@ -38,6 +38,7 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
 
         SrnDevice entity = srnDeviceRepo.findByImei(deviceParam.getImei());
         if ( entity != null) {
+            entity.setFcmId(deviceParam.getFcmId());
             entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
             entity = srnDeviceRepo.save(entity);
         } else {
