@@ -66,5 +66,4 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
         }
         return false;
     }
-
 }
