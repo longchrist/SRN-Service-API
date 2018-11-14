@@ -30,7 +30,7 @@ public class SrnBrandServiceImpl implements ISrnBrandService {
     }
 
     @Override
-    public SrnBrand findBrandById(long id) {
+    public SrnBrand findBrandById(String id) {
         SrnBrand brand = brandRepo.findById(id);
         if (brand != null) {
             LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - findBrandById - {} Found!", id);

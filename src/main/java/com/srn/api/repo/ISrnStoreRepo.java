@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface ISrnStoreRepo extends JpaRepository<SrnStore, Long> {
     List<SrnStore> findAll();
-    SrnStore findById(long id);
+    SrnStore findById(String id);
+    List<SrnStore> findByBrandId(String brandId);
 }

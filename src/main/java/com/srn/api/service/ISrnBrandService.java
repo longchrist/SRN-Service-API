@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ISrnBrandService {
     List<SrnBrand> findAllBrand();
-    SrnBrand findBrandById(long id);
+    SrnBrand findBrandById(String id);
 }

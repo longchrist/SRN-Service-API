@@ -11,8 +11,29 @@ public class SrnStoreDto {
     private long storeSeating;
     private String storeOperationalHours;
     private String storeProvince;
-    private long storeLatitude;
-    private long storeLongitude;
+    private String storeLatitude;
+    private String storeLongitude;
+
+    public SrnStoreDto() {
+
+    }
+
+    public SrnStoreDto(String storeId, String brandId, String storeName, String storeAddress,
+                       String storeCity, String storePhone, long storeSeating,
+                       String storeOperationalHours, String storeProvince,
+                       String storeLatitude, String storeLongitude) {
+        this.storeId = storeId;
+        this.brandId = brandId;
+        this.storeName = storeName;
+        this.storeAddress = storeAddress;
+        this.storeCity = storeCity;
+        this.storePhone = storePhone;
+        this.storeSeating = storeSeating;
+        this.storeOperationalHours = storeOperationalHours;
+        this.storeProvince = storeProvince;
+        this.storeLatitude = storeLatitude;
+        this.storeLongitude = storeLongitude;
+    }
 
     public String getStoreId() {
         return storeId;
@@ -86,19 +107,19 @@ public class SrnStoreDto {
         this.storeProvince = storeProvince;
     }
 
-    public long getStoreLatitude() {
+    public String getStoreLatitude() {
         return storeLatitude;
     }
 
-    public void setStoreLatitude(long storeLatitude) {
+    public void setStoreLatitude(String storeLatitude) {
         this.storeLatitude = storeLatitude;
     }
 
-    public long getStoreLongitude() {
+    public String getStoreLongitude() {
         return storeLongitude;
     }
 
-    public void setStoreLongitude(long storeLongitude) {
+    public void setStoreLongitude(String storeLongitude) {
         this.storeLongitude = storeLongitude;
     }
 }
