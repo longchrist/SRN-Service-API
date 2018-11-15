@@ -5,8 +5,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class SrnResponse<T> {
-    private long timestamp;
     private int resultCode;
+    private long timestamp;
     private T data;
 
     public long getTimestamp() {

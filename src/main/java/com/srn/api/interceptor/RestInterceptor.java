@@ -5,6 +5,8 @@ import com.srn.api.model.dto.SrnErrorDto;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
 import org.apache.http.HttpStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +17,9 @@ import java.net.URLDecoder;
 
 @Component
 public class RestInterceptor implements HandlerInterceptor {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestInterceptor.class);
+
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -32,9 +37,10 @@ public class RestInterceptor implements HandlerInterceptor {
                 SrnResponse<String> errorResponse = new SrnResponse<>();
                 errorResponse.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
                 errorResponse.setData(SecurityUtils.getInstance().setData(e).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
-                System.out.println("error payload --> " + errorResponse.toString());
                 response.getWriter().write(errorResponse.toString());
                 response.setStatus(HttpStatus.SC_FORBIDDEN);
+                LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - invalid session [{}]", s);
+
             }
             return valid;
         }
