@@ -5,6 +5,8 @@ import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "srn_campaign")
@@ -60,6 +62,9 @@ public class SrnCampaign extends BaseModel<SrnCampaignDto> {
     @Basic(optional = false)
     @Column(name = "last_updated", nullable = true)
     private Timestamp lastUpdated;
+
+    @OneToMany(mappedBy = "campaignId")
+    private List<SrnCampaignStore> campaignStores = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -159,6 +164,14 @@ public class SrnCampaign extends BaseModel<SrnCampaignDto> {
 
     public void setLastUpdated(Timestamp lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public List<SrnCampaignStore> getCampaignStores() {
+        return campaignStores;
+    }
+
+    public void setCampaignStores(List<SrnCampaignStore> campaignStores) {
+        this.campaignStores = campaignStores;
     }
 
     @Override

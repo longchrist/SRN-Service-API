@@ -291,6 +291,7 @@ CREATE TABLE public.srn_voucher_campaign
   campaign_id integer NOT NULL,
   voucher_id text NOT NULL,
   user_id integer,
+  store_id text,
   claim_timestamp timestamp without time zone,
   voucher_expired timestamp without time zone NOT NULL,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
@@ -307,6 +308,7 @@ WITH (
 ALTER TABLE public.srn_voucher_campaign
   OWNER TO sarirasa;
 
+create index idx_srn_voucher_campaign on srn_voucher_campaign (user_id, store_id);
 
 -- drop table srn_campaign_store;
 create table srn_campaign_store
@@ -315,7 +317,8 @@ create table srn_campaign_store
   campaign_id integer not null,
   store_id text not null,
   constraint srn_campaign_store_pk primary key (id),
-  constraint srn_campaign_store_fk_srn_store foreign key (store_id) references srn_store(store_id)
+  constraint srn_campaign_store_fk_srn_store foreign key (store_id) references srn_store(store_id),
+  constraint srn_campaign_store_fk_srn_campaign foreign key (campaign_id) references srn_campaign
 )
 WITH (
   OIDS=FALSE

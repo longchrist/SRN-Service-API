@@ -22,7 +22,7 @@ public class SrnBrandServiceImpl implements ISrnBrandService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SrnBrandServiceImpl.class);
 
     @Override
-    public List<SrnBrand> findAllBrand() {
+    public List<SrnBrand> findAll() {
         List<SrnBrand> result = new ArrayList<>();
         result = brandRepo.findAll();
         LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - findAllBrand size : {} ", result.size());

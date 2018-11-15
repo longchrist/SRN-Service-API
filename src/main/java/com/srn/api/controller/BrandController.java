@@ -30,7 +30,7 @@ public class BrandController {
 
     @RequestMapping(value = "/v1/branding/brand.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> getAllBrands() {
-        List<SrnBrand> brands = brandService.findAllBrand();
+        List<SrnBrand> brands = brandService.findAll();
 
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());

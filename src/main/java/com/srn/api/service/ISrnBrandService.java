@@ -5,6 +5,6 @@ import com.srn.api.model.entity.SrnBrand;
 import java.util.List;
 
 public interface ISrnBrandService {
-    List<SrnBrand> findAllBrand();
+    List<SrnBrand> findAll();
     SrnBrand findBrandById(String id);
 }
