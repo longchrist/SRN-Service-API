@@ -1,9 +1,5 @@
 package com.srn.api.model.dto;
 
-import com.srn.api.model.entity.SrnCampaignStore;
-
-import java.util.List;
-
 public class SrnCampaignDto extends BaseDto {
 
     private long id;
@@ -14,7 +10,6 @@ public class SrnCampaignDto extends BaseDto {
     private long startTimestamp;
     private long endTimestamp;
     private int requiredPoints;
-    private List<SrnCampaignStore> campaignStores;
 
     public SrnCampaignDto() {
 
@@ -94,13 +89,5 @@ public class SrnCampaignDto extends BaseDto {
 
     public void setRequiredPoints(int requiredPoints) {
         this.requiredPoints = requiredPoints;
-    }
-
-    public List<SrnCampaignStore> getCampaignStores() {
-        return campaignStores;
-    }
-
-    public void setCampaignStores(List<SrnCampaignStore> campaignStores) {
-        this.campaignStores = campaignStores;
     }
 }

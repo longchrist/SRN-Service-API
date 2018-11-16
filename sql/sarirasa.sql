@@ -46,7 +46,7 @@ INCREMENT 1
 MINVALUE 1
 START 10000000;
 
-CREATE SEQUENCE public.srn_campaign_store_seq
+CREATE SEQUENCE public.srn_campaign_detail_seq
 INCREMENT 1
 MINVALUE 1
 START 10000000;
@@ -57,6 +57,16 @@ MINVALUE 1
 START 10000000;
 
 CREATE SEQUENCE public.srn_user_point_seq
+INCREMENT 1
+MINVALUE 1
+START 10000000;
+
+CREATE SEQUENCE public.srn_voucher_campaign_seq
+INCREMENT 1
+MINVALUE 1
+START 10000000;
+
+CREATE SEQUENCE public.srn_voucher_campaign_detail_seq
 INCREMENT 1
 MINVALUE 1
 START 10000000;
@@ -288,19 +298,12 @@ ALTER TABLE public.srn_points
 
 CREATE TABLE public.srn_voucher_campaign
 (
-  campaign_id integer NOT NULL,
-  voucher_id text NOT NULL,
-  user_id integer,
-  store_id text,
-  claim_timestamp timestamp without time zone,
+  voucher_campaign_id integer not null default nextval('srn_voucher_campaign_seq'::regclass),
+  voucher_campaign_name text not null, 
   voucher_expired timestamp without time zone NOT NULL,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
   last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
-  CONSTRAINT srn_voucher_campaign_pk PRIMARY KEY (campaign_id, voucher_id),
-  CONSTRAINT srn_voucher_campaign_fk_srn_campaign FOREIGN KEY (campaign_id)
-      REFERENCES public.srn_campaign (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT srn_voucher_campaign_voucher_id_key UNIQUE (voucher_id)
+  CONSTRAINT srn_voucher_campaign_pk PRIMARY KEY (voucher_campaign_id)
 )
 WITH (
   OIDS=FALSE
@@ -308,21 +311,37 @@ WITH (
 ALTER TABLE public.srn_voucher_campaign
   OWNER TO sarirasa;
 
-create index idx_srn_voucher_campaign on srn_voucher_campaign (user_id, store_id);
+-- drop table srn_voucher_campaign_detail
+create table srn_voucher_campaign_detail (
+   voucher_campaign_detail_id integer not null default nextval('srn_voucher_campaign_detail_seq'::regclass),
+   voucher_campaign_id integer not null,
+   voucher_code text not null,
+   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
+   last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
+   constraint srn_voucher_campaign_detail_pk primary key (voucher_campaign_detail_id),
+   constraint srn_voucher_campaign_detail_fk_srn_voucher_campaign foreign key (voucher_campaign_id) references srn_voucher_campaign (voucher_campaign_id)
+)
 
--- drop table srn_campaign_store;
-create table srn_campaign_store
+-- drop table srn_campaign_detail;
+create table srn_campaign_detail
 (
-  id integer not null default nextval('srn_campaign_store_seq'),
+  id integer not null default nextval('srn_campaign_detail_seq'),
   campaign_id integer not null,
   store_id text not null,
-  constraint srn_campaign_store_pk primary key (id),
-  constraint srn_campaign_store_fk_srn_store foreign key (store_id) references srn_store(store_id),
-  constraint srn_campaign_store_fk_srn_campaign foreign key (campaign_id) references srn_campaign
+  voucher_campaign_id integer not null,
+  constraint srn_campaign_detail_pk primary key (id),
+  constraint srn_campaign_detail_fk_srn_store foreign key (store_id) references srn_store(store_id),
+  constraint srn_campaign_detail_fk_srn_campaign foreign key (campaign_id) references srn_campaign (id),
+  constraint srn_campaign_detail_fk_srn_voucher_campaign foreign key (voucher_campaign_id) references srn_voucher_campaign (voucher_campaign_id)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE public.srn_campaign_store
+ALTER TABLE public.srn_campaign_detail
   OWNER TO sarirasa;
 
+create unique index idx_srn_campaign_detail on srn_campaign_detail (campaign_id, store_id, voucher_campaign_id);
+
+select * from srn_campaign_type
+insert into srn_campaign_type values (default, 'Campaign Voucher', true, current_timestamp, current_timestamp);
+insert into srn_campaign_type values (default, 'Campaign Non Voucher', true, current_timestamp, current_timestamp);
