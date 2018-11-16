@@ -27,20 +27,22 @@ public class RestInterceptor implements HandlerInterceptor {
         String queryParam = request.getQueryString();
         if (!uri.contains("provision") && !uri.contains("ping") ) {
             //String s = URLDecoder.decode(queryParam.split("\\?")[1].split("=")[1], "UTF-8");
-            String s = URLDecoder.decode(queryParam.split("=")[1], "UTF-8");
-            boolean valid = SecurityUtils.getInstance().isSessionValid(s);
+            boolean valid = false;
+            if (queryParam != null) {
+                String[] qparam = queryParam.split("=");
+                String session = qparam[1];
+                String decodedSession = URLDecoder.decode(session, "UTF-8");
+                valid = SecurityUtils.getInstance().isSessionValid(decodedSession);
+            }
             if (!valid) {
-
                 SrnErrorDto e = new SrnErrorDto();
                 e.setErrorMessage(SrnErrorDto.ERROR_MESSAGE_FORBIDDEN);
-
                 SrnResponse<String> errorResponse = new SrnResponse<>();
                 errorResponse.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
                 errorResponse.setData(SecurityUtils.getInstance().setData(e).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
                 response.getWriter().write(errorResponse.toString());
                 response.setStatus(HttpStatus.SC_FORBIDDEN);
-                LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - invalid session [{}]", s);
-
+                LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - invalid session [{}]");
             }
             return valid;
         }
