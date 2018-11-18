@@ -2,7 +2,6 @@ package com.srn.api.controller;
 
 import com.srn.api.model.SrnResponse;
 import com.srn.api.model.dto.SrnCampaignDto;
-import com.srn.api.model.entity.SrnBrand;
 import com.srn.api.service.ISrnCampaignService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;

@@ -71,7 +71,17 @@ INCREMENT 1
 MINVALUE 1
 START 10000000;
 
+CREATE SEQUENCE public.srn_campaign_redeem_seq
+INCREMENT 1
+MINVALUE 1
+START 10000000;
 
+CREATE SEQUENCE public.srn_campaign_claim_seq
+INCREMENT 1
+MINVALUE 1
+START 10000000;
+
+/*
 DROP sequence srn_device_seq;
 DROP sequence srn_user_email_seq;
 DROP sequence srn_campaign_promo_seq;
@@ -80,6 +90,7 @@ DROP sequence srn_point_seq;
 DROP sequence srn_campaign_store;
 DROP sequence srn_user_seq;
 DROP sequence srn_user_point_seq;
+*/
 
 ALTER TABLE public.srn_device_seq
   OWNER TO sarirasa;
@@ -315,7 +326,7 @@ ALTER TABLE public.srn_voucher_campaign
 create table srn_voucher_campaign_detail (
    voucher_campaign_detail_id integer not null default nextval('srn_voucher_campaign_detail_seq'::regclass),
    voucher_campaign_id integer not null,
-   voucher_code text not null,
+   voucher_code text unique not null,
    created timestamp without time zone NOT NULL DEFAULT current_timestamp,
    last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
    constraint srn_voucher_campaign_detail_pk primary key (voucher_campaign_detail_id),
@@ -342,6 +353,37 @@ ALTER TABLE public.srn_campaign_detail
 
 create unique index idx_srn_campaign_detail on srn_campaign_detail (campaign_id, store_id, voucher_campaign_id);
 
-select * from srn_campaign_type
-insert into srn_campaign_type values (default, 'Campaign Voucher', true, current_timestamp, current_timestamp);
-insert into srn_campaign_type values (default, 'Campaign Non Voucher', true, current_timestamp, current_timestamp);
+--drop table srn_campaign_redeem
+create table srn_campaign_redeem (
+  redeem_id integer not null default nextval('srn_campaign_redeem_seq'),
+  user_id integer not null,
+  voucher_code text not null,
+  redeem_date timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  constraint srn_campaign_redeem_pk primary key (redeem_id),
+  constraint srn_campaign_redeem_fk_srn_voucher_campaign_detail foreign key (voucher_code) references srn_voucher_campaign_detail (voucher_code),
+  constraint srn_campaign_redeem_fk_srn_user_profile foreign key (user_id) references srn_user_profile (user_id)
+);
+create index idx_srn_campaign_redeem on srn_campaign_redeem(user_id);
+
+--drop table srn_campaign_claim
+create table srn_campaign_claim (
+  claim_id integer not null default nextval('srn_campaign_claim_seq'),
+  user_id integer not null,
+  store_id text not null,
+  claim_date timestamp without time zone NOT NULL,
+  created timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
+  constraint srn_campaign_claim_pk primary key (claim_id),
+  constraint srn_campaign_claim_fk_srn_store foreign key (store_id) references srn_store (store_id),
+  constraint srn_campaign_claim_fk_srn_user_profile foreign key (user_id) references srn_user_profile (user_id)
+);
+create index idx_srn_campaign_claim on srn_campaign_claim(user_id, store_id);
+
+
+select * from srn_campaign_detail scd join srn_campaign sc on scd.campaign_id = sc.id
+left join srn_voucher_campaign svc on svc.voucher_campaign_id = scd.voucher_campaign_id
+left join srn_voucher_campaign_detail svcd on svc.voucher_campaign_id = svcd.voucher_campaign_id
+where scd.store_id = 'C05'
+
