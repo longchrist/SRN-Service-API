@@ -4,6 +4,8 @@ import com.srn.api.model.SrnResponse;
 import com.srn.api.service.ISrnDeviceService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,11 +18,15 @@ public class DeviceController {
     @Autowired
     private ISrnDeviceService srnDeviceService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DeviceController.class);
+
     @RequestMapping(value = "/v1/device/provision.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SrnResponse<String>> provisioning(@RequestBody() String param) {
+        LOGGER.info("device|received parameter: {}", param);
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(srnDeviceService.registerDevice(param).toString()).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
+        LOGGER.info("device|response: {}", response.getData());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
