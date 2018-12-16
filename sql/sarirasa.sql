@@ -1,4 +1,4 @@
-﻿/*
+/*
 this is sarirasa database schema
 table is already in sequence order to create and execute
 
@@ -101,8 +101,6 @@ ALTER TABLE public.srn_campaign_promo_seq
 ALTER TABLE public.srn_campaign_type_seq
   OWNER TO sarirasa;
 ALTER TABLE public.srn_point_seq
-  OWNER TO sarirasa;
-ALTER TABLE public.srn_campaign_store_seq
   OWNER TO sarirasa;
 ALTER TABLE public.srn_user_seq
   OWNER TO sarirasa;
@@ -331,7 +329,7 @@ create table srn_voucher_campaign_detail (
    last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
    constraint srn_voucher_campaign_detail_pk primary key (voucher_campaign_detail_id),
    constraint srn_voucher_campaign_detail_fk_srn_voucher_campaign foreign key (voucher_campaign_id) references srn_voucher_campaign (voucher_campaign_id)
-)
+);
 
 -- drop table srn_campaign_detail;
 create table srn_campaign_detail

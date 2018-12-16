@@ -25,6 +25,7 @@ public class RestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String uri = request.getRequestURI();
         String queryParam = request.getQueryString();
+        LOGGER.info("[INFO]|"+ getClass().getSimpleName() +"|prehandle|[{}|{}]|", uri, queryParam);
         if (!uri.contains("provision") && !uri.contains("ping") ) {
             //String s = URLDecoder.decode(queryParam.split("\\?")[1].split("=")[1], "UTF-8");
             boolean valid = false;
@@ -42,15 +43,18 @@ public class RestInterceptor implements HandlerInterceptor {
                 errorResponse.setData(SecurityUtils.getInstance().setData(e).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
                 response.getWriter().write(errorResponse.toString());
                 response.setStatus(HttpStatus.SC_FORBIDDEN);
-                LOGGER.info("[INFO] - "+ getClass().getSimpleName() +" - invalid session [{}]");
+                LOGGER.info("[INFO]|"+ getClass().getSimpleName() +" - invalid session");
             }
+            LOGGER.info("[INFO]|"+ getClass().getSimpleName() +"|result|[{}]|", valid);
             return valid;
         }
+        LOGGER.info("[INFO]|"+ getClass().getSimpleName() +"|result|[{}]|", true);
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
+
     }
 
     @Override
