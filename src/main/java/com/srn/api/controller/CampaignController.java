@@ -5,6 +5,8 @@ import com.srn.api.model.dto.SrnCampaignDto;
 import com.srn.api.service.ISrnCampaignService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -22,25 +25,27 @@ public class CampaignController {
     @Autowired
     ISrnCampaignService campaignService;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CampaignController.class);
+
     @RequestMapping(value = "/v1/campaign/brand/{brandId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<SrnResponse<String>> getCampaignBrand(@PathVariable String brandId) {
         List<SrnCampaignDto> campaignDtos = campaignService.getCampaignBrand(brandId);
-
+        LOGGER.info("campaign|totalCampaign {}", campaignDtos.size());
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(campaignDtos).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
-
+        LOGGER.info("campaign|response: {}", response.getData());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/v1/campaign/promo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<SrnResponse<String>> getCampaignPromo() {
-        List<SrnCampaignDto> campaignDtos = campaignService.getAllCampaign();
-
+    ResponseEntity<SrnResponse<String>> getCampaignPromo(@RequestParam("s") String session) {
+        List<SrnCampaignDto> campaignDtos = campaignService.getAllCampaign(session);
+        LOGGER.info("campaign|totalCampaign {}", campaignDtos.size());
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(campaignDtos).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
-
+        LOGGER.info("campaign|response: {}", response.getData());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

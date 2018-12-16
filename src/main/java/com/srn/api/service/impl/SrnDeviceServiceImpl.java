@@ -29,6 +29,7 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
     public Session registerDevice(String param) {
         String json = SecurityUtils.getInstance().setData(param).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
         ObjectMapper jsonMapper = new ObjectMapper();
+
         SrnDevice deviceParam = null;
         try {
             deviceParam = jsonMapper.readValue(json, SrnDevice.class);
@@ -38,6 +39,8 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
 
         SrnDevice entity = srnDeviceRepo.findByImei(deviceParam.getImei());
         if ( entity != null) {
+            entity.setScreenHeight(deviceParam.getScreenHeight());
+            entity.setScreenWidth(deviceParam.getScreenWidth());
             entity.setFcmId(deviceParam.getFcmId());
             entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
             entity = srnDeviceRepo.save(entity);
@@ -46,7 +49,6 @@ public class SrnDeviceServiceImpl implements ISrnDeviceService {
             deviceParam.setLastUpdated(FormatterUtils.getCurrentTimestamp());
             entity = srnDeviceRepo.save(deviceParam);
         }
-        entity.setCreated(FormatterUtils.getCurrentTimestamp());
         Session session = new Session(entity);
         session.setSessionId(SecurityUtils.getInstance().setData(entity).setMethod(SecurityUtils.Method.SESSION_ENCRYPT).build());
         userDeviceService.registerUserDeviceSession(session.getSessionId(), entity.getId());

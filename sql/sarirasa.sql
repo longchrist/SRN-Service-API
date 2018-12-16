@@ -81,6 +81,12 @@ INCREMENT 1
 MINVALUE 1
 START 10000000;
 
+
+CREATE SEQUENCE public.srn_campaign_image_seq
+INCREMENT 1
+MINVALUE 1
+START 10000000;
+
 /*
 DROP sequence srn_device_seq;
 DROP sequence srn_user_email_seq;
@@ -117,6 +123,8 @@ CREATE TABLE public.srn_device
   manufacture text,
   model text,
   osversion text,
+  screen_width integer default 0,
+  screen_height integer default 0,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,
   last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
   CONSTRAINT srn_device_pkey PRIMARY KEY (imei),
@@ -379,6 +387,16 @@ create table srn_campaign_claim (
 );
 create index idx_srn_campaign_claim on srn_campaign_claim(user_id, store_id);
 
+-- drop table srn_campaign_image
+create table srn_campaign_image (
+  id integer NOT NULL DEFAULT nextval('srn_campaign_image_seq'::regclass),
+  campaign_id integer not null,
+  img400x200 text not null,
+  img800x400 text not null,
+  img1440x720 text not null,
+  constraint srn_campaign_image_pk primary key (id),
+  constraint srn_campaign_image_fk_srn_campaign foreign key (campaign_id) references srn_campaign (id)
+);
 
 select * from srn_campaign_detail scd join srn_campaign sc on scd.campaign_id = sc.id
 left join srn_voucher_campaign svc on svc.voucher_campaign_id = scd.voucher_campaign_id

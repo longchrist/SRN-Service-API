@@ -10,6 +10,7 @@ public class SrnCampaignDto extends BaseDto {
     private long startTimestamp;
     private long endTimestamp;
     private int requiredPoints;
+    private String imageUrl;
 
     public SrnCampaignDto() {
 
@@ -89,5 +90,13 @@ public class SrnCampaignDto extends BaseDto {
 
     public void setRequiredPoints(int requiredPoints) {
         this.requiredPoints = requiredPoints;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

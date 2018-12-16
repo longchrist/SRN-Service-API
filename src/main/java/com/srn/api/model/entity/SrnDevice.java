@@ -1,5 +1,6 @@
 package com.srn.api.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.srn.api.model.dto.SrnDeviceDto;
 import com.srn.api.utils.FormatterUtils;
 
@@ -45,6 +46,14 @@ public class SrnDevice extends BaseModel<SrnDeviceDto> implements Serializable {
     @Basic(optional = false)
     @Column(name = "last_updated", nullable = true)
     private Timestamp lastUpdated;
+
+    @Basic(optional = false)
+    @Column(name = "screen_width", nullable = true)
+    private long screenWidth;
+
+    @Basic(optional = false)
+    @Column(name = "screen_height", nullable = true)
+    private long screenHeight;
 
     public Timestamp getCreated() {
         return created;
@@ -110,6 +119,21 @@ public class SrnDevice extends BaseModel<SrnDeviceDto> implements Serializable {
         this.fcmId = fcmId;
     }
 
+    public long getScreenWidth() {
+        return screenWidth;
+    }
+
+    public void setScreenWidth(long screenWidth) {
+        this.screenWidth = screenWidth;
+    }
+
+    public long getScreenHeight() {
+        return screenHeight;
+    }
+
+    public void setScreenHeight(long screenHeight) {
+        this.screenHeight = screenHeight;
+    }
 
     @Override
     public SrnDeviceDto toDto() {
