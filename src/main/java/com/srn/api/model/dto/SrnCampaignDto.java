@@ -4,6 +4,7 @@ public class SrnCampaignDto extends BaseDto {
 
     private long id;
     private String brandId;
+    private String campaignName;
     private long campaignType;
     private String description;
     private String tnc;
@@ -16,10 +17,11 @@ public class SrnCampaignDto extends BaseDto {
 
     }
 
-    public SrnCampaignDto(long id, String brandId, long campaignType, String description, String tnc,
+    public SrnCampaignDto(long id, String brandId, String campaignName, long campaignType, String description, String tnc,
                           long startTimestamp, long endTimestamp, int requiredPoints) {
         this.id = id;
         this.brandId = brandId;
+        this.campaignName = campaignName;
         this.campaignType = campaignType;
         this.description = description;
         this.tnc = tnc;
@@ -42,6 +44,14 @@ public class SrnCampaignDto extends BaseDto {
 
     public void setBrandId(String brandId) {
         this.brandId = brandId;
+    }
+
+    public String getCampaignName() {
+        return campaignName;
+    }
+
+    public void setCampaignName(String campaignName) {
+        this.campaignName = campaignName;
     }
 
     public long getCampaignType() {

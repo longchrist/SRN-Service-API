@@ -64,7 +64,7 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
 
         List<SrnCampaignDto> dtos = campaignList.stream()
                 .filter(c -> isCampaignActive(c))
-                .map(c -> new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignType(),
+                .map(c -> new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignName(), c.getCampaignType(),
                         c.getDescription(), c.getTnc(), c.getStartDate().toInstant().toEpochMilli(), c.getEndDate().toInstant().toEpochMilli(),
                         c.getRequiredPoints())).collect(Collectors.toList());
         dtos.forEach(srnCampaignDto -> updateDto(srnCampaignDto, device.getScreenWidth(), imageHashMap));
@@ -93,7 +93,7 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
         SrnCampaign c = campaignRepo.findCampaignById(campaignId);
         SrnCampaignDto dto = new SrnCampaignDto();
         if (c != null) {
-            dto = new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignType(),
+            dto = new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignName(), c.getCampaignType(),
                     c.getDescription(), c.getTnc(), c.getStartDate().toInstant().toEpochMilli(), c.getEndDate().toInstant().toEpochMilli(),
                     c.getRequiredPoints());
         }
@@ -112,7 +112,7 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
         if (campaignList != null ) {
             dtos = campaignList.stream()
                     .filter(c -> isCampaignActive(c))
-                    .map(c -> new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignType(),
+                    .map(c -> new SrnCampaignDto(c.getId(), c.getBrandId(), c.getCampaignName(), c.getCampaignType(),
                             c.getDescription(), c.getTnc(), c.getStartDate().toInstant().toEpochMilli(), c.getEndDate().toInstant().toEpochMilli(),
                             c.getRequiredPoints())).collect(Collectors.toList());
         }
