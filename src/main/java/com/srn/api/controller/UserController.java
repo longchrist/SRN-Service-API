@@ -41,7 +41,7 @@ public class UserController {
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(srnUserService.userUpdateProfile(param, session)).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/v1/user/profile.json", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -49,7 +49,7 @@ public class UserController {
         SrnResponse<String> response = new SrnResponse<>();
         response.setTimestamp(FormatterUtils.getLongCurrentTimestamp());
         response.setData(SecurityUtils.getInstance().setData(srnUserService.userUpdateProfile(param, session)).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/v1/user/points.json", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

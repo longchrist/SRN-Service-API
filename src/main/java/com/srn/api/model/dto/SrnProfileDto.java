@@ -28,6 +28,7 @@ public class SrnProfileDto extends BaseDto {
     private String pointLevel;
     private Timestamp created;
     private Timestamp lastUpdated;
+    private boolean needUpdate;
 
     public int getPoints() {
         return points;
@@ -67,6 +68,14 @@ public class SrnProfileDto extends BaseDto {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public boolean isNeedUpdate() {
+        return needUpdate;
+    }
+
+    public void setNeedUpdate(boolean needUpdate) {
+        this.needUpdate = needUpdate;
     }
 
     /**

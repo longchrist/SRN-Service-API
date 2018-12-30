@@ -17,6 +17,7 @@ import com.srn.api.service.ISrnUserAuthService;
 import com.srn.api.service.ISrnUserProfileService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
+import org.apache.http.util.TextUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,6 +68,7 @@ public class SrnUserAuthServiceImpl implements ISrnUserAuthService {
     @Override
     public SrnProfileDto userUpdateProfile(String requestBody, String session) {
         SrnProfileDto profile = convertProfileBody(requestBody);
+        String profileUrl = profile.getUrl();
         SrnEmail email = srnUserEmailRepo.findByEmail(profile.getEmail());
         if(profile != null) {
             SrnProfile entity = srnUserProfileService.findProfileWithId(email.getId());
@@ -80,7 +82,18 @@ public class SrnUserAuthServiceImpl implements ISrnUserAuthService {
                 entity.setProvince(profile.getProvince());
                 entity.setCity(profile.getCity());
                 entity.setLastUpdated(FormatterUtils.getCurrentTimestamp());
-                return srnUserProfileService.updateUserProfile(entity).toDto();
+                profile = srnUserProfileService.updateUserProfile(entity).toDto();
+                profile.setEmail(email.getEmail());
+                profile.setUrl(profileUrl);
+                if (TextUtils.isEmpty(profile.getFullName()) || TextUtils.isEmpty(profile.getNickName())
+                        || TextUtils.isEmpty(profile.getGender()) || TextUtils.isEmpty(profile.getAddress())
+                        || TextUtils.isEmpty(profile.getProvince()) || TextUtils.isEmpty(profile.getPhone())
+                        || TextUtils.isEmpty(profile.getCity())) {
+                    profile.setNeedUpdate(true);
+                } else {
+                    profile.setNeedUpdate(false);
+                }
+                return profile; //srnUserProfileService.updateUserProfile(entity).toDto();
             }
         }
         return null;
@@ -137,6 +150,14 @@ public class SrnUserAuthServiceImpl implements ISrnUserAuthService {
             profileDto.setPointLevel("Taster");
             profileDto.setCreated(profile.getCreated());
             profileDto.setLastUpdated(profile.getLastUpdated());
+            if (TextUtils.isEmpty(profileDto.getFullName()) || TextUtils.isEmpty(profileDto.getNickName())
+                    || TextUtils.isEmpty(profileDto.getGender()) || TextUtils.isEmpty(profileDto.getAddress())
+                    || TextUtils.isEmpty(profileDto.getProvince()) || TextUtils.isEmpty(profileDto.getPhone())
+                    || TextUtils.isEmpty(profileDto.getCity())) {
+                profileDto.setNeedUpdate(true);
+            } else {
+                profileDto.setNeedUpdate(false);
+            }
             return profileDto;
         }
         return null;
