@@ -85,8 +85,7 @@ public class SrnUserAuthServiceImpl implements ISrnUserAuthService {
                 profile = srnUserProfileService.updateUserProfile(entity).toDto();
                 profile.setEmail(email.getEmail());
                 profile.setUrl(profileUrl);
-                if (TextUtils.isEmpty(profile.getFullName()) || TextUtils.isEmpty(profile.getNickName())
-                        || TextUtils.isEmpty(profile.getGender()) || TextUtils.isEmpty(profile.getAddress())
+                if (TextUtils.isEmpty(profile.getFullName()) || TextUtils.isEmpty(profile.getGender())
                         || TextUtils.isEmpty(profile.getProvince()) || TextUtils.isEmpty(profile.getPhone())
                         || TextUtils.isEmpty(profile.getCity())) {
                     profile.setNeedUpdate(true);
