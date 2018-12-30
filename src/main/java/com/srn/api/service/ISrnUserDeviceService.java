@@ -1,6 +1,5 @@
 package com.srn.api.service;
 
-import com.srn.api.model.entity.SrnDevice;
 import com.srn.api.model.entity.SrnUserDevice;
 
 public interface ISrnUserDeviceService {

@@ -1,8 +1,8 @@
 package com.srn.api.controller;
 
 import com.srn.api.model.SrnResponse;
-import com.srn.api.service.ISrnUserPointsService;
 import com.srn.api.service.ISrnUserAuthService;
+import com.srn.api.service.ISrnUserPointsService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;

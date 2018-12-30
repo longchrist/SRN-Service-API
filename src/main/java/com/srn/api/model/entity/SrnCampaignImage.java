@@ -4,9 +4,6 @@ package com.srn.api.model.entity;
  created: 12/16/18 - 12:50 PM
 */
 
-import com.srn.api.model.dto.SrnCampaignDto;
-import org.springframework.beans.BeanUtils;
-
 import javax.persistence.*;
 
 @Entity

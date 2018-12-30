@@ -1,6 +1,5 @@
 package com.srn.api.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.srn.api.model.dto.SrnDeviceDto;
 import com.srn.api.utils.FormatterUtils;
 

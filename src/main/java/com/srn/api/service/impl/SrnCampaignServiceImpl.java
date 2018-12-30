@@ -2,7 +2,6 @@ package com.srn.api.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.srn.api.model.dto.SrnCampaignDto;
-import com.srn.api.model.dto.SrnDeviceDto;
 import com.srn.api.model.entity.SrnCampaign;
 import com.srn.api.model.entity.SrnCampaignImage;
 import com.srn.api.model.entity.SrnDevice;
@@ -10,10 +9,8 @@ import com.srn.api.repo.ISrnCampaignImageRepo;
 import com.srn.api.repo.ISrnCampaignRepo;
 import com.srn.api.repo.ISrnDeviceRepo;
 import com.srn.api.service.ISrnCampaignService;
-import com.srn.api.service.ISrnDeviceService;
 import com.srn.api.utils.FormatterUtils;
 import com.srn.api.utils.SecurityUtils;
-import org.apache.http.util.TextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
