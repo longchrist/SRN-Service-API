@@ -18,6 +18,7 @@ public class SrnProfileDto extends BaseDto {
     private String email;
     private String fullName;
     private String nickName;
+    private String gender;
     private String address;
     private String city;
     private String province;
@@ -60,7 +61,15 @@ public class SrnProfileDto extends BaseDto {
         this.email = email;
     }
 
-   /**
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
      * @return the fullName
      */
     public String getFullName() {

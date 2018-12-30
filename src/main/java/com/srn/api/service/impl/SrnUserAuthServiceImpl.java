@@ -72,6 +72,7 @@ public class SrnUserAuthServiceImpl implements ISrnUserAuthService {
             SrnProfile entity = srnUserProfileService.findProfileWithId(email.getId());
             if (entity != null) {
                 entity.setFullName(profile.getFullName());
+                entity.setGender(profile.getGender());
                 entity.setNickName(profile.getNickName());
                 entity.setPhone(profile.getPhone());
                 entity.setAlternateEmail(profile.getAlternateEmail());
@@ -126,6 +127,7 @@ public class SrnUserAuthServiceImpl implements ISrnUserAuthService {
             profileDto.setUrl(payload.get("picture").toString());
             profileDto.setEmail(userEmail.getEmail());
             profileDto.setFullName(payload.get("name").toString());
+            profileDto.setGender(profile.getGender());
             profileDto.setNickName(profile.getNickName());
             profileDto.setAddress(profile.getAddress());
             profileDto.setCity(profile.getCity());

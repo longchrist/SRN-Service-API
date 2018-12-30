@@ -26,6 +26,10 @@ public class SrnProfile extends BaseModel<SrnProfileDto> implements Serializable
     private String nickName;
 
     @Basic(optional = false)
+    @Column(name = "gender", nullable = false)
+    private String gender;
+
+    @Basic(optional = false)
     @Column(name = "address", nullable = false)
     private String address;
 
@@ -132,6 +136,13 @@ public class SrnProfile extends BaseModel<SrnProfileDto> implements Serializable
         this.alternateEmail = alternateEmail;
     }
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     @Override
     public SrnProfileDto toDto() {

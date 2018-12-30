@@ -168,7 +168,6 @@ CREATE TABLE public.srn_user_profile
   nickname text,
   phone text,
   province text,
-  regency text,
   created timestamp without time zone,
   last_updated timestamp without time zone,
   CONSTRAINT srn_user_profile_pkey PRIMARY KEY (user_id),
