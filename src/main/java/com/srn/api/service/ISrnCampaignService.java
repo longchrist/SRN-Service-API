@@ -10,5 +10,6 @@ public interface ISrnCampaignService {
     List<SrnCampaignDto> getCampaignBrand(String brandId);
     SrnCampaignDto getCampaign(long campaignId);
     boolean isCampaignActive(SrnCampaign campaign);
+    void redeem(String redeemRequest);
 
 }

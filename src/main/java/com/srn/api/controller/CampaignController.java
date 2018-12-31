@@ -12,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,6 +44,12 @@ public class CampaignController {
         response.setData(SecurityUtils.getInstance().setData(campaignDtos).setMethod(SecurityUtils.Method.DATA_ENCRYPT).build());
         LOGGER.info("campaign|response: {}", response.getData());
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/v1/campaign/redeem", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<SrnResponse<String>> redeem(@RequestBody String redeem, @RequestParam("s") String session) {
+        campaignService.redeem(redeem);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
 }

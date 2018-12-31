@@ -2,6 +2,7 @@ package com.srn.api.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.srn.api.model.dto.SrnCampaignDto;
+import com.srn.api.model.dto.SrnCampaignRedeemDto;
 import com.srn.api.model.entity.SrnCampaign;
 import com.srn.api.model.entity.SrnCampaignImage;
 import com.srn.api.model.entity.SrnDevice;
@@ -37,6 +38,7 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
     ISrnDeviceRepo deviceRepo;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SrnCampaignServiceImpl.class);
+    private static String TAG = SrnCampaignServiceImpl.class.getSimpleName();
 
     @Override
     public List<SrnCampaignDto> getAllCampaign(String session) {
@@ -114,5 +116,20 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
                             c.getRequiredPoints())).collect(Collectors.toList());
         }
         return dtos;
+    }
+
+    @Override
+    public void redeem(String redeemRequest) {
+        String redeemPayload = SecurityUtils.getInstance().setData(redeemRequest).setMethod(SecurityUtils.Method.DATA_DECRYPT).build();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            SrnCampaignRedeemDto redeemDto = mapper.readValue(redeemPayload, SrnCampaignRedeemDto.class);
+            String sessionPlain = SecurityUtils.getInstance().setData(redeemDto.getSessionId()).setMethod(SecurityUtils.Method.SESSION_DECRYPT).build();
+            SrnDevice device = mapper.readValue(sessionPlain, SrnDevice.class);
+            LOGGER.info(TAG, "Redeem user session : {}", sessionPlain);
+            LOGGER.info(TAG, "Redeem payload : {}", redeemPayload);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
