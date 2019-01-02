@@ -5,6 +5,8 @@ package com.srn.api.model.dto;
 */
 
 
+import com.srn.api.model.entity.SrnDevice;
+
 import java.sql.Timestamp;
 
 public class SrnCampaignRedeemDto extends BaseDto {
@@ -14,6 +16,7 @@ public class SrnCampaignRedeemDto extends BaseDto {
     private Timestamp redeemTimestamp;
     private String sessionId;
     private Timestamp timestamp;
+    private SrnDevice deviceData;
 
     public String getCampaignId() {
         return campaignId;
@@ -53,5 +56,13 @@ public class SrnCampaignRedeemDto extends BaseDto {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public SrnDevice getDeviceData() {
+        return deviceData;
+    }
+
+    public void setDeviceData(SrnDevice deviceData) {
+        this.deviceData = deviceData;
     }
 }

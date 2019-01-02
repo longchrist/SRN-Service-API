@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.Serializable;
 
-public abstract class BaseDto {
+public abstract class BaseDto implements Serializable {
     @Override
     public String toString() {
         String jsonString = "";

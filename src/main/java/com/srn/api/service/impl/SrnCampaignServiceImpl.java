@@ -1,6 +1,8 @@
 package com.srn.api.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.srn.api.RabbitConfig;
+import com.srn.api.messaging.RabbitPublish;
 import com.srn.api.model.dto.SrnCampaignDto;
 import com.srn.api.model.dto.SrnCampaignRedeemDto;
 import com.srn.api.model.entity.SrnCampaign;
@@ -36,6 +38,9 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
 
     @Autowired
     ISrnDeviceRepo deviceRepo;
+
+    @Autowired
+    RabbitPublish rabbitPublish;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SrnCampaignServiceImpl.class);
     private static String TAG = SrnCampaignServiceImpl.class.getSimpleName();
@@ -126,10 +131,16 @@ public class SrnCampaignServiceImpl implements ISrnCampaignService {
             SrnCampaignRedeemDto redeemDto = mapper.readValue(redeemPayload, SrnCampaignRedeemDto.class);
             String sessionPlain = SecurityUtils.getInstance().setData(redeemDto.getSessionId()).setMethod(SecurityUtils.Method.SESSION_DECRYPT).build();
             SrnDevice device = mapper.readValue(sessionPlain, SrnDevice.class);
+            redeemDto.setDeviceData(device);
             LOGGER.info(TAG, "Redeem user session : {}", sessionPlain);
             LOGGER.info(TAG, "Redeem payload : {}", redeemPayload);
+            redeem(redeemDto);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void redeem(SrnCampaignRedeemDto redeemDto) {
+        rabbitPublish.publishMessage(RabbitConfig.REDEEM_QUEUE, redeemDto);
     }
 }
