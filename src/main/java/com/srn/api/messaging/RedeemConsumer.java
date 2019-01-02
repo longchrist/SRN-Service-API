@@ -75,7 +75,7 @@ public class RedeemConsumer {
                     }
                 } else {
                     // point not match
-                    LOGGER.info("campaignId {} request redeem point is {} not match with existing required points {} - potential fraud !", data.getCampaignId(), data.getRequiredPoints(), campaign.getRequiredPoints());
+                    LOGGER.info("campaignId {} request redeem point is {} not match with existing required points {} - potential fraud(3) !", data.getCampaignId(), data.getRequiredPoints(), campaign.getRequiredPoints());
                 }
             } else {
                 // redeem time is exceed from campaign end date
