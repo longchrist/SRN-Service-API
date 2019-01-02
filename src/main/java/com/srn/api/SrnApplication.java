@@ -2,9 +2,14 @@ package com.srn.api;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.slf4j.Logger;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
+import org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler;
+import org.springframework.amqp.rabbit.listener.exception.ListenerExecutionFailedException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
@@ -12,6 +17,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.util.ErrorHandler;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -92,5 +99,38 @@ public class SrnApplication {
         factory.setDataSource(dataSource);
         factory.afterPropertiesSet();
         return factory.getObject();
+    }
+
+
+    @Bean
+    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory connectionFactory,
+                                                                               SimpleRabbitListenerContainerFactoryConfigurer configurer) {
+        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+        configurer.configure(factory, connectionFactory);
+        factory.setErrorHandler(errorHandler());
+        return factory;
+    }
+
+    @Bean
+    public ErrorHandler errorHandler() {
+        return new ConditionalRejectingErrorHandler(new MyFatalExceptionStrategy());
+    }
+
+
+    public static class MyFatalExceptionStrategy extends ConditionalRejectingErrorHandler.DefaultExceptionStrategy {
+
+        private final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(getClass());
+
+        @Override
+        public boolean isFatal(Throwable t) {
+            if (t instanceof ListenerExecutionFailedException) {
+                ListenerExecutionFailedException lefe = (ListenerExecutionFailedException) t;
+                LOGGER.error("Failed to process inbound message from queue "
+                        + lefe.getFailedMessage().getMessageProperties().getConsumerQueue()
+                        + "; failed message: " + lefe.getFailedMessage(), t);
+            }
+            return super.isFatal(t);
+        }
+
     }
 }
