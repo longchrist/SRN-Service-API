@@ -77,13 +77,8 @@ public class NotificationPublish {
     }
 
     public class FcmPayload implements Serializable {
-        @Serialization
         private List<String> registration_ids;
-
-        @Serialization
         private String priority;
-
-        @Serialization
         private Map<String, String> data;
 
         public List<String> getRegistration_ids() {
