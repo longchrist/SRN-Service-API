@@ -364,6 +364,7 @@ create unique index idx_srn_campaign_detail on srn_campaign_detail (campaign_id,
 create table srn_campaign_redeem (
   redeem_id integer not null default nextval('srn_campaign_redeem_seq'),
   user_id integer not null,
+  device_id integer not null,
   voucher_code text not null,
   redeem_date timestamp without time zone NOT NULL DEFAULT current_timestamp,
   created timestamp without time zone NOT NULL DEFAULT current_timestamp,

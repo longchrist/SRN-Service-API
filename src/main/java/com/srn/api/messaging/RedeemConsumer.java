@@ -37,6 +37,9 @@ public class RedeemConsumer {
     @Autowired
     ISrnCampaignRedeemRepo campaignRedeemRepo;
 
+    @Autowired
+    NotificationPublish notifPublish;
+
     private String userFcmId;
 
     @RabbitListener(queues = "queue.redeem")
@@ -56,7 +59,7 @@ public class RedeemConsumer {
                             if (device != null) {
                                 SrnVoucherCampaignDetail voucher = voucherRepo.findAvailableVoucher(campaignId);
                                 if (voucher != null) {
-                                    userVoucherRedeem(userDevice.getUserId(), data.getRedeemTimestamp(), voucher);
+                                    userVoucherRedeem(userDevice.getUserId(), userDevice.getId(), data.getRedeemTimestamp(), voucher);
                                 } else {
                                     // voucher out of stock
                                     LOGGER.info("voucher campaignid {} is out of stock ! ", data.getCampaignId());
@@ -88,15 +91,18 @@ public class RedeemConsumer {
     }
 
 
-    private void userVoucherRedeem(long userId, Timestamp redeemTimestamp, SrnVoucherCampaignDetail voucher) {
+    private void userVoucherRedeem(long userId, long deviceId, Timestamp redeemTimestamp, SrnVoucherCampaignDetail voucher) {
         if (voucher != null) {
             SrnRedeem redeem = new SrnRedeem();
             redeem.setUserId(userId);
+            redeem.setDeviceId(deviceId);
             redeem.setVoucherCode(voucher.getVoucherCode());
             redeem.setRedeemDate(redeemTimestamp);
             redeem.setCreated(FormatterUtils.getCurrentTimestamp());
             redeem.setLastUpdated(FormatterUtils.getCurrentTimestamp());
-            campaignRedeemRepo.save(redeem);
+            if (campaignRedeemRepo.save(redeem) != null ) {
+                notifPublish.sendRedeemNotificationResult(userFcmId,0,"success");
+            }
         }
     }
 }

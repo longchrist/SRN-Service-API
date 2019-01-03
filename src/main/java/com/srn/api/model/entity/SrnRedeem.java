@@ -22,6 +22,10 @@ public class SrnRedeem {
     private long userId;
 
     @Basic(optional = false)
+    @Column(name = "device_id", nullable = true)
+    private long deviceId;
+
+    @Basic(optional = false)
     @Column(name = "voucher_code", nullable = true)
     private String voucherCode;
 
@@ -51,6 +55,14 @@ public class SrnRedeem {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public long getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(long deviceid) {
+        this.deviceId = deviceid;
     }
 
     public String getVoucherCode() {
