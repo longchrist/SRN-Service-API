@@ -7,7 +7,6 @@ package com.srn.api.messaging;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.api.client.util.ArrayMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +32,7 @@ public class NotificationPublish {
     @Value("${google.fcm.key}")
     private String fcmKey;
 
-    public void sendRedeemNotificationResult(String fcmId, int redeemStatus, String message) {
+    public void sendNotification(String fcmId, String message, Map<String, Object> data) {
         try {
             URL url = new URL(fcmUrl);
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -47,10 +46,6 @@ public class NotificationPublish {
             FcmPayload payload = new FcmPayload();
             List<String> fcmList = new ArrayList<>();
             fcmList.add(fcmId);
-            Map<String, String> data = new ArrayMap<>();
-            data.put("key","redeem");
-            data.put("redeemStatus", String.valueOf(redeemStatus));
-            data.put("message", message);
             payload.setRegistration_ids(fcmList);
             payload.setData(data);
             payload.setPriority("high");
@@ -67,7 +62,7 @@ public class NotificationPublish {
             }
             br.close();
             connection.disconnect();
-            LOGGER.info("FCM Result --> {}", jsonString.toString());
+            LOGGER.info("sendNotification FCM Result --> {}", jsonString.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -78,7 +73,7 @@ public class NotificationPublish {
     public class FcmPayload implements Serializable {
         private List<String> registration_ids;
         private String priority;
-        private Map<String, String> data;
+        private Map<String, Object> data;
 
         public List<String> getRegistration_ids() {
             return registration_ids;
@@ -96,11 +91,11 @@ public class NotificationPublish {
             this.priority = priority;
         }
 
-        public Map<String, String> getData() {
+        public Map<String, Object> getData() {
             return data;
         }
 
-        public void setData(Map<String, String> data) {
+        public void setData(Map<String, Object> data) {
             this.data = data;
         }
 
