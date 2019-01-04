@@ -341,6 +341,8 @@ create table srn_voucher_campaign_detail (
    constraint srn_voucher_campaign_detail_fk_srn_voucher_campaign foreign key (voucher_campaign_id) references srn_voucher_campaign (voucher_campaign_id)
 );
 
+create index idx_srn_voucher_campaign_detail_expired on srn_voucher_campaign_detail(voucher_expired);
+
 -- drop table srn_campaign_detail;
 create table srn_campaign_detail
 (
