@@ -334,6 +334,7 @@ create table srn_voucher_campaign_detail (
    voucher_campaign_detail_id integer not null default nextval('srn_voucher_campaign_detail_seq'::regclass),
    voucher_campaign_id integer not null,
    voucher_code text unique not null,
+   voucher_expired timestamp without time zone NOT NULL DEFAULT current_timestamp,
    created timestamp without time zone NOT NULL DEFAULT current_timestamp,
    last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
    constraint srn_voucher_campaign_detail_pk primary key (voucher_campaign_detail_id),
