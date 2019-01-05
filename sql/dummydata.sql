@@ -63,4 +63,14 @@ left join srn_voucher_campaign svc on svc.voucher_campaign_id = scd.voucher_camp
 left join srn_voucher_campaign_detail svcd on svc.voucher_campaign_id = svcd.voucher_campaign_id
 where scd.store_id = 'C05'
 
+-- query get voucher list per user and return as json text
+select array_to_json(array_agg(voucheruser)) from (
+select scr.voucher_code as "voucherCode",
+	 extract(epoch from svcd.voucher_expired)*100000 as "voucherExpired",
+	svcd.voucher_campaign_id as "voucherCampaignId",
+	(select array_to_json(array_agg(r)) from (select scd.store_id as "id", ss.store_name as "name" from srn_campaign_detail scd join srn_store ss on ss.store_id = scd.store_id
+		where scd.voucher_campaign_id = svcd.voucher_campaign_id) r) as "store"
+from srn_campaign_redeem scr join srn_voucher_campaign_detail svcd on svcd.voucher_code = scr.voucher_code
+where scr.user_id = 10000000 and svcd.voucher_expired > current_timestamp
+) voucheruser
 

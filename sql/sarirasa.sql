@@ -377,6 +377,7 @@ create table srn_campaign_redeem (
   constraint srn_campaign_redeem_fk_srn_user_profile foreign key (user_id) references srn_user_profile (user_id)
 );
 create index idx_srn_campaign_redeem on srn_campaign_redeem(user_id);
+create unique index idx_srn_campaign_redeem_voucher_code on srn_campaign_redeem(voucher_code);
 
 --drop table srn_campaign_claim
 create table srn_campaign_claim (
