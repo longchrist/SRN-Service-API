@@ -3,14 +3,11 @@ package com.srn.api.repo;/*
  created: 1/2/19 - 10:21 PM
 */
 
-import com.srn.api.model.dto.SrnVoucherDto;
 import com.srn.api.model.entity.SrnVoucherCampaignDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface ISrnVoucherCampaignDetailRepo extends JpaRepository<SrnVoucherCampaignDetail, Long> {

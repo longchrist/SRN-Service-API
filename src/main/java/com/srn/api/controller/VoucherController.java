@@ -4,7 +4,6 @@ package com.srn.api.controller;/*
 */
 
 import com.srn.api.model.SrnResponse;
-import com.srn.api.model.dto.SrnCampaignDto;
 import com.srn.api.model.dto.SrnVoucherDto;
 import com.srn.api.service.ISrnVoucherService;
 import com.srn.api.utils.FormatterUtils;
