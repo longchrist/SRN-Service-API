@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.srn.api.model.dto.SrnVoucherDto;
 import com.srn.api.model.entity.SrnUserDevice;
+import com.srn.api.repo.ISrnCampaignRepo;
 import com.srn.api.repo.ISrnUserDeviceRepo;
 import com.srn.api.repo.ISrnVoucherCampaignDetailRepo;
 import com.srn.api.service.ISrnVoucherService;
@@ -29,9 +30,6 @@ public class SrnVoucherServiceImpl implements ISrnVoucherService {
 
     @Autowired
     ISrnUserDeviceRepo userDeviceRepo;
-
-    @Autowired
-    EntityManager em;
 
     @Override
     public List<SrnVoucherDto> findUserVoucher(String session) {

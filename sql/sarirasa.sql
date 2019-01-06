@@ -333,8 +333,12 @@ ALTER TABLE public.srn_voucher_campaign
 create table srn_voucher_campaign_detail (
    voucher_campaign_detail_id integer not null default nextval('srn_voucher_campaign_detail_seq'::regclass),
    voucher_campaign_id integer not null,
+   voucher_campaign_name text not null  default 'voucher name',
+   voucher_campaign_tnc text  default 'voucher tnc',
+   voucher_campaign_description text default 'voucher description',
    voucher_code text unique not null,
    voucher_expired timestamp without time zone NOT NULL DEFAULT current_timestamp,
+   voucher_amount numeric default 0,
    created timestamp without time zone NOT NULL DEFAULT current_timestamp,
    last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
    constraint srn_voucher_campaign_detail_pk primary key (voucher_campaign_detail_id),
@@ -408,4 +412,16 @@ select * from srn_campaign_detail scd join srn_campaign sc on scd.campaign_id = 
 left join srn_voucher_campaign svc on svc.voucher_campaign_id = scd.voucher_campaign_id
 left join srn_voucher_campaign_detail svcd on svc.voucher_campaign_id = svcd.voucher_campaign_id
 where scd.store_id = 'C05'
+
+select '"'||array_to_json(array_agg(voucheruser))||'"' from
+  (select scr.voucher_code as "voucherCode",
+          extract(epoch from svcd.voucher_expired)*100000 as "voucherExpired",
+          svcd.voucher_campaign_id as "voucherCampaignId",
+          svcd.voucher_amount as "voucherAmount", svcd.voucher_campaign_name as "campaignName", svcd.voucher_campaign_tnc as "tnc", svcd.voucher_campaign_description as "description",
+          (select distinct(sc.campaign_name) from srn_campaign_detail scd join srn_campaign sc on scd.campaign_id = sc.id where scd.voucher_campaign_id = svcd.voucher_campaign_id) as "campaignName",
+          (select distinct(sc.tnc) from srn_campaign_detail scd join srn_campaign sc on scd.campaign_id = sc.id where scd.voucher_campaign_id = svcd.voucher_campaign_id) as "tnc",
+          (select distinct(sc.description) from srn_campaign_detail scd join srn_campaign sc on scd.campaign_id = sc.id where scd.voucher_campaign_id = svcd.voucher_campaign_id) as "description",
+          (select array_to_json(array_agg(r)) from (select scd.store_id as "id", ss.store_name as "name" from srn_campaign_detail scd join srn_store ss on ss.store_id = scd.store_id where scd.voucher_campaign_id = svcd.voucher_campaign_id) r) as "store"
+   from srn_campaign_redeem scr join srn_voucher_campaign_detail svcd on svcd.voucher_code = scr.voucher_code
+   where scr.user_id = 10000000 and svcd.voucher_expired > current_timestamp) voucheruser
 
