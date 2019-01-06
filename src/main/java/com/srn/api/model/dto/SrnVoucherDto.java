@@ -11,6 +11,7 @@ public class SrnVoucherDto extends BaseDto {
     private long voucherExpired;
     private long voucherCampaignId;
     private long voucherAmount;
+    private String imageUrl;
     private String campaignName;
     private String tnc;
     private String description;
@@ -78,5 +79,13 @@ public class SrnVoucherDto extends BaseDto {
 
     public void setVoucherAmount(long voucherAmount) {
         this.voucherAmount = voucherAmount;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

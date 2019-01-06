@@ -339,6 +339,7 @@ create table srn_voucher_campaign_detail (
    voucher_code text unique not null,
    voucher_expired timestamp without time zone NOT NULL DEFAULT current_timestamp,
    voucher_amount numeric default 0,
+   voucher_image_url text,
    created timestamp without time zone NOT NULL DEFAULT current_timestamp,
    last_updated timestamp without time zone NOT NULL DEFAULT current_timestamp,
    constraint srn_voucher_campaign_detail_pk primary key (voucher_campaign_detail_id),
